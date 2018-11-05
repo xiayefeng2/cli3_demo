@@ -1,6 +1,6 @@
 const path = require('path')
 
-let baseUrl = '/mall/'
+let baseUrl = '/test/'
 
 function resolve (dir) {
   return path.join(__dirname, dir)
