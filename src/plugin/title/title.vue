@@ -20,7 +20,7 @@ export default {
 
       let { text } = slots[0]
       let { title } = document
-      if (text !== title) document.title = text + '-'
+      if (text !== title) document.title = text
     }
   }
 }

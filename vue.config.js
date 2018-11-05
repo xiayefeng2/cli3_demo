@@ -1,6 +1,6 @@
 const path = require('path')
 
-let baseUrl = '/mall/'
+let baseUrl = '/test/'
 
 function resolve (dir) {
   return path.join(__dirname, dir)
@@ -20,6 +20,11 @@ module.exports = {
       .set('assets', resolve('src/assets'))
       .set('util', resolve('src/util'))
       .set('plugin', resolve('src/plugin'))
+
+    const entry = config.entry('app')
+    entry
+      .add('@babel/polyfill')
+      .end()
   },
 
   devServer: {
