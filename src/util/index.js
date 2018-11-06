@@ -1,4 +1,4 @@
-import cookies from './util.cookies'
+import cookies from './cookies'
 const util = {
   cookies
 }
@@ -106,7 +106,7 @@ export function randomColor () {
   if (rand.length === 6) {
     return '#' + rand
   } else {
-   return randomColor()
+    return randomColor()
   }
 }
 
