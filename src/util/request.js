@@ -1,20 +1,15 @@
 /**
- * Created by Administrator on 2018-03-22.
+ * Created by wx on 2018-11-06.
  */
 import axios from 'axios'
 import qs from 'query-string'
-import { isObject } from './index'
-/* import NProgress from 'nprogress' // progress bar
-import URL from '../config/url' */
-// NProgress.configure({showSpinner: false, trickleSpeed: 100})
 
-const service = axios.create({
-  timeout: 15000, // 请求超时时间
-  withCredentials: true
+const instance = axios.create({
+  timeout: 15000 // 请求超时时间
   // maxRedirects: 5,
 })
 
-service.interceptors.request.use(
+instance.interceptors.request.use(
   config => {
     if (config.isPlan) {
       config.headers['Content-Type'] = 'application/x-www-form-urlencoded;charset=UTF-8'
@@ -29,16 +24,13 @@ service.interceptors.request.use(
     }
     return config
   },
-  error => {
-    Promise.reject(error)
-  }
+  error => Promise.reject(error)
 )
 
-service.interceptors.response.use(
+instance.interceptors.response.use(
   resp => {
     // console.log(resp)
-    // NProgress.set(0.8)
-    let res = resp.data
+    const res = resp.data
     if (res.code === 0) {
       Promise.resolve(res)
     } else {
@@ -56,26 +48,31 @@ service.interceptors.response.use(
   }
 )
 
-export default (url, params, options) => {
-  // NProgress.start()
+export default ({ url, method = 'get', params = {}, data = {}, isPlan = true, isFormData = false } = {}) => {
   // console.log(url)
   // console.log(params)
-  if (options && options.url) {
-    url = options.url
+  if (!url) {
+    return
+  }
+  if (/[A-Z]/.test(method)) {
+    method = method.toLocaleLowerCase()
   }
   return new Promise((resolve, reject) => {
-    service.post(url, params, { isPlan: true, isFormData: false }).then((res) => {
-      // NProgress.done()
+    instance.request({
+      url,
+      params,
+      data,
+      isPlan,
+      isFormData,
+      method
+    }).then((res) => {
       resolve(res)
-      // NProgress.remove()
-    }).catch(function (thrown) {
-      console.log(thrown)
-      if (axios.isCancel(thrown)) {
-        console.log('canceled', thrown.message)
+    }).catch(error => {
+      // console.log(error)
+      if (axios.isCancel(error)) {
+        console.log('Request canceled', error.message)
       }
-      // NProgress.done()
-      // NProgress.remove()
-      reject(thrown)
+      reject(error)
     })
   })
 }

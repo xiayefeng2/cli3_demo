@@ -8,7 +8,7 @@ export function isMobile () {
   return (agent.match(/Android/i) || (agent.indexOf('iPhone') !== -1) || (navigator.userAgent.indexOf('iPad') !== -1))
 }
 
-export function length (str) {
+export function len (str) {
   return [...str].length
 }
 
