@@ -5,7 +5,7 @@ import util from 'util'
 
 Vue.use(Router)
 
-export default new Router({
+const router = new Router({
   routes: [
     {
       path: '/',
@@ -22,3 +22,25 @@ export default new Router({
     }
   ]
 })
+router.beforeEach((to, from, next) => {
+  if (to.matched.some(r => r.meta.requiresAuth)) {
+    const token = util.cookies.get('token')
+    if (token && token !== 'undefined') {
+      next()
+    } else {
+      next({
+        name: 'login'
+      })
+    }
+  } else {
+    next()
+  }
+})
+
+router.afterEach((to, from) => {
+  if (to.meta.title) {
+    util.title(to.meta.title)
+  }
+})
+
+export default router

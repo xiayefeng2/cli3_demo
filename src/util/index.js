@@ -309,6 +309,15 @@ export function isDev () {
 export function isProd () {
   return process.env.NODE_ENV === 'production'
 }
+
+/**
+ * @description 更新标题
+ * @param {String} title 标题
+ */
+util.title = function (titleText = '标题') {
+  window.document.title = titleText
+}
+
 /**
  * @description 打开新页面
  * @param {String} url 地址
