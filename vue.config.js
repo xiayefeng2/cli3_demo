@@ -25,6 +25,10 @@ module.exports = {
     entry
       .add('@babel/polyfill')
       .end()
+
+    config.externals({
+      'AMap': 'AMap'
+    })
   },
 
   devServer: {
@@ -33,7 +37,7 @@ module.exports = {
       '/api': {
         target: 'url',
         changeOrigin: true,
-        pathRewrite: {'^/api' : '/'}
+        pathRewrite: { '^/api': '/' }
       }
     }
   },
@@ -44,6 +48,7 @@ module.exports = {
       patterns: []
     }
   }
+
 }
 
 function addStyleResource (rule) {

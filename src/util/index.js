@@ -4,8 +4,8 @@ const util = {
 }
 const _toString = Object.prototype.toString
 export function isMobile () {
-  let agent = navigator.userAgent
-  return (agent.match(/Android/i) || (agent.indexOf('iPhone') !== -1) || (navigator.userAgent.indexOf('iPad') !== -1))
+  const agent = navigator.userAgent
+  return agent.match(/Android/i) || agent.includes('iPhone') || agent.includes('iPad')
 }
 
 export function len (str) {
@@ -78,9 +78,9 @@ export function calcBaseRem () {
     recalc = function () {
       let clientWidth = docEl.clientWidth
       if (clientWidth === undefined) return
-      if (clientWidth <= 680) {
+      if (clientWidth <= 720) {
         docEl.style.fontSize = '18px'
-      } else if (clientWidth > 680 && clientWidth <= 1024) {
+      } else if (clientWidth > 720 && clientWidth <= 1200) {
         docEl.style.fontSize = '16px'
       } else {
         docEl.style.fontSize = '14px'
@@ -134,18 +134,24 @@ export function isPromise (val) {
 
 export function isNum (val) {
   // return typeof val === 'number' && !isNaN(val)
-  return Number.isFinite(val)
+  if (typeof val !== 'number') {
+    return false
+  }
+  return Number.isSafeInteger(parseInt(val))
 }
 export function assert (condition, msg) {
   if (!condition) throw new Error(`[vuex] ${msg}`)
 }
 
-export function getToday () {
+export function getToday (operate = '-') {
+  if (typeof operate !== 'string') {
+    throw new Error('连接符必须为字符串')
+  }
   let today = new Date()
   const year = today.getFullYear()
   const month = today.getMonth() + 1
   const day = today.getDate()
-  return year + '-' + twoBit(month) + '-' + twoBit(day)
+  return year + operate + twoBit(month) + operate + twoBit(day)
 }
 
 export function dateFormat ({
@@ -244,7 +250,7 @@ export function getAge (birth) {
   return obj
 }
 
-export function ageToDate (y, m, d) {
+export function ageToDate (y, m = 0, d = 0) {
   var year = y
   var day = d
   var month = m
