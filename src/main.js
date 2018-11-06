@@ -7,7 +7,7 @@ import VueI18n from 'vue-i18n'
 import regDirective from './directive/directive'
 import regComponent from './directive/reg_component'
 import Title from 'plugin/title'
-import VueIconFont from 'vue-icon-font'
+import VueIconFont from 'plugin/icon'
 import '../public/font/iconfont'
 
 const FastClick = require('fastclick')

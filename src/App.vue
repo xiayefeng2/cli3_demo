@@ -4,10 +4,40 @@
       <router-link to="/">Home</router-link> |
       <router-link to="/about">About</router-link>
     </div>
-    <router-view />
+    <router-view v-if="isRouterAlive" />
   </div>
 </template>
+<script>
+import { calcBaseRem } from 'util'
+export default {
+  name: 'App',
+  data () {
+    return {
+      isRouterAlive: true
+    }
+  },
+  created () {
 
+  },
+  mounted () {
+    console.log('App Mounted')
+    calcBaseRem()
+  },
+  methods: {
+    reload () {
+      this.isRouterAlive = false
+      this.$nextTick(() => {
+        this.isRouterAlive = true
+      })
+    }
+  },
+  provide () {
+    return {
+      reload: this.reload
+    }
+  }
+}
+</script>
 <style>
 #app {
   font-family: 'Avenir', Helvetica, Arial, sans-serif;

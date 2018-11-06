@@ -79,11 +79,11 @@ export function calcBaseRem () {
       let clientWidth = docEl.clientWidth
       if (clientWidth === undefined) return
       if (clientWidth <= 680) {
-        docEl.style.fontSize = '16px'
+        docEl.style.fontSize = '18px'
       } else if (clientWidth > 680 && clientWidth <= 1024) {
         docEl.style.fontSize = '16px'
       } else {
-        docEl.style.fontSize = '16px'
+        docEl.style.fontSize = '14px'
       }
     }
   }

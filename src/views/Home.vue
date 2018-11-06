@@ -16,6 +16,7 @@ export default {
   name: 'Home',
   components: {
     HelloWorld
-  }
+  },
+  inject: ['reload']
 }
 </script>
