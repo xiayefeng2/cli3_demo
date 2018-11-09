@@ -88,7 +88,7 @@ export function calcBaseRem () {
     }
   }
 
-  if (document.addEventListener === undefined) return
+  if (!document.addEventListener) return
   window.addEventListener(resizeEvt, recalc, false)
   document.addEventListener('DOMContentLoaded', recalc, false)
 }
