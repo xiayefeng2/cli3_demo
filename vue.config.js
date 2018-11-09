@@ -15,6 +15,28 @@ module.exports = {
     const types = ['vue-modules', 'vue', 'normal-modules', 'normal']
     types.forEach(type => addStyleResource(config.module.rule('scss').oneOf(type)))
 
+    // svg
+    const svgRule = config.module.rule('svg')
+    svgRule.uses.clear()
+    svgRule
+      .include
+      .add(resolve('src/assets/svg-icons/icons'))
+      .end()
+      .use('svg-sprite-loader')
+      .loader('svg-sprite-loader')
+      .options({
+        symbolId: 'ph-[name]'
+      })
+      .end()
+
+    // image exclude
+    const imagesRule = config.module.rule('images')
+    imagesRule
+      .test(/\.(png|jpe?g|gif|webp|svg)(\?.*)?$/)
+      .exclude
+      .add(resolve('src/assets/svg-icons/icons'))
+      .end()
+
     config.resolve.alias
       .set('@', resolve('src'))
       .set('assets', resolve('src/assets'))

@@ -8,6 +8,7 @@ import regDirective from './directive/directive'
 import regComponent from './directive/reg_component'
 import Title from 'plugin/title'
 import VueIconFont from 'plugin/icon'
+import '@/assets/svg-icons'
 import '../public/font/iconfont'
 
 const FastClick = require('fastclick')

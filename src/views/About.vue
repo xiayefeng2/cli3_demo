@@ -5,6 +5,7 @@
       class="ali-icon"
       name="pengyouquan"
     />
+    <base-icon-svg name="add" />
     <v-title>{{ title }}</v-title>
   </div>
 </template>
