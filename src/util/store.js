@@ -2,10 +2,6 @@ import { isObject } from './index'
 
 export default function Store () {
   this.getSession = key => {
-    /* if (!window.sessionStorage) {
-      console.log('当前浏览器不支持sessionStorage！')
-      throw new Error('浏览器不支持')
-    } */
     this.checkBrowser()
     let val = this.getItem(key)
     if (val === null) {
@@ -27,16 +23,32 @@ export default function Store () {
   }
 
   this.setSession = (key, val) => {
+    if(!key) {
+      console.log('key值无效')
+      return
+    }
     this.setItem(key, val)
   }
 
   this.setLocal = (key, val) => {
+    if(!key) {
+      console.log('key值无效')
+      return
+    }
     this.setItem(key, val, 2)
+  }
+
+  this.removeSession = (key) => {
+    this.removeItem(key)
+  }
+
+  this.removeLocal = (key) => {
+    this.removeItem(key, 2)
   }
 
   this.checkBrowser = () => {
     if (!window.sessionStorage || !window.localStorage) {
-      console.log('当前浏览器不支持sessionStorage！')
+      console.log('当前浏览器不支持Storage！')
       throw new Error('浏览器不支持')
     }
   }
@@ -97,11 +109,13 @@ export default function Store () {
     }
   }
   this.setItem = (key, val, lx = 1) => {
+    if (typeof val === 'object' && val !== null) {
+      val = JSON.stringify(val)
+    }
     if (lx === 1) {
-      if (typeof val === 'object' && val !== null) {
-        val = JSON.stringify(val)
-      }
       sessionStorage.setItem(key, val)
+    } else {
+      localStorage.setItem(key, val)
     }
   }
 }
