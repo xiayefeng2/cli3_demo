@@ -5,12 +5,14 @@ const util = {
   store: new storage()
 }
 const _toString = Object.prototype.toString
-export function isMobile () {
+const encode = encodeURIComponent
+
+export function isMobile() {
   const agent = navigator.userAgent
   return agent.match(/Android/i) || agent.includes('iPhone') || agent.includes('iPad')
 }
 
-export function len (str) {
+export function len(str) {
   return [...str].length
 }
 
@@ -26,7 +28,7 @@ export const toArray = (() =>
  * @param {Function} f
  * @return {*}
  */
-export function find (list, f) {
+export function find(list, f) {
   return list.filter(f)[0]
 }
 
@@ -40,7 +42,7 @@ export const round = (n, decimals = 0) => Number(`${Math.round(`${n}e${decimals}
  * @param {Array<Object>} cache
  * @return {*}
  */
-export function deepCopy (obj, cache = []) {
+export function deepCopy(obj, cache = []) {
   // just return if obj is immutable value
   if (obj === null || typeof obj !== 'object') {
     return obj
@@ -66,7 +68,7 @@ export function deepCopy (obj, cache = []) {
   return copy
 }
 
-export function calcBaseRem () {
+export function calcBaseRem() {
   let docEl = document.documentElement
   let resizeEvt = 'orientationchange' in window ? 'orientationchange' : 'resize'
   let recalc = null
@@ -95,15 +97,31 @@ export function calcBaseRem () {
   document.addEventListener('DOMContentLoaded', recalc, false)
 }
 
-export function isFunction (val) {
+export function isFunction(val) {
   return typeof val === 'function'
 }
 
-export function isObject (obj) {
+export function isObject(obj) {
   return obj !== null && typeof obj === 'object'
 }
 
-export function randomColor () {
+export function isSimpleData(val) {
+  return !(val instanceof Object)
+}
+
+// 扁平化数组
+export function flatArray(arr) {
+  if (Array.isArray(arr)) {
+    return arr.flat(Infinity)
+  }
+}
+
+// 检测属性是否在原型链上
+export function hasPrototypeProperty(object, name) {
+  return !Object.hasPrototypeProperty(name) && (name in object)
+}
+
+export function randomColor() {
   let rand = Math.floor(selectFrom(0, 1) * 0xFFFFFF).toString(16)
   if (rand.length === 6) {
     return '#' + rand
@@ -117,35 +135,35 @@ export function randomColor () {
  * @param {最小值} lowerValue
  * @param {最大值} upperValue
  */
-export function selectFrom (lowerValue, upperValue) {
+export function selectFrom(lowerValue, upperValue) {
   const chooices = upperValue - lowerValue + 1
   return Math.floor(Math.random() * chooices + lowerValue)
 }
 
-export function isPlainObject (obj) {
+export function isPlainObject(obj) {
   return _toString.call(obj) === '[object Object]'
 }
 
-export function isRegExp (v) {
+export function isRegExp(v) {
   return _toString.call(v) === '[object RegExp]'
 }
 
-export function isPromise (val) {
+export function isPromise(val) {
   return val && typeof val.then === 'function'
 }
 
-export function isNum (val) {
+export function isNum(val) {
   // return typeof val === 'number' && !isNaN(val)
   if (typeof val !== 'number') {
     return false
   }
   return Number.isSafeInteger(parseInt(val))
 }
-export function assert (condition, msg) {
+export function assert(condition, msg) {
   if (!condition) throw new Error(`[vuex] ${msg}`)
 }
 
-export function getToday (operate = '-') {
+export function getToday(operate = '-') {
   if (typeof operate !== 'string') {
     throw new Error('连接符必须为字符串')
   }
@@ -156,7 +174,7 @@ export function getToday (operate = '-') {
   return year + operate + twoBit(month) + operate + twoBit(day)
 }
 
-export function dateFormat ({
+export function dateFormat({
   date = new Date(),
   format = 'yyyy-MM-dd'
 } = {}) {
@@ -183,11 +201,12 @@ export function dateFormat ({
     console.log('params error!')
   }
 }
-function twoBit (num) {
+
+function twoBit(num) {
   return num < 10 ? '0' + num : num
 }
 
-export function RemoveArrItem () {
+export function RemoveArrItem() {
   let arr = []
   arr.push.apply(arr, arguments)
   arr.remove = function (item) {
@@ -208,11 +227,11 @@ export function RemoveArrItem () {
   return arr
 }
 
-export function getExtension (str) {
+export function getExtension(str) {
   return str.split('.').pop().toLowerCase()
 }
 
-export function getAge (birth) {
+export function getAge(birth) {
   // birth = birth.replace(/-/g, "/");
   if (!birth) {
     return
@@ -228,7 +247,7 @@ export function getAge (birth) {
   let md2 = md1.slice()
   md2[1] += 1
 
-  function isleap (x) {
+  function isleap(x) {
     return (x % 4 === 0 && x % 100 !== 0) || x % 400 === 0
   }
   var num = 0
@@ -252,7 +271,7 @@ export function getAge (birth) {
   return obj
 }
 
-export function ageToDate (y, m = 0, d = 0) {
+export function ageToDate(y, m = 0, d = 0) {
   var year = y
   var day = d
   var month = m
@@ -272,7 +291,7 @@ export function ageToDate (y, m = 0, d = 0) {
   })
 }
 
-export function getOneMonth (initial = false) {
+export function getOneMonth(initial = false) {
   let str2
   let str1
   let date = new Date()
@@ -310,11 +329,11 @@ export function getOneMonth (initial = false) {
   return [str1, str2]
 }
 
-export function isDev () {
+export function isDev() {
   return process.env.NODE_ENV === 'development'
 }
 
-export function isProd () {
+export function isProd() {
   return process.env.NODE_ENV === 'production'
 }
 
