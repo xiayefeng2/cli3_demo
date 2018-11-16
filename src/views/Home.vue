@@ -11,14 +11,15 @@
 <script>
 // @ is an alias to /src
 import HelloWorld from '@/components/HelloWorld.vue'
-
+import util from 'util'
 export default {
   name: 'Home',
   components: {
     HelloWorld
   },
   created () {
-
+    let store = util.store
+    store.setSession('key', 1)
   },
   inject: ['reload']
 }

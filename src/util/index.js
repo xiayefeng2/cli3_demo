@@ -1,6 +1,8 @@
 import cookies from './cookies'
+import storage from './store'
 const util = {
-  cookies
+  cookies,
+  store: new storage()
 }
 const _toString = Object.prototype.toString
 export function isMobile () {
