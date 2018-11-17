@@ -1,5 +1,14 @@
 import { isObject } from './index'
-
+/**
+ * Store.getSession(key)  @param key, 获取 sessionStorage(key)
+ * Store.setSession(key, val)  @param (key, val) 设置 sessionStorage(key, val)
+ * Store.getLocal(key)  @param key, 获取 localStorage(key)
+ * Store.setLocal(key, val)  @param (key, val) 设置 localStorage(key, val)
+ * Store.removeSession(key) @param key, 删除 sessionStorage(key)
+ * Store.removeLocal(key)  @param key, 删除 localStorage(key)
+ * Store.clearSession()  删除所有 sessionStorage
+ * Store.clearLocal()  删除所有 localStorage
+ */
 export default function Store () {
   this.getSession = key => {
     this.checkBrowser()
@@ -23,7 +32,7 @@ export default function Store () {
   }
 
   this.setSession = (key, val) => {
-    if(!key) {
+    if (!key) {
       console.log('key值无效')
       return
     }
@@ -31,7 +40,7 @@ export default function Store () {
   }
 
   this.setLocal = (key, val) => {
-    if(!key) {
+    if (!key) {
       console.log('key值无效')
       return
     }
@@ -44,6 +53,14 @@ export default function Store () {
 
   this.removeLocal = (key) => {
     this.removeItem(key, 2)
+  }
+
+  this.clearSession = () => {
+    this.removeAll()
+  }
+
+  this.clearLocal = () => {
+    this.removeAll(2)
   }
 
   this.checkBrowser = () => {
@@ -102,13 +119,28 @@ export default function Store () {
           return obj
         }
       } catch (e) {
-        if (e.includes('in JSON')) {
+        console.log(e.message)
+        if (e.message.includes('character')) {
           return val
+        } else {
+          return null
         }
       }
     }
   }
   this.setItem = (key, val, lx = 1) => {
+    if (typeof val === 'undefined') {
+      throw new Error('val不能为空')
+    }
+    if (val instanceof Set || val instanceof WeakSet) {
+      throw new Error('不能存储Set或WeakSet')
+    }
+    if (val instanceof Map || val instanceof WeakMap) {
+      throw new Error('不能存储Map或WeakMap')
+    }
+    if (typeof val === 'symbol') {
+      throw new Error('不能存储symbol')
+    }
     if (typeof val === 'object' && val !== null) {
       val = JSON.stringify(val)
     }

@@ -18,8 +18,7 @@ export default {
     HelloWorld
   },
   created () {
-    let store = util.store
-    store.setSession('key', 1)
+
   },
   inject: ['reload']
 }
