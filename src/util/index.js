@@ -360,3 +360,19 @@ util.open = function (url) {
 }
 
 export default util
+
+// 构造函数原型模式
+function Person() {
+}
+Person.prototype = {
+  name: 'JeeK',
+  age: 29,
+  job: 'Software Engineer',
+  sayName: function () {
+    alert(this.name)
+  }
+}
+Object.defineProperty(Person.prototype, 'constructor', {
+  enumerable: false,
+  value: Person
+})

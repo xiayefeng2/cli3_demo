@@ -16,7 +16,11 @@ const FastClick = require('fastclick')
 regDirective()
 regComponent()
 
-FastClick.attach(document.body)
+if ('addEventListener' in document) {
+  document.addEventListener('DOMContentLoaded', function() {
+    FastClick.attach(document.body)
+  }, false)
+}
 Vue.use(VueI18n)
 Vue.use(Title)
 Vue.use(VueIconFont)
