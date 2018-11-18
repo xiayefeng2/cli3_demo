@@ -38,7 +38,7 @@
   },
   "browserslist": [
     "iOS >= 7",
-    "Android >= 4",
+    "Android >= 4.2",
     "not dead"
   ]
 }
