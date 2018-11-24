@@ -5,6 +5,7 @@ const util = {
   store: new Storage()
 }
 const _toString = Object.prototype.toString
+const _has = Object.prototype.hasOwnProperty
 const encode = encodeURIComponent
 
 export function isMobile () {
@@ -30,6 +31,10 @@ export const toArray = (() =>
  */
 export function find (list, f) {
   return list.filter(f)[0]
+}
+
+export function hasOwn (obj, key) {
+  return _has.call(obj, key)
 }
 
 export const round = (n, decimals = 0) => Number(`${Math.round(`${n}e${decimals}`)}e-${decimals}`)
@@ -362,7 +367,7 @@ util.open = function (url) {
 export default util
 
 // 构造函数原型模式
-function Person() {
+function Person () {
 }
 Person.prototype = {
   name: 'JeeK',
