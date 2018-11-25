@@ -42,7 +42,7 @@ module.exports = {
       .set('assets', resolve('src/assets'))
       .set('util', resolve('src/util'))
       .set('plugin', resolve('src/plugin'))
-      .clear()
+      .set('components', resolve('src/components'))
 
     const entry = config.entry('app')
     entry

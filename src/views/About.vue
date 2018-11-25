@@ -7,17 +7,32 @@
     />
     <base-icon-svg name="add" />
     <v-title>{{ title }}</v-title>
+    
+    <button @click="showFaAction">显示Action</button>
+    <sheet-action :show-action="showSelect">
+       <div>哈哈哈</div>
+    </sheet-action>
   </div>
 </template>
 <script>
+import SheetAction from 'components/common/SheetAction'
 export default {
   data () {
     return {
-      title: ''
+      title: '',
+      showSelect: false,
     }
   },
   mounted () {
     this.title = '我的主页'
+  },
+  methods: {
+    showFaAction() {
+      
+    }
+  },
+  components: {
+    SheetAction
   }
 }
 </script>
