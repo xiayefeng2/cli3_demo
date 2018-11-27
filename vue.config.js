@@ -1,3 +1,4 @@
+const UglifyJsPlugin = require('uglifyjs-webpack-plugin')
 const path = require('path')
 
 let baseUrl = '/test/'
@@ -29,7 +30,7 @@ module.exports = {
       })
       .end()
 
-      config
+    config
       // 开发环境
       .when(process.env.NODE_ENV === 'development',
         // sourcemap不包含列信息
