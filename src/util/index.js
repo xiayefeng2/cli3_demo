@@ -6,7 +6,7 @@ const util = {
 }
 const _toString = Object.prototype.toString
 const _has = Object.prototype.hasOwnProperty
-const encode = encodeURIComponent
+// const encode = encodeURIComponent
 
 export function isMobile () {
   const agent = navigator.userAgent
@@ -80,8 +80,8 @@ export function calcBaseRem () {
   if (isMobile()) {
     recalc = function () {
       let clientWidth = docEl.clientWidth
-      if (clientWidth === undefined) return
-      docEl.style.fontSize = 16 * (clientWidth / 375) + 'px'
+      if (typeof clientWidth === 'undefined') return
+      docEl.style.fontSize = clientWidth / 7.5 + 'px'
     }
   } else {
     recalc = function () {

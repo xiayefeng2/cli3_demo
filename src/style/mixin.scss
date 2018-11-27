@@ -180,3 +180,15 @@
   border: 10px solid transparent;
   border-top-color: #ccc;
 }
+
+@function dw($value) {
+  //   $val: if($dev == 'browse', $value / $d-w * 1rem, $value * 1rpx);
+  //   @return $val
+    @if $dev == 'browse' {
+        @return $value / $d-w * 1rem;
+    }@else {
+      @return $value * 1rpx;
+    }
+    //  @return $value / $d-w * 1rem
+    
+  }

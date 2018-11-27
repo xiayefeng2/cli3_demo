@@ -10,7 +10,10 @@
 
     <button @click="showFaAction">显示Action</button>
     <sheet-action :show-action="showSelect">
-      <div>哈哈哈</div>
+      <ul @click.stop="stopBubble"><li
+        v-for="(item, index) of [1, 2, 3, 4, 5]"
+        :key="index"
+      >{{ item }}</li></ul>
     </sheet-action>
   </div>
 </template>
@@ -28,7 +31,10 @@ export default {
   },
   methods: {
     showFaAction () {
-      this.data.showSelect = true
+      this.showSelect = true
+    },
+    stopBubble () {
+      return false
     }
   },
   components: {
