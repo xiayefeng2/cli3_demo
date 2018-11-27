@@ -7,10 +7,13 @@
     />
     <base-icon-svg name="add" />
     <v-title>{{ title }}</v-title>
-    
+
     <button @click="showFaAction">显示Action</button>
     <sheet-action :show-action="showSelect">
-       <div>哈哈哈</div>
+      <ul @click.stop="stopBubble"><li
+        v-for="(item, index) of [1, 2, 3, 4, 5]"
+        :key="index"
+      >{{ item }}</li></ul>
     </sheet-action>
   </div>
 </template>
@@ -20,15 +23,18 @@ export default {
   data () {
     return {
       title: '',
-      showSelect: false,
+      showSelect: false
     }
   },
   mounted () {
     this.title = '我的主页'
   },
   methods: {
-    showFaAction() {
-      
+    showFaAction () {
+      this.showSelect = true
+    },
+    stopBubble () {
+      return false
     }
   },
   components: {
