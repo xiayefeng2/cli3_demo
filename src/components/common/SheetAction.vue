@@ -1,50 +1,64 @@
 <template>
-    <div class="sheet-wrap" v-if="showAction" @click.stop="closeMask" @touchmove.prevent.stop="cancleBubble">
-        <div class="item-wrap" :class="[{'item-show':showAction}, position==='bottom'?'item-wrap-bottom':'item-wrap-top']">
-            <h3 class="top-title" v-if="hasTitle" @click.stop="stopBubble">{{actionTitle}}
-                <icon class="ali-icon" name="close" />
-            </h3>
-        </div>
+  <div
+    class="sheet-wrap"
+    v-if="showAction" 
+@click.stop="closeMask" @touchmove.prevent.stop="cancleBubble"
+>
+    <div 
+class="item-wrap"
+         :class="[{'item-show':showAction}, position==='bottom'?'item-wrap-bottom':'item-wrap-top']"
+>
+      <h3 
+class="top-title"
+          v-if="hasTitle" 
+@click.stop="stopBubble"
+>{{ actionTitle }}
+        <icon 
+class="ali-icon"
+              name="close"
+/>
+      </h3>
     </div>
+  </div>
 </template>
 
 <script>
 export default {
-  data() {
+  data () {
     return {
-      hasTitle: this.position === 'bottom',
+      hasTitle: this.position === 'bottom'
     }
   },
   props: {
     showAction: {
       type: Boolean,
-      default: false,
+      default: false
     },
     position: {
       type: String,
-      default: 'bottom',
+      default: 'bottom'
     },
     actionTitle: {
       type: String,
-      default: '',
+      default: ''
     },
     hasCloseBtn: {
       type: Boolean,
-      default: true,
-    },
+      default: true
+    }
   },
   computed: {},
   methods: {
-    cancleBubble(e) {
+    cancleBubble (e) {
       return false
     },
-    closeMask() {
+    closeMask () {
       this.$emit('close-mask')
     },
-    stopBubble() {
+    stopBubble () {
       return false
-    },
-  },
+    }
+  }
 }
 </script>
 
