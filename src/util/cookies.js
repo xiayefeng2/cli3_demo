@@ -17,7 +17,7 @@ cookies.set = function (name = 'default', value = '', cookieSetting = {}) {
 }
 
 /**
- * @description 拿到 cookie 值
+ * @description 获取 cookie 值
  * @param {String} name cookie name
  */
 cookies.get = function (name = 'default') {
@@ -25,7 +25,7 @@ cookies.get = function (name = 'default') {
 }
 
 /**
- * @description 拿到 cookie 全部的值
+ * @description 获取 cookie 全部的值
  */
 cookies.getAll = function () {
   return Cookies.get()

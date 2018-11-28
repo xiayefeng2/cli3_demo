@@ -11,6 +11,7 @@
     <button @click="showFaAction">显示Action</button>
     <sheet-action :show-action="showSelect">
       <ul @click.stop="stopBubble"><li
+        class="list"
         v-for="(item, index) of [1, 2, 3, 4, 5]"
         :key="index"
       >{{ item }}</li></ul>
@@ -46,7 +47,12 @@ export default {
   .about {
     @extend %abs;
   }
-  .ali-icon{
-    font-size: 30px;
+  .ali-icon {
+    font-size: dw(30);
+  }
+  .list {
+    height: dw(80);
+    line-height: dw(80);
+    background:#fff;
   }
 </style>

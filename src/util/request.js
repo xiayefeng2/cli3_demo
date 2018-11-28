@@ -2,7 +2,7 @@
  * Created by wx on 2018-11-06.
  */
 import axios from 'axios'
-import qs from 'query-string'
+import Qs from 'query-string'
 
 const instance = axios.create({
   timeout: 15000 // 请求超时时间
@@ -13,7 +13,7 @@ instance.interceptors.request.use(
   config => {
     if (config.isPlan) {
       config.headers['Content-Type'] = 'application/x-www-form-urlencoded;charset=UTF-8'
-      config.data = qs.stringify({ csjson: JSON.stringify(config.data) })
+      config.data = Qs.stringify({ csjson: JSON.stringify(config.data) })
     } else if (config.isFormData) {
       config.headers['Content-Type'] = 'multipart/form-data'
       let formData = new FormData()
