@@ -4,7 +4,7 @@
     class="action-sheet-wrap"
 
     v-if="showAction"
-    @click.stop="closeMask"
+    @click="closeMask"
     @touchmove.prevent.stop="cancleBubble"
   >
 
@@ -18,7 +18,10 @@
           v-if="hasTitle"
           @click.stop="stopBubble"
         ><span>{{ actionTitle }}</span>
-          <span class="close-btn"><icon
+          <span
+            class="close-btn"
+            @click="closeMask"
+          ><icon
             class="ali-icon"
             name="close"
           /></span>
@@ -61,6 +64,7 @@ export default {
       return false
     },
     closeMask () {
+      console.log(1)
       this.$emit('close-mask')
     },
     stopBubble () {

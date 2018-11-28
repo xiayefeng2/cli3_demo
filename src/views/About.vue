@@ -9,8 +9,14 @@
     <v-title>{{ title }}</v-title>
 
     <button @click="showFaAction">显示Action</button>
-    <sheet-action :show-action="showSelect">
-      <ul @click.stop="stopBubble"><li
+    <sheet-action
+      :show-action="showSelect"
+      @close-mask="closeMask"
+    >
+      <ul
+        @click.stop="stopBubble"
+        class="list-wrap"
+      ><li
         class="list"
         v-for="(item, index) of [1, 2, 3, 4, 5]"
         :key="index"
@@ -36,7 +42,11 @@ export default {
     },
     stopBubble () {
       return false
+    },
+    closeMask () {
+      this.showSelect = false
     }
+
   },
   components: {
     SheetAction
@@ -46,13 +56,18 @@ export default {
 <style lang="scss" scoped>
   .about {
     @extend %abs;
+    font-size: dw(32);
   }
   .ali-icon {
     font-size: dw(30);
+  }
+  .list-wrap{
+    font-size: dw(36);
   }
   .list {
     height: dw(80);
     line-height: dw(80);
     background:#fff;
+    border-bottom:1px solid #efefef;
   }
 </style>
