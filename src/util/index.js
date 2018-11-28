@@ -1,6 +1,8 @@
 import cookies from './cookies'
 import Storage from './store'
+import log from './log'
 const util = {
+  log,
   cookies,
   store: new Storage()
 }
