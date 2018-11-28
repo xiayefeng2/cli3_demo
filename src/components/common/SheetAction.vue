@@ -1,10 +1,13 @@
 <template>
   <div
+
     class="action-sheet-wrap"
+
     v-if="showAction"
     @click.stop="closeMask"
     @touchmove.prevent.stop="cancleBubble"
   >
+
     <transition name="action-box">
       <div
         class="item-wrap"
@@ -23,6 +26,7 @@
         <slot />
       </div>
     </transition>
+
   </div>
 </template>
 
@@ -67,6 +71,7 @@ export default {
 </script>
 
 <style lang="scss" scoped>
+
 .action-sheet-wrap{
   @extend %fix;
   left:0;
@@ -127,4 +132,5 @@ export default {
     }
   }
 }
+
 </style>
