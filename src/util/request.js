@@ -5,7 +5,7 @@ import axios from 'axios'
 import Qs from 'query-string'
 
 const instance = axios.create({
-  timeout: 15000 // 请求超时时间
+  timeout: 10000 // 请求超时时间
   // maxRedirects: 5,
 })
 

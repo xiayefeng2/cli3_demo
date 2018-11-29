@@ -1,17 +1,16 @@
 <template>
   <div
-
     class="action-sheet-wrap"
-
     v-if="showAction"
-    @click="closeMask"
-    @touchmove.prevent.stop="cancleBubble"
+    @click.stop="closeMask"
+    @touchmove.stop.prevent.self="cancleBubble"
   >
 
     <transition name="action-box">
       <div
         class="item-wrap"
         :class="[{'item-show':showAction}, position==='bottom'?'item-wrap-bottom':'item-wrap-top']"
+        @touchmove.stop="stopBubble"
       >
         <h3
           class="top-title"
@@ -34,6 +33,7 @@
 </template>
 
 <script>
+import { ModalHelper } from './preventScroll'
 export default {
   data () {
     return {
@@ -61,6 +61,7 @@ export default {
   computed: {},
   methods: {
     cancleBubble (e) {
+      // alert(1)
       return false
     },
     closeMask () {
@@ -69,6 +70,15 @@ export default {
     },
     stopBubble () {
       return false
+    }
+  },
+  watch: {
+    showAction (newValue, oldValue) {
+      if (newValue) {
+        ModalHelper.afterOpen()
+      } else {
+        ModalHelper.beforeClose()
+      }
     }
   }
 }
@@ -126,13 +136,14 @@ export default {
       @extend %abs;
       right: dw(20);
       top: 50%;
-      width: dw(60);
-      height: dw(60);
+      width: dw(80);
+      height: dw(80);
       transform: translateY(-50%);
-      line-height: dw(60);
+      line-height: dw(80);
     }
     .ali-icon {
-      font-size: dw(42);
+      font-size: dw(48);
+      margin: dw(16) auto;
     }
   }
 }

@@ -2,27 +2,41 @@
 @import './mixin';
 
 button,
-html input[type="button"],
-input[type="reset"],
-input[type="submit"] {
-    -webkit-appearance: button;
-    cursor: pointer;
+html input[type='button'],
+input[type='reset'],
+input[type='submit'] {
+	-webkit-appearance: button;
+	cursor: pointer;
+}
+html {
+	height: 100%;
 }
 
 body {
-    margin: 0;
-    -webkit-overflow-scrolling:touch;
+	margin: 0;
+	min-height: 100%;
+	background: #f5f6f7;
+	-webkit-overflow-scrolling: touch;
+
+	&.modal-open {
+		position: fixed;
+        width: 100%;
+        overflow: hidden;
+	}
 }
 h1,
 h2,
 h3,
 h4,
-h5{
-    margin:0;
+h5 {
+	margin: 0;
 }
 ul,
-li{
-    margin:0;
-    padding:0;
-    list-style: none;
+li {
+	margin: 0;
+	padding: 0;
+	list-style: none;
+}
+.scroll {
+	-webkit-overflow-scrolling: touch;
 }

@@ -366,6 +366,34 @@ util.open = function (url) {
   document.body.removeChild(document.getElementById('phone-menu-link'))
 }
 
+util.parseBoolean = function (str) {
+  var ret = false
+
+  try {
+    ret = JSON.parse(str)
+  } catch (e) {
+
+  }
+
+  return ret
+}
+
+util.getBase64Image = function (imgUrl, callback) {
+  const image = new Image()
+  image.crossOrigin = ''
+  image.src = imgUrl
+
+  image.onload = function () {
+    const canvas = document.createElement('canvas')
+    canvas.width = image.width
+    canvas.height = image.height
+    const ctx = canvas.getContext('2d')
+    ctx.drawImage(image, 0, 0, image.width, image.height)
+    const ext = image.src.substring(image.src.lastIndexOf('.') + 1).toLowerCase()
+    const dataURL = canvas.toDataURL('image/' + ext)
+    callback && callback(dataURL)
+  }
+}
 export default util
 
 // 构造函数原型模式

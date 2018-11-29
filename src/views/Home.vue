@@ -23,3 +23,8 @@ export default {
   inject: ['reload']
 }
 </script>
+<style lang="scss" scoped>
+  .home{
+    margin-bottom: 50px;
+  }
+</style>

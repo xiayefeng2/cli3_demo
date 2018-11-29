@@ -7,7 +7,6 @@
     />
     <base-icon-svg name="add" />
     <v-title>{{ title }}</v-title>
-
     <button @click="showFaAction">显示Action</button>
     <sheet-action
       :show-action="showSelect"
@@ -18,7 +17,7 @@
         class="list-wrap"
       ><li
         class="list"
-        v-for="(item, index) of [1, 2, 3, 4, 5]"
+        v-for="(item, index) of list"
         :key="index"
       >{{ item }}</li></ul>
     </sheet-action>
@@ -30,7 +29,8 @@ export default {
   data () {
     return {
       title: '',
-      showSelect: false
+      showSelect: false,
+      list: [1, 2, 3, 4, 5, 6, 7]
     }
   },
   mounted () {
@@ -57,12 +57,15 @@ export default {
   .about {
     @extend %abs;
     font-size: dw(32);
+    min-height: 700px;
   }
   .ali-icon {
     font-size: dw(30);
   }
   .list-wrap{
     font-size: dw(36);
+    max-height: dw(400);
+    overflow-y: scroll;
   }
   .list {
     height: dw(80);

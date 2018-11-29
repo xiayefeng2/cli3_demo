@@ -48,5 +48,6 @@ export default {
   color: #2c3e50;
   font-size: dw(32);
   margin-top: 60px;
+  overflow: auto;
 }
 </style>

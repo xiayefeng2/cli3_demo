@@ -12,6 +12,7 @@ import '@/assets/svg-icons'
 import '../public/font/iconfont'
 
 const FastClick = require('fastclick')
+const VConsole = require('vconsole/dist/vconsole.min.js')
 
 regDirective()
 regComponent()
@@ -33,6 +34,9 @@ Vue.config.errorHandler = function (err, vm, info) {
   console.log(info)
 }
 Vue.config.productionTip = false
+if (process.env.NODE_ENV === 'development') {
+  var vConsole = new VConsole() // eslint-disable-line
+}
 
 new Vue({
   router,
