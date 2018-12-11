@@ -10,6 +10,8 @@ import Title from 'plugin/title'
 import VueIconFont from 'plugin/icon'
 import '@/assets/svg-icons'
 import '../public/font/iconfont'
+import { openVc } from 'util/config'
+import { isDev } from 'util'
 
 const FastClick = require('fastclick')
 const VConsole = require('vconsole/dist/vconsole.min.js')
@@ -34,8 +36,8 @@ Vue.config.errorHandler = function (err, vm, info) {
   console.log(info)
 }
 Vue.config.productionTip = false
-if (process.env.NODE_ENV === 'development') {
-  var vConsole = new VConsole() // eslint-disable-line
+if (isDev() && openVc) {
+  const vConsole = new VConsole() // eslint-disable-line
 }
 
 new Vue({
