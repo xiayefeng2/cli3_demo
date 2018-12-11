@@ -23,6 +23,7 @@ if ('addEventListener' in document) {
   document.addEventListener('DOMContentLoaded', function () {
     FastClick.attach(document.body)
   }, false)
+  document.body.addEventListener('touchmove', console.log)
 }
 Vue.use(VueI18n)
 Vue.use(Title)
@@ -36,6 +37,7 @@ Vue.config.errorHandler = function (err, vm, info) {
   console.log(info)
 }
 Vue.config.productionTip = false
+console.log(openVc)
 if (isDev() && openVc) {
   const vConsole = new VConsole() // eslint-disable-line
 }

@@ -133,6 +133,10 @@ export default {
       height: dw(80);
       transform: translateY(-50%);
       line-height: dw(80);
+
+      &:active{
+        background:#ccc;
+      }
     }
     .ali-icon {
       font-size: dw(48);
