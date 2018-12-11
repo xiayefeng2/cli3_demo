@@ -25,6 +25,7 @@
 </template>
 <script>
 import SheetAction from 'components/common/SheetAction'
+import util from '@/util'
 export default {
   data () {
     return {
@@ -44,6 +45,7 @@ export default {
       return false
     },
     closeMask () {
+      util.log.default('哈哈哈')
       this.showSelect = false
     }
 
@@ -60,7 +62,7 @@ export default {
     min-height: 700px;
   }
   .ali-icon {
-    font-size: dw(30);
+    font-size: dw(72);
   }
   .list-wrap{
     font-size: dw(36);

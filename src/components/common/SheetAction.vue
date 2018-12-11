@@ -101,19 +101,19 @@ export default {
     @extend %abs;
     left: 0;
     width: 100%;
-    transition: all 0.3s;
+    transition: all 0.2s;
   }
   .item-wrap-bottom {
     bottom: 0;
-    animation: dialogShow 0.3s;
+    animation: dialogShow 0.2s;
   }
   .item-wrap-top {
     top: 0;
-    animation: dialogShow2 0.3s;
+    animation: dialogShow2 0.2s;
   }
    .item-wrap.item-show {
     // transform: translate3d(0, 0, 0);
-    transition: transform 0.3s;
+    transition: transform 0.2s;
   }
 
   .top-title {

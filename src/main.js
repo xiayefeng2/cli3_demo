@@ -10,8 +10,8 @@ import Title from 'plugin/title'
 import VueIconFont from 'plugin/icon'
 import '@/assets/svg-icons'
 import '../public/font/iconfont'
-import { openVc } from 'util/config'
-import { isDev } from 'util'
+import { openVc } from '@/util/config'
+import { isDev } from '@/util'
 
 const FastClick = require('fastclick')
 const VConsole = require('vconsole/dist/vconsole.min.js')
