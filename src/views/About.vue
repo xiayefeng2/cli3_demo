@@ -39,13 +39,13 @@ export default {
   },
   methods: {
     showFaAction () {
+      util.log.default('哈哈哈')
       this.showSelect = true
     },
     stopBubble () {
       return false
     },
     closeMask () {
-      util.log.default('哈哈哈')
       this.showSelect = false
     }
 
