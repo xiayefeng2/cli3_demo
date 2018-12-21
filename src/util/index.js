@@ -403,6 +403,10 @@ export function getOneMonth (initial = false) {
   return [str1, str2]
 }
 
+export function uniqueArr (arr) {
+  return Array.from(new Set(arr))
+}
+
 export function isDev () {
   return process.env.NODE_ENV === 'development'
 }
