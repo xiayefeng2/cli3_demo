@@ -13,11 +13,18 @@ import '../public/font/iconfont'
 import { openVc } from '@/util/config'
 import { isDev } from '@/util'
 
+import * as filters from './filters' // global filters
+
 const FastClick = require('fastclick')
 const VConsole = require('vconsole/dist/vconsole.min.js')
 
 regDirective()
 regComponent()
+
+// register global utility filters.
+Object.keys(filters).forEach(key => {
+  Vue.filter(key, filters[key])
+})
 
 if ('addEventListener' in document) {
   document.addEventListener('DOMContentLoaded', function () {
