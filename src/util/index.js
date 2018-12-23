@@ -12,7 +12,11 @@ const _has = Object.prototype.hasOwnProperty
 
 export function isMobile () {
   const agent = navigator.userAgent
-  return agent.match(/Android/i) || agent.includes('iPhone') || agent.includes('iPad')
+  return (
+    agent.match(/Android/i) ||
+    agent.includes('iPhone') ||
+    agent.includes('iPad')
+  )
 }
 
 export function len (str) {
@@ -20,8 +24,7 @@ export function len (str) {
 }
 
 export const toArray = (() =>
-  Array.from ? Array.from : obj => [].slice.call(obj)
-)()
+  Array.from ? Array.from : obj => [].slice.call(obj))()
 
 /**
  * Get the first item that pass the test
@@ -39,7 +42,8 @@ export function hasOwn (obj, key) {
   return _has.call(obj, key)
 }
 
-export const round = (n, decimals = 0) => Number(`${Math.round(`${n}e${decimals}`)}e-${decimals}`)
+export const round = (n, decimals = 0) =>
+  Number(`${Math.round(`${n}e${decimals}`)}e-${decimals}`)
 /**
  * Deep copy the given object considering circular structure.
  * This function caches all nested objects and its copies.
@@ -125,11 +129,11 @@ export function flatArray (arr) {
 
 // 检测属性是否在原型链上
 export function hasPrototypeProperty (object, name) {
-  return !Object.hasPrototypeProperty(name) && (name in object)
+  return !Object.hasPrototypeProperty(name) && name in object
 }
 
 export function randomColor () {
-  let rand = Math.floor(selectFrom(0, 1) * 0xFFFFFF).toString(16)
+  let rand = Math.floor(selectFrom(0, 1) * 0xffffff).toString(16)
   if (rand.length === 6) {
     return '#' + rand
   } else {
@@ -181,10 +185,7 @@ export function getToday (operate = '-') {
   return year + operate + twoBit(month) + operate + twoBit(day)
 }
 
-export function dateFormat ({
-  date = new Date(),
-  format = 'yyyy-MM-dd'
-} = {}) {
+export function dateFormat ({ date = new Date(), format = 'yyyy-MM-dd' } = {}) {
   if (date instanceof Date) {
     const o = {
       'M+': date.getMonth() + 1, // 月份
@@ -193,14 +194,22 @@ export function dateFormat ({
       'm+': date.getMinutes(), // 分
       's+': date.getSeconds(), // 秒
       'q+': Math.floor((date.getMonth() + 3) / 3), // 季度
-      'S': date.getMilliseconds() // 毫秒
+      S: date.getMilliseconds() // 毫秒
     }
     if (/(y+)/.test(format)) {
-      format = format.replace(RegExp.$1, (date.getFullYear() + '').substr(4 - RegExp.$1.length))
+      format = format.replace(
+        RegExp.$1,
+        (date.getFullYear() + '').substr(4 - RegExp.$1.length)
+      )
     }
     for (var k in o) {
       if (new RegExp('(' + k + ')').test(format)) {
-        format = format.replace(RegExp.$1, (RegExp.$1.length === 1) ? (o[k]) : (('00' + o[k]).substr(('' + o[k]).length)))
+        format = format.replace(
+          RegExp.$1,
+          RegExp.$1.length === 1
+            ? o[k]
+            : ('00' + o[k]).substr(('' + o[k]).length)
+        )
       }
     }
     return format
@@ -235,7 +244,10 @@ export function RemoveArrItem () {
 }
 
 export function getExtension (str) {
-  return str.split('.').pop().toLowerCase()
+  return str
+    .split('.')
+    .pop()
+    .toLowerCase()
 }
 
 export function getAge (birth) {
@@ -371,9 +383,7 @@ util.parseBoolean = function (str) {
 
   try {
     ret = JSON.parse(str)
-  } catch (e) {
-
-  }
+  } catch (e) {}
 
   return ret
 }
@@ -389,25 +399,11 @@ util.getBase64Image = function (imgUrl, callback) {
     canvas.height = image.height
     const ctx = canvas.getContext('2d')
     ctx.drawImage(image, 0, 0, image.width, image.height)
-    const ext = image.src.substring(image.src.lastIndexOf('.') + 1).toLowerCase()
+    const ext = image.src
+      .substring(image.src.lastIndexOf('.') + 1)
+      .toLowerCase()
     const dataURL = canvas.toDataURL('image/' + ext)
     callback && callback(dataURL)
   }
 }
 export default util
-
-// 构造函数原型模式
-function Person () {
-}
-Person.prototype = {
-  name: 'JeeK',
-  age: 29,
-  job: 'Software Engineer',
-  sayName: function () {
-    alert(this.name)
-  }
-}
-Object.defineProperty(Person.prototype, 'constructor', {
-  enumerable: false,
-  value: Person
-})
