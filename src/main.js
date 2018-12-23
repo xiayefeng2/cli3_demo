@@ -10,13 +10,12 @@ import Title from 'plugin/title'
 import VueIconFont from 'plugin/icon'
 import '@/assets/svg-icons'
 import '../public/font/iconfont'
-
-import '@/util/test'
+import './util/test'
 
 import { openVc } from '@/util/config'
 import { isDev } from '@/util'
 
-import * as filters from './filters' // global filters
+import * as filters from './filter' // global filters
 
 const FastClick = require('fastclick')
 const VConsole = require('vconsole/dist/vconsole.min.js')

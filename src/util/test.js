@@ -1,7 +1,5 @@
 /* 本文件用来学习、测试及练习用 */
-import {
-  hasOwn
-} from 'index'
+import { hasOwn } from './index'
 // 构造函数原型模式
 function Person () {}
 Person.prototype = {
@@ -18,23 +16,27 @@ Object.defineProperty(Person.prototype, 'constructor', {
 })
 
 function margeObj () {
-  const arr = [{
-    x: 'aa',
-    y: 'bb'
-  }, {
-    x: 'aa',
-    z: 'cc'
-  }, {
-    x: 'zz',
-    y: 'dd'
-  }, {
-    x: 'aa',
-    d: 33
-  },
-  {
-    x: 'zz',
-    c: 55
-  }
+  const arr = [
+    {
+      x: 'aa',
+      y: 'bb'
+    },
+    {
+      x: 'aa',
+      z: 'cc'
+    },
+    {
+      x: 'zz',
+      y: 'dd'
+    },
+    {
+      x: 'aa',
+      d: 33
+    },
+    {
+      x: 'zz',
+      c: 55
+    }
   ]
   const obj = {}
   const arr2 = []
@@ -54,7 +56,9 @@ function margeObj () {
       i++
     }
   } */
-  for (let i = 0; i < arr.length;) {
+  /*
+  ** method2
+   for (let i = 0; i < arr.length;) {
     if (hasOwn(obj, arr[i].x)) {
       arr[obj[arr[i].x]] = { ...arr[obj[arr[i].x]], ...arr[i] }
       arr.splice(i, 1)
@@ -62,7 +66,21 @@ function margeObj () {
       obj[arr[i].x] = i
       i++
     }
-  }
+  } */
+  arr.reduce((prev, curr, idx) => {
+    if (idx === 1) {
+      obj[prev.x] = 0
+      arr2.push(prev)
+    }
+    if (hasOwn(obj, curr.x)) {
+      arr2[obj[curr.x]] = { ...arr2[obj[curr.x]], ...curr }
+    } else {
+      obj[curr.x] = arr2.length
+      arr2.push(curr)
+    }
+    return arr2
+  })
+  console.log(arr2)
   console.log(arr)
 }
 margeObj()
