@@ -39,7 +39,7 @@ instance.interceptors.response.use(
   },
   error => {
     console.log(error)
-    if (error.code === 'ECONNABORTED' || error.message.indexOf('Network') !== -1) {
+    if (error.message.includes('Network')) {
       error.message = '网络不给力，请稍后再试'
     } else if (typeof error.code === 'undefined') {
       error.message = '连接出错，请重试'

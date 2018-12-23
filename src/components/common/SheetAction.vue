@@ -1,9 +1,10 @@
 <template>
+
   <div
     class="action-sheet-wrap"
     v-if="showAction"
     @click.stop="closeMask"
-    @touchmove.stop.prevent.self="cancleBubble"
+    @touchmove.stop.prevent="cancleBubble"
   >
 
     <transition name="action-box">
@@ -20,9 +21,10 @@
           <span
             class="close-btn"
             @click="closeMask"
-          ><icon
-            class="ali-icon"
-            name="close"
+          >
+            <icon
+              class="ali-icon"
+              name="close"
           /></span>
         </h3>
         <slot />
@@ -65,7 +67,7 @@ export default {
       return false
     },
     closeMask () {
-      console.log(1)
+      // console.log(1)
       this.$emit('close-mask')
     },
     stopBubble () {
@@ -86,44 +88,35 @@ export default {
 
 <style lang="scss" scoped>
 
-.action-sheet-wrap{
+.action-sheet-wrap {
   @extend %fix;
-  left:0;
-  top:0;
-  width:100%;
-  height:100%;
-  background: rgba(0, 0, 0, .4);
+  left: 0;
+  top: 0;
+  width: 100%;
+  height: 100%;
+  background: rgba(0, 0, 0, 0.4);
   z-index: 5;
 
-  .item-wrap{
+  .item-wrap {
     @extend %abs;
-    left:0;
-    width:100%;
-    transition: transform 0.3s;
+    left: 0;
+    width: 100%;
+    transition: all 0.2s;
   }
-  .item-wrap-bottom{
-    bottom:0;
+  .item-wrap-bottom {
+    bottom: 0;
+    animation: dialogShow 0.2s;
   }
-  .item-wrap-top{
-    top:0;
+  .item-wrap-top {
+    top: 0;
+    animation: dialogShow2 0.2s;
   }
-  .action-box-enter{
-    &.item-wrap-bottom {
-      transform: translate3d(0, 100%, 0);
-    }
-
-    &.item-wrap-top {
-      transform: translate3d(0, -100%, 0);
-    }
+   .item-wrap.item-show {
+    // transform: translate3d(0, 0, 0);
+    transition: transform 0.2s;
   }
 
-  .item-wrap.item-show {
-    transform: translate3d(0, 0, 0);
-    transition: transform 0.3s;
-
-  }
-
-  .top-title{
+  .top-title {
     @extend %rel;
     text-align: center;
     font-size: dw(32);
@@ -134,12 +127,16 @@ export default {
 
     .close-btn {
       @extend %abs;
-      right: dw(20);
+      right: dw(10);
       top: 50%;
       width: dw(80);
       height: dw(80);
       transform: translateY(-50%);
       line-height: dw(80);
+
+      &:active{
+        background:#ccc;
+      }
     }
     .ali-icon {
       font-size: dw(48);
@@ -147,5 +144,4 @@ export default {
     }
   }
 }
-
 </style>

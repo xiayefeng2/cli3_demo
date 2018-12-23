@@ -10,7 +10,13 @@ import Title from 'plugin/title'
 import VueIconFont from 'plugin/icon'
 import '@/assets/svg-icons'
 import '../public/font/iconfont'
+
 import '@/util/test'
+
+import { openVc } from '@/util/config'
+import { isDev } from '@/util'
+
+import * as filters from './filters' // global filters
 
 const FastClick = require('fastclick')
 const VConsole = require('vconsole/dist/vconsole.min.js')
@@ -18,10 +24,16 @@ const VConsole = require('vconsole/dist/vconsole.min.js')
 regDirective()
 regComponent()
 
+// register global utility filters.
+Object.keys(filters).forEach(key => {
+  Vue.filter(key, filters[key])
+})
+
 if ('addEventListener' in document) {
   document.addEventListener('DOMContentLoaded', function () {
     FastClick.attach(document.body)
   }, false)
+  document.body.addEventListener('touchmove', console.log)
 }
 Vue.use(VueI18n)
 Vue.use(Title)
@@ -35,8 +47,8 @@ Vue.config.errorHandler = function (err, vm, info) {
   console.log(info)
 }
 Vue.config.productionTip = false
-if (process.env.NODE_ENV === 'development') {
-  var vConsole = new VConsole() // eslint-disable-line
+if (isDev() && openVc) {
+  const vConsole = new VConsole() // eslint-disable-line
 }
 
 new Vue({

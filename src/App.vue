@@ -8,7 +8,7 @@
   </div>
 </template>
 <script>
-import { calcBaseRem } from 'util'
+import { calcBaseRem } from '@/util'
 export default {
   name: 'App',
   data () {

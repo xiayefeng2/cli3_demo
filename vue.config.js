@@ -65,7 +65,7 @@ module.exports = {
     config.resolve.alias
       .set('@', resolve('src'))
       .set('assets', resolve('src/assets'))
-      .set('util', resolve('src/util'))
+      // .set('util', resolve('src/util'))
       .set('plugin', resolve('src/plugin'))
       .set('components', resolve('src/components'))
 
