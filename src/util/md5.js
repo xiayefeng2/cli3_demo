@@ -257,7 +257,7 @@ function hexHMACMD5 (k, d) {
   return rstr2hex(rawHMACMD5(k, d))
 }
 
-export function MD5 (string, key, raw) {
+export function md5 (string, key, raw) {
   if (!key) {
     if (!raw) {
       return hexMD5(string)

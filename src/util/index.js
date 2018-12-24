@@ -296,13 +296,13 @@ export function RemoveArrItem () {
     if (!arr.includes(item)) {
       return Array.from(arr)
     }
-    for (let i = 0; i < arr.length; i++) {
+    for (let i = 0; i < arr.length;) {
       if (arr[i] === item && !isNaN(item)) {
         arr.splice(i, 1)
-        break
       } else if (isNaN(arr[i]) && isNaN(item)) {
         arr.splice(i, 1)
-        break
+      } else {
+        i++
       }
     }
     return Array.from(arr)
