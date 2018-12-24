@@ -293,7 +293,7 @@ export function RemoveArrItem () {
   let arr = []
   arr.push.apply(arr, arguments)
   arr.remove = function (item) {
-    if (arr.indexOf(item) === -1) {
+    if (!arr.includes(item)) {
       return Array.from(arr)
     }
     for (let i = 0; i < arr.length; i++) {
