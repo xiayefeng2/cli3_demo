@@ -4,13 +4,13 @@ import router from './route'
 import store from './vuex'
 import VueI18n from 'vue-i18n'
 
-import regDirective from './directive/directive'
-import regComponent from './directive/reg_component'
 import Title from 'plugin/title'
 import VueIconFont from 'plugin/icon'
 import '@/assets/svg-icons'
 import '../public/font/iconfont'
 import './util/test'
+import './directive/directive'
+import './directive/reg_component'
 
 import { openVc } from '@/util/config'
 import { isDev } from '@/util'
@@ -19,9 +19,6 @@ import * as filters from './filter' // global filters
 
 const FastClick = require('fastclick')
 const VConsole = require('vconsole/dist/vconsole.min.js')
-
-regDirective()
-regComponent()
 
 // register global utility filters.
 Object.keys(filters).forEach(key => {

@@ -1,5 +1,6 @@
 /* 本文件用来学习、测试及练习用 */
 import { hasOwn } from './index'
+
 // 构造函数原型模式
 function Person () {}
 Person.prototype = {
@@ -80,7 +81,7 @@ function margeObj () {
     }
     return arr2
   })
-  console.log(arr2)
-  console.log(arr)
+  /* console.log(arr2)
+  console.log(arr) */
 }
 margeObj()
