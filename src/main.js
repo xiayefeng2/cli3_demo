@@ -6,46 +6,20 @@ import VueI18n from 'vue-i18n'
 
 import Title from 'plugin/title'
 import VueIconFont from 'plugin/icon'
+
 import '@/assets/svg-icons'
 import '../public/font/iconfont'
-import './util/test'
-import './directive/directive'
-import './directive/reg_component'
 
-import { openVc } from '@/util/config'
-import { isDev } from '@/util'
+import '@/directive/directive'
+import '@/directive/reg_component'
+import '@/filter'
+import '@/setting' // 全局设置及配置
 
-import * as filters from './filter' // global filters
+import '@/util/test'
 
-const FastClick = require('fastclick')
-const VConsole = require('vconsole/dist/vconsole.min.js')
-
-// register global utility filters.
-Object.keys(filters).forEach(key => {
-  Vue.filter(key, filters[key])
-})
-
-if ('addEventListener' in document) {
-  document.addEventListener('DOMContentLoaded', function () {
-    FastClick.attach(document.body)
-  }, false)
-  document.body.addEventListener('touchmove', console.log)
-}
 Vue.use(VueI18n)
 Vue.use(Title)
 Vue.use(VueIconFont)
-
-Vue.config.errorHandler = function (err, vm, info) {
-  // handle error
-  // `info` 是 Vue 特定的错误信息，比如错误所在的生命周期钩子
-  // 只在 2.2.0+ 可用
-  console.log(err)
-  console.log(info)
-}
-Vue.config.productionTip = false
-if (isDev() && openVc) {
-  const vConsole = new VConsole() // eslint-disable-line
-}
 
 new Vue({
   router,
