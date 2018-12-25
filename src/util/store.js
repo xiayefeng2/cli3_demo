@@ -66,7 +66,7 @@ export default function Store () {
   this.checkBrowser = () => {
     if (!window.sessionStorage || !window.localStorage) {
       console.log('当前浏览器不支持Storage！')
-      throw new Error('浏览器不支持')
+      throw new Error('浏览器不支持本地存储')
     }
   }
   this.getItem = (key, lx = 1) => {

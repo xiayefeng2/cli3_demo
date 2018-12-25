@@ -1,10 +1,10 @@
 import cookies from './cookies'
-import Storage from './store'
+import { Store } from './local_store'
 import log from './log'
 const util = {
   log,
   cookies,
-  store: new Storage()
+  store: new Store()
 }
 const _toString = Object.prototype.toString
 const _has = Object.prototype.hasOwnProperty
@@ -13,9 +13,7 @@ const _has = Object.prototype.hasOwnProperty
 export function isMobile () {
   const agent = navigator.userAgent
   return (
-    agent.match(/Android/i) ||
-    agent.includes('iPhone') ||
-    agent.includes('iPad')
+    agent.match(/Android/i) || agent.includes('iPhone') || agent.includes('iPad')
   )
 }
 
@@ -242,7 +240,9 @@ export function parseTime (time, cFormat) {
   const timeStr = format.replace(/{(y|m|d|h|i|s|a)+}/g, (result, key) => {
     let value = formatObj[key]
     // Note: getDay() returns 0 on Sunday
-    if (key === 'a') { return [ '日', '一', '二', '三', '四', '五', '六' ][ value ] }
+    if (key === 'a') {
+      return ['日', '一', '二', '三', '四', '五', '六'][value]
+    }
     if (result.length > 0 && value < 10) {
       value = '0' + value
     }
@@ -272,15 +272,7 @@ export function formatTime (time, option) {
     return parseTime(time, option)
   } else {
     return (
-      d.getMonth() +
-      1 +
-      '月' +
-      d.getDate() +
-      '日' +
-      d.getHours() +
-      '时' +
-      d.getMinutes() +
-      '分'
+      d.getMonth() + 1 + '月' + d.getDate() + '日' + d.getHours() + '时' + d.getMinutes() + '分'
     )
   }
 }
@@ -296,7 +288,7 @@ export function RemoveArrItem () {
     if (!arr.includes(item)) {
       return Array.from(arr)
     }
-    for (let i = 0; i < arr.length;) {
+    /* for (let i = 0; i < arr.length;) {
       if (arr[i] === item && !isNaN(item)) {
         arr.splice(i, 1)
       } else if (isNaN(arr[i]) && isNaN(item)) {
@@ -304,7 +296,11 @@ export function RemoveArrItem () {
       } else {
         i++
       }
-    }
+    } */
+    do {
+      let idx = arr.findIndex(item2 => item2 === item)
+      arr.splice(idx, 1)
+    } while (arr.includes(item))
     return Array.from(arr)
   }
   return arr
