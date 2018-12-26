@@ -27,11 +27,11 @@ npm run lint
 ----
 ## Method illustrate
 ### localStorage and sessionStorage method
-``` html
- util.getSession(key)  @param key, 获取 sessionStorage(key)
- util.setSession(key, val)  @param (key, val) 设置 sessionStorage(key, val)
- util.getLocal(key)  @param key, 获取 localStorage(key)
- util.setLocal(key, val)  @param (key, val) 设置 localStorage(key, val)
+``` js
+ util.getSession(key)  @param key, get sessionStorage(key)
+ util.setSession(key, val)  @param (key, val) set sessionStorage(key, val)
+ util.getLocal(key)  @param key, get localStorage(key)
+ util.setLocal(key, val)  @param (key, val) set localStorage(key, val)
  util.removeSession(key) @param key, 删除 sessionStorage(key)
  util.removeLocal(key)  @param key, 删除 localStorage(key)
  util.removeSession()  删除所有 sessionStorage
