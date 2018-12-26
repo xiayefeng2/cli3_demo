@@ -40,5 +40,5 @@ npm run lint
 ```
 ### Customize configuration
 See [Configuration Reference](https://cli.vuejs.org/config/).
-
+---
 参考资料： [D2-Admin](https://github.com/d2-projects/d2-admin).
