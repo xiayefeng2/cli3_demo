@@ -24,10 +24,10 @@ npm run test
 ```
 npm run lint
 ```
-----
+---
 ## Method illustrate
-### localStorage and sessionStorage method
-``` js
+* localStorage and sessionStorage method
+```
  util.getSession(key)  @param key, get sessionStorage(key)
  util.setSession(key, val)  @param (key, val) set sessionStorage(key, val)
  util.getLocal(key)  @param key, get localStorage(key)
