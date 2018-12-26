@@ -32,11 +32,11 @@ npm run lint
  util.setSession(key, val)  @param (key, val) set sessionStorage(key, val)
  util.getLocal(key)  @param key, get localStorage(key)
  util.setLocal(key, val)  @param (key, val) set localStorage(key, val)
- util.removeSession(key) @param key, 删除 sessionStorage(key)
- util.removeLocal(key)  @param key, 删除 localStorage(key)
- util.removeSession()  删除所有 sessionStorage
- util.removeAllLocal()  删除所有 localStorage
- util.removeAllStorage() 删除所有 localStorage 和 sessionStorage
+ util.removeSession(key) @param key, delete sessionStorage(key)
+ util.removeLocal(key)  @param key, delete localStorage(key)
+ util.removeSession()  delete all sessionStorage
+ util.removeAllLocal()  delete all localStorage
+ util.removeAllStorage() delete all localStorage and sessionStorage
 ```
 ### Customize configuration
 See [Configuration Reference](https://cli.vuejs.org/config/).
