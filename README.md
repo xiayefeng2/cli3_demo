@@ -24,7 +24,7 @@ npm run test
 ```
 npm run lint
 ```
----
+
 ## Method illustrate
 * localStorage and sessionStorage method
 ```
