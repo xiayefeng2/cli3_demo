@@ -1,7 +1,7 @@
 import Vue from 'vue'
 import Router from 'vue-router'
 import Home from '../views/Home.vue'
-import util from 'util'
+import utils from '@/utils'
 
 Vue.use(Router)
 
@@ -29,7 +29,7 @@ const router = new Router({
 })
 router.beforeEach((to, from, next) => {
   if (to.matched.some(r => r.meta.requiresAuth)) {
-    const token = util.cookies.get('token')
+    const token = utils.cookies.get('token')
     if (token && token !== 'undefined') {
       next()
     } else {
@@ -44,7 +44,7 @@ router.beforeEach((to, from, next) => {
 
 router.afterEach((to, from) => {
   if (to.meta.title) {
-    util.title(to.meta.title)
+    utils.title(to.meta.title)
   }
 })
 

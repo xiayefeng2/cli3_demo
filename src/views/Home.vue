@@ -5,10 +5,14 @@
       src="../assets/logo.png"
     >
     <div class="btn-wrap">
-      <button @click="login">登录</button><button
+      <button @click="login">
+        ??
+      </button><button
         class="refresh-btn"
         @click="reload"
-      >刷新</button>
+      >
+        ??
+      </button>
     </div>
     <HelloWorld msg="Welcome to Your Vue.js App" />
   </div>
@@ -17,7 +21,7 @@
 <script>
 // @ is an alias to /src
 import HelloWorld from '@/components/HelloWorld.vue'
-// import util from 'util'
+// import util from 'utils'
 export default {
   name: 'Home',
   components: {

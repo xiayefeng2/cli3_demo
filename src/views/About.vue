@@ -1,31 +1,37 @@
 <template>
   <div class="about">
     <h1>This is an about page</h1>
-    <icon
+    <Icon
       class="ali-icon"
       name="pengyouquan"
     />
-    <base-icon-svg name="add" />
-    <v-title>{{ title }}</v-title>
-    <button @click="showFaAction">显示Action</button>
-    <sheet-action
+    <BaseIconSvg name="add" />
+    <VTitle>{{ title }}</VTitle>
+    <button @click="showFaAction">
+      显示Action
+    </button>
+    <SheetAction
       :show-action="showSelect"
       @close-mask="closeMask"
     >
       <ul
         @click.stop="stopBubble"
         class="list-wrap"
-      ><li
-        class="list"
-        v-for="(item, index) of list"
-        :key="index"
-      >{{ item }}</li></ul>
-    </sheet-action>
+      >
+        <li
+          class="list"
+          v-for="(item, index) of list"
+          :key="index"
+        >
+          {{ item }}
+        </li>
+      </ul>
+    </SheetAction>
   </div>
 </template>
 <script>
 import SheetAction from 'components/common/SheetAction'
-import util from '@/util'
+import utils from '@/utils'
 export default {
   data () {
     return {
@@ -39,7 +45,7 @@ export default {
   },
   methods: {
     showFaAction () {
-      util.log.default('哈哈哈')
+      utils.log.default('哈哈哈')
       this.showSelect = true
     },
     stopBubble () {

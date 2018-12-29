@@ -15,7 +15,7 @@ import '@/directive/reg_component' // register global base component
 import '@/filter' // register global filters
 import '@/setting' // global setting(inclue errorHandle , fastClick, vConsole and so on)
 
-import '@/util/test' // test file
+import '@/utils/test' // test file
 
 Vue.use(VueI18n)
 Vue.use(Title)

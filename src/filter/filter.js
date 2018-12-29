@@ -1,4 +1,4 @@
-export { parseTime, formatTime } from '@/util'
+export { parseTime, formatTime } from '@/utils'
 
 function pluralize (time, label) {
   if (time === 1) {

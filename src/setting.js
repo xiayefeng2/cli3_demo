@@ -1,6 +1,6 @@
 import Vue from 'vue'
 import { openVc } from '@/global_config'
-import { isDev } from '@/util'
+import { isDev } from '@/utils'
 
 const VConsole = require('vconsole/dist/vconsole.min.js')
 const FastClick = require('fastclick')
