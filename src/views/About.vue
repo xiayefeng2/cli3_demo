@@ -6,7 +6,7 @@
       name="pengyouquan"
     />
     <BaseIconSvg name="add" />
-    <VTitle>{{ title }}</VTitle>
+    <Title>{{ title }}</Title>
     <button @click="showFaAction">
       显示Action
     </button>
@@ -34,11 +34,15 @@ import SheetAction from 'components/common/SheetAction'
 import utils from '@/utils'
 export default {
   data () {
+    console.log('data---', this.$route.path)
     return {
       title: '',
       showSelect: false,
       list: [1, 2, 3, 4, 5, 6, 7]
     }
+  },
+  created () {
+    console.log('created---', this.$route.path)
   },
   mounted () {
     this.title = '我的主页'

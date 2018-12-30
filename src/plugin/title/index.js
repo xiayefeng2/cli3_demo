@@ -2,7 +2,7 @@ import TitleComponent from './title.vue'
 
 const Title = {
   install: function (Vue) {
-    Vue.component('v-title', TitleComponent)
+    Vue.component('Title', TitleComponent)
   }
 }
 

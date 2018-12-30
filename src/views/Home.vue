@@ -6,12 +6,12 @@
     >
     <div class="btn-wrap">
       <button @click="login">
-        ??
+        登录
       </button><button
         class="refresh-btn"
         @click="reload"
       >
-        ??
+        刷新
       </button>
     </div>
     <HelloWorld msg="Welcome to Your Vue.js App" />

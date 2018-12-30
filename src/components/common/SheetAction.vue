@@ -1,13 +1,11 @@
 <template>
-
   <div
     class="action-sheet-wrap"
     v-if="showAction"
     @click.stop="closeMask"
     @touchmove.stop.prevent="cancleBubble"
   >
-
-    <transition name="action-box">
+    <Transition name="action-box">
       <div
         class="item-wrap"
         :class="[{'item-show':showAction}, position==='bottom'?'item-wrap-bottom':'item-wrap-top']"
@@ -17,20 +15,21 @@
           class="top-title"
           v-if="hasTitle"
           @click.stop="stopBubble"
-        ><span>{{ actionTitle }}</span>
+        >
+          <span>{{ actionTitle }}</span>
           <span
             class="close-btn"
             @click="closeMask"
           >
-            <icon
+            <Icon
               class="ali-icon"
               name="close"
-          /></span>
+            />
+          </span>
         </h3>
         <slot />
       </div>
-    </transition>
-
+    </Transition>
   </div>
 </template>
 

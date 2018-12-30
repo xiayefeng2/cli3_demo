@@ -17,7 +17,9 @@
     <button
       class="login-btn"
       type="button"
-    >登陆</button>
+    >
+      登陆
+    </button>
   </div>
 </template>
 
