@@ -28,13 +28,13 @@ npm run lint
 ## Method illustrate
 * localStorage and sessionStorage method
 ```
- util.store.getSession(key)  @param key, get sessionStorage(key)
- util.store.setSession(key, val)  @param (key, val) set sessionStorage(key, val)
- util.store.getLocal(key)  @param key, get localStorage(key)
- util.store.setLocal(key, val)  @param (key, val) set localStorage(key, val)
- util.store.removeSession(key) @param key, delete sessionStorage(key)
- util.store.removeLocal(key)  @param key, delete localStorage(key)
- util.store.removeSession()  delete all sessionStorage
+ util.store.getSession(key)  @param {string}, get sessionStorage(key)
+ util.store.setSession(key, val)  @param {key: string, val: any} set sessionStorage(key, val)
+ util.store.getLocal(key)  @param {string}, get localStorage(key)
+ util.store.setLocal(key, val)  @param {key: string, val: any}  set localStorage(key, val)
+ util.store.removeSession(key) @param {string}, delete sessionStorage(key)
+ util.store.removeLocal(key)  @param {string},  delete localStorage(key)
+ util.store.removeAllSession()  delete all sessionStorage
  util.store.removeAllLocal()  delete all localStorage
  util.store.removeAllStorage() delete all localStorage and sessionStorage
 ```
