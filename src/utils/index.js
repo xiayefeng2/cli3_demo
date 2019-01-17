@@ -1,7 +1,7 @@
 import cookies from './cookies'
 import { Store } from './local_store'
 import log from './log'
-const util = {
+const utils = {
   log,
   cookies,
   store: new Store()
@@ -461,7 +461,7 @@ export function isProd () {
  * @description 更新标题
  * @param {String} title 标题
  */
-util.title = function (titleText = '标题') {
+utils.title = function (titleText = '标题') {
   window.document.title = titleText
 }
 
@@ -469,7 +469,7 @@ util.title = function (titleText = '标题') {
  * @description 打开新页面
  * @param {String} url 地址
  */
-util.open = function (url) {
+utils.open = function (url) {
   var a = document.createElement('a')
   a.setAttribute('href', url)
   a.setAttribute('target', '_blank')
@@ -479,7 +479,7 @@ util.open = function (url) {
   document.body.removeChild(document.getElementById('phone-menu-link'))
 }
 
-util.parseBoolean = function (str) {
+utils.parseBoolean = function (str) {
   var ret = false
 
   try {
@@ -489,7 +489,7 @@ util.parseBoolean = function (str) {
   return ret
 }
 
-util.getBase64Image = function (imgUrl, callback) {
+utils.getBase64Image = function (imgUrl, callback) {
   const image = new Image()
   image.crossOrigin = ''
   image.src = imgUrl
@@ -507,4 +507,4 @@ util.getBase64Image = function (imgUrl, callback) {
     callback && callback(dataURL)
   }
 }
-export default util
+export default utils
