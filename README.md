@@ -28,15 +28,15 @@ npm run lint
 ## Method illustrate
 * localStorage and sessionStorage method
 ```
- util.store.getSession(key)  @param {string}, get sessionStorage(key)
- util.store.setSession(key, val)  @param {key: string, val: any} set sessionStorage(key, val)
- util.store.getLocal(key)  @param {string}, get localStorage(key)
- util.store.setLocal(key, val)  @param {key: string, val: any}  set localStorage(key, val)
- util.store.removeSession(key) @param {string}, delete sessionStorage(key)
- util.store.removeLocal(key)  @param {string},  delete localStorage(key)
- util.store.removeAllSession()  delete all sessionStorage
- util.store.removeAllLocal()  delete all localStorage
- util.store.removeAllStorage() delete all localStorage and sessionStorage
+ utils.store.getSession(key)  @param {string}, get sessionStorage(key)
+ utils.store.setSession(key, val)  @param {key: string, val: any} set sessionStorage(key, val)
+ utils.store.getLocal(key)  @param {string}, get localStorage(key)
+ utils.store.setLocal(key, val)  @param {key: string, val: any}  set localStorage(key, val)
+ utils.store.removeSession(key) @param {string}, delete sessionStorage(key)
+ utils.store.removeLocal(key)  @param {string},  delete localStorage(key)
+ utils.store.removeAllSession()  delete all sessionStorage
+ utils.store.removeAllLocal()  delete all localStorage
+ utils.store.removeAllStorage() delete all localStorage and sessionStorage
 ```
 ### Customize configuration
 See [Configuration Reference](https://cli.vuejs.org/config/).
