@@ -14,9 +14,7 @@ export class Store {
     let parseVal
     try {
       parseVal = JSON.parse(val)
-      if (parseVal && typeof parseVal === 'object' && parseVal.hasOwnProperty('isString2Object')) {
-        parseVal = parseVal.str
-      }
+      parseVal  = this.checkStr(parseVal)
     } catch (err) {
       if (err.message.includes('JSON')) {
         return val
@@ -37,6 +35,7 @@ export class Store {
     let parseVal
     try {
       parseVal = JSON.parse(val)
+      parseVal  = this.checkStr(parseVal)
     } catch (err) {
       if (err.message.includes('JSON')) {
         return val
@@ -129,5 +128,17 @@ export class Store {
     if (!window.sessionStorage || !window.localStorage) {
       throw new Error('浏览器不支持本地存储')
     }
+  }
+  checkStr (obj) {
+    let target = obj
+    if (this.checkedType(target) === 'Object') {
+      if (target.hasOwnProperty('isString2Object') && target.isString2Object) {
+        target = target.str
+      }
+    }
+    return target
+  }
+  checkedType (target) {
+    return Object.prototype.toString.call(target).slice(8, -1)
   }
 }
