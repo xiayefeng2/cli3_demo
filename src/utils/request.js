@@ -32,9 +32,9 @@ instance.interceptors.response.use(
     // console.log(resp)
     const res = resp.data
     if (res.code === 0) {
-      Promise.resolve(res)
+      return Promise.resolve(res)
     } else {
-      Promise.reject(res)
+      return Promise.reject(res)
     }
   },
   error => {
