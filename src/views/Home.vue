@@ -41,6 +41,7 @@ export default {
 <style lang="scss" scoped>
   .home{
     margin-bottom: 50px;
+    margin-left: 200px;
   }
   .btn-wrap{
     height: dw(80);

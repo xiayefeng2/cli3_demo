@@ -10,7 +10,11 @@ const router = new Router({
     {
       path: '/',
       name: 'home',
-      component: Home
+      components: {
+        default: Home,
+        head: () => import('@/views/TopHeader.vue'),
+        'left-nav': () => import('@/views/LeftNav.vue')
+      }
     },
     {
       path: '/about',
@@ -18,7 +22,9 @@ const router = new Router({
       // route level code-splitting
       // this generates a separate chunk (about.[hash].js) for this route
       // which is lazy-loaded when the route is visited.
-      component: () => import(/* webpackChunkName: "about" */ '../views/About.vue')
+      components:{
+        defaults: () => import(/* webpackChunkName: "about" */ '../views/About.vue')
+      } 
     },
     {
       path: '/login',

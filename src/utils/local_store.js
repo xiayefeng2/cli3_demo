@@ -14,7 +14,7 @@ export class Store {
     let parseVal
     try {
       parseVal = JSON.parse(val)
-      parseVal  = this.checkStr(parseVal)
+      parseVal = this.checkStr(parseVal)
     } catch (err) {
       if (err.message.includes('JSON')) {
         return val
@@ -35,7 +35,7 @@ export class Store {
     let parseVal
     try {
       parseVal = JSON.parse(val)
-      parseVal  = this.checkStr(parseVal)
+      parseVal = this.checkStr(parseVal)
     } catch (err) {
       if (err.message.includes('JSON')) {
         return val

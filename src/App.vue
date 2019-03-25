@@ -1,14 +1,19 @@
 <template>
   <div id="app">
-    <div id="nav">
+    <!-- <div id="nav">
       <RouterLink to="/">
         Home
       </RouterLink> |
       <RouterLink to="/about">
         About
       </RouterLink>
-    </div>
-    <RouterView v-if="isRouterAlive" />
+    </div> -->
+    <RouterView
+      name="head"
+      v-if="isRouterAlive"
+    />
+    <router-view name="left-nav" />
+    <router-view />
   </div>
 </template>
 <script>
@@ -51,7 +56,7 @@ export default {
   text-align: center;
   color: #2c3e50;
   font-size: dw(32);
-  margin-top: 60px;
   overflow: auto;
+  height: 100%;
 }
 </style>
