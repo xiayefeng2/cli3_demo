@@ -8,7 +8,7 @@ function resolve (dir) {
 }
 
 module.exports = {
-  baseUrl: process.env.NODE_ENV === 'production' ? baseUrl : '/',
+  publicPath: process.env.NODE_ENV === 'production' ? baseUrl : '/',
   productionSourceMap: false,
   lintOnSave: process.env.NODE_ENV !== 'production',
 

@@ -6,6 +6,7 @@ import utils from '@/utils'
 Vue.use(Router)
 
 const router = new Router({
+  mode: 'history',
   routes: [
     {
       path: '/',
@@ -22,9 +23,9 @@ const router = new Router({
       // route level code-splitting
       // this generates a separate chunk (about.[hash].js) for this route
       // which is lazy-loaded when the route is visited.
-      components:{
+      components: {
         defaults: () => import(/* webpackChunkName: "about" */ '../views/About.vue')
-      } 
+      }
     },
     {
       path: '/login',
