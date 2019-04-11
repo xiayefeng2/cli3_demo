@@ -1,18 +1,18 @@
 <template>
   <div id="app">
-    <!-- <div id="nav">
+    <div id="nav">
       <RouterLink to="/">
         Home
       </RouterLink> |
       <RouterLink to="/about">
         About
       </RouterLink>
-    </div> -->
+    </div>
     <RouterView
       name="head"
       v-if="isRouterAlive"
     />
-    <router-view name="left-nav" />
+
     <router-view />
   </div>
 </template>

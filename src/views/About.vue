@@ -78,11 +78,12 @@ export default {
     font-size: dw(36);
     max-height: dw(400);
     overflow-y: scroll;
+    /deep/ .list {
+      height: dw(80);
+      line-height: dw(80);
+      background:#fff;
+      border-bottom:1px solid #efefef;
+    }
   }
-  .list {
-    height: dw(80);
-    line-height: dw(80);
-    background:#fff;
-    border-bottom:1px solid #efefef;
-  }
+
 </style>
