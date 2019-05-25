@@ -1,6 +1,7 @@
 const UglifyJsPlugin = require('uglifyjs-webpack-plugin')
+const CompressionPlugin = require('compression-webpack-plugin')
 const path = require('path')
-
+const isProd = process.env.NODE_ENV === 'production'
 let baseUrl = '/test/'
 
 function resolve (dir) {
@@ -8,9 +9,26 @@ function resolve (dir) {
 }
 
 module.exports = {
-  publicPath: process.env.NODE_ENV === 'production' ? baseUrl : '/',
+  publicPath: isProd ? baseUrl : '/',
   productionSourceMap: false,
-  lintOnSave: process.env.NODE_ENV !== 'production',
+  lintOnSave: !isProd,
+
+  configureWebpack: config => {
+    const plugins = []
+    if (isProd) {
+      plugins.push(
+        new CompressionPlugin({
+          test: /\.js$|\.html$|\.css$/, // 匹配的文件名
+          threshold: 8192, // 对 超过10K的数据进行压缩
+          deleteOriginalAssets: false, // 是否删除源文件
+          minRatio: 0.8 // 压缩率 只有压缩率比这个值小的资源才会被处理
+        })
+      )
+    }
+    return {
+      plugins
+    }
+  },
 
   chainWebpack: config => {
     const types = ['vue-modules', 'vue', 'normal-modules', 'normal']

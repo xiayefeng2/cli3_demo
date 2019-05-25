@@ -9,15 +9,15 @@
 </template>
 
 <script>
-  export default {
-    
-  }
+export default {
+
+}
 </script>
 
 <style lang="scss" scoped>
-.left-nav-wrap{
-  height: calc(100% - 80px);
-  width: 200px;
-  float:left;
-}
+  .left-nav-wrap {
+    height: calc(100% - 80px);
+    width: 200px;
+    float: left;
+  }
 </style>
