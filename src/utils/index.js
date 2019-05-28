@@ -481,7 +481,6 @@ utils.open = function (url) {
 
 utils.parseBoolean = function (str) {
   var ret = false
-
   try {
     ret = JSON.parse(str)
   } catch (e) {}
@@ -507,6 +506,11 @@ utils.getBase64Image = function (imgUrl, callback) {
     callback && callback(dataURL)
   }
 }
+
+export function isNative (Ctor) {
+  return typeof Ctor === 'function' && /native code/.test(Ctor.toString())
+}
+
 export function MoveZero (arr) {
   const len = arr.length
   if (len <= 1) {
