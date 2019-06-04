@@ -5,6 +5,9 @@
       class="ali-icon"
       name="pengyouquan"
     />
+    <button @click="goTable">
+      表格
+    </button>
     <BaseIconSvg name="add" />
     <Title>{{ title }}</Title>
     <button @click="showFaAction">
@@ -57,8 +60,10 @@ export default {
     },
     closeMask () {
       this.showSelect = false
+    },
+    goTable () {
+      this.$router.push('/table')
     }
-
   },
   components: {
     SheetAction
