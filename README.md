@@ -38,6 +38,12 @@ npm run lint
  utils.store.removeAllLocal()  delete all localStorage
  utils.store.removeAllStorage() delete all localStorage and sessionStorage
 ```
+```
+    框架     | Second Header | Third Header
+------------ | ------------- | ------------
+Content Cell | Content Cell  | Content Cell
+Content Cell | Content Cell  | Content Cell
+```
 ### Customize configuration
 See [Configuration Reference](https://cli.vuejs.org/config/).
 ---
