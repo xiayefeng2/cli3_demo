@@ -49,7 +49,8 @@ export default {
   },
   mounted () {
     this.title = '我的主页'
-    let fn = utils.throttle(this.throttle, 400)
+    // let fn = utils.throttle(this.throttle, 400)
+    let fn = utils.debounce(this.debounce, 500)
     window.onscroll = fn
   },
   methods: {
@@ -62,7 +63,11 @@ export default {
     },
     throttle () {
       console.log('throttle')
-      console.log('time ---->' + Date.now())
+      // console.log('time ---->' + Date.now())
+    },
+    debounce () {
+      console.log('debounce')
+      // console.log('time ---->' + Date.now())
     },
     closeMask () {
       this.showSelect = false

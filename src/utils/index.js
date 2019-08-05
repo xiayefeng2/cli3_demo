@@ -536,6 +536,34 @@ utils.throttle = function (func, wait) {
   }
 }
 
+utils.debounce = function (func, wait, immediate) {
+  var lastTime, timer, args, result
+  var later = function () {
+    var last = utils.now() - lastTime
+    if (last < wait) {
+      timer = setTimeout(later, wait - last)
+    } else {
+      timer = null
+      if (!immediate) {
+        result = func.apply(null, args)
+      }
+    }
+  }
+
+  return function () {
+    args = arguments
+    lastTime = utils.now()
+    var callNow = immediate && !timer
+    if (!timer) {
+      timer = setTimeout(later, wait)
+    }
+    if (callNow) {
+      result = func.apply(null, args)
+    }
+    return result
+  }
+}
+
 export function isNative (Ctor) {
   return typeof Ctor === 'function' && /native code/.test(Ctor.toString())
 }
