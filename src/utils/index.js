@@ -37,7 +37,7 @@ export function find (list, f) {
 }
 
 export function hasOwn (obj, key) {
-  return _has.call(obj, key)
+  return obj != null && _has.call(obj, key)
 }
 
 export const round = (n, decimals = 0) =>
