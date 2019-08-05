@@ -507,6 +507,35 @@ utils.getBase64Image = function (imgUrl, callback) {
   }
 }
 
+utils.now = Date.now
+
+utils.throttle = function (func, wait) {
+  var lastTime = 0
+  var timer = null
+  var args, result
+  var later = () => {
+    lastTime = utils.now()
+    timer = null
+    func.apply(null, args)
+  }
+  return function () {
+    var now = utils.now()
+    args = arguments
+    var remaining = wait - (now - lastTime)
+    if (remaining <= 0) {
+      if (timer) {
+        clearTimeout(timer)
+        timer = null
+      }
+      lastTime = now
+      result = func.apply(null, args)
+    } else if (!timer) {
+      timer = setTimeout(later, remaining)
+    }
+    return result
+  }
+}
+
 export function isNative (Ctor) {
   return typeof Ctor === 'function' && /native code/.test(Ctor.toString())
 }

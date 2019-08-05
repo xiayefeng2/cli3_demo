@@ -49,6 +49,8 @@ export default {
   },
   mounted () {
     this.title = '我的主页'
+    let fn = utils.throttle(this.throttle, 400)
+    window.onscroll = fn
   },
   methods: {
     showFaAction () {
@@ -57,6 +59,10 @@ export default {
     },
     stopBubble () {
       return false
+    },
+    throttle () {
+      console.log('throttle')
+      console.log('time ---->' + Date.now())
     },
     closeMask () {
       this.showSelect = false
@@ -74,7 +80,7 @@ export default {
   .about {
     @extend %abs;
     font-size: dw(32);
-    min-height: 700px;
+    min-height: 3000px;
   }
   .ali-icon {
     font-size: dw(72);
