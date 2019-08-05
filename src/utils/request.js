@@ -11,16 +11,16 @@ const instance = axios.create({
 
 instance.interceptors.request.use(
   config => {
-    if (config.isPlan) {
-      config.headers['Content-Type'] = 'application/x-www-form-urlencoded;charset=UTF-8'
-      config.data = Qs.stringify({ csjson: JSON.stringify(config.data) })
-    } else if (config.isFormData) {
+    if (config.data instanceof FormData) {
       config.headers['Content-Type'] = 'multipart/form-data'
-      let formData = new FormData()
+      /* let formData = new FormData()
       for (let i in config.data) {
         formData.append(i, config.data[i])
-      }
-      config.data = formData
+      } */
+      // config.data = formData
+    } else if (config.isFormData) {
+      config.headers['Content-Type'] = 'application/x-www-form-urlencoded;charset=UTF-8'
+      config.data = Qs.stringify({ csjson: JSON.stringify(config.data) })
     }
     return config
   },
@@ -48,7 +48,7 @@ instance.interceptors.response.use(
   }
 )
 
-export default ({ url, method = 'get', params = {}, data = {}, isPlan = true, isFormData = false } = {}) => {
+export default ({ url, method = 'get', params = {}, data = {} } = {}) => {
   // console.log(url)
   // console.log(params)
   if (!url) {
@@ -62,8 +62,6 @@ export default ({ url, method = 'get', params = {}, data = {}, isPlan = true, is
       url,
       params,
       data,
-      isPlan,
-      isFormData,
       method
     }).then((res) => {
       resolve(res)
