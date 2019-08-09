@@ -5,6 +5,10 @@
       class="ali-icon"
       name="pengyouquan"
     />
+    <input
+      type="text"
+      v-model.number="age"
+    >
     <button @click="goTable">
       表格
     </button>
@@ -41,7 +45,8 @@ export default {
     return {
       title: '',
       showSelect: false,
-      list: [1, 2, 3, 4, 5, 6, 7]
+      list: [1, 2, 3, 4, 5, 6, 7],
+      age: ''
     }
   },
   created () {
