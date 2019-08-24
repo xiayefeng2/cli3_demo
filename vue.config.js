@@ -12,6 +12,9 @@ module.exports = {
   publicPath: isProd ? baseUrl : '/',
   productionSourceMap: false,
   lintOnSave: !isProd,
+  // 启用并行化 默认并发运行数： os.cups().length -1 并行化可以显著加速构建
+  parallel: require('os').cpus().length > 1,
+  // ouputDir: 'dist',
 
   configureWebpack: config => {
     const plugins = []
@@ -22,6 +25,20 @@ module.exports = {
           threshold: 8192, // 对 超过10K的数据进行压缩
           deleteOriginalAssets: false, // 是否删除源文件
           minRatio: 0.8 // 压缩率 只有压缩率比这个值小的资源才会被处理
+        })
+      )
+
+      plugins.push(
+        new UglifyJsPlugin({
+          uglifyOptions: {
+            compress: {
+              drop_debugger: true,
+              drop_console: true
+            }
+          },
+          sourceMap: false,
+          // 多进程并行运行 提高打包速度
+          parallel: true
         })
       )
     }
@@ -55,7 +72,7 @@ module.exports = {
         config => config.devtool('cheap-source-map')
       )
       // 非开发环境
-      .when(process.env.NODE_ENV !== 'development', config => {
+      /* .when(process.env.NODE_ENV !== 'development', config => {
         config.optimization
           .minimizer([
             new UglifyJsPlugin({
@@ -71,7 +88,7 @@ module.exports = {
               }
             })
           ])
-      })
+      }) */
     // image exclude
     const imagesRule = config.module.rule('images')
     imagesRule
@@ -79,6 +96,13 @@ module.exports = {
       .exclude
       .add(resolve('src/assets/svg-icons/icons'))
       .end()
+
+    // 压缩代码
+    config.optimization.minimize(true)
+    // 代码分割
+    config.optimization.splitChunks({
+      chunks: 'all'
+    })
 
     config.resolve.alias
       .set('@', resolve('src'))
@@ -99,14 +123,26 @@ module.exports = {
 
   devServer: {
     port: 8081,
+    compress: false,
     proxy: {
       '/api': {
         target: 'url',
-        changeOrigin: true,
+        ws: true,
+        changeOrigin: true, // 是否允许跨域
         pathRewrite: { '^/api': '/' }
       }
     }
   },
+  /*  css: {
+    extract: true,
+    sourceMap: false,
+    loaderOptins: {
+      sass: {
+        data: `@import "@/style/_variables.scss"`
+      }
+    },
+    modules: false
+  }, */
 
   pluginOptions: {
     'style-resources-loader': {

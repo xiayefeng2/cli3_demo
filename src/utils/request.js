@@ -18,7 +18,7 @@ instance.interceptors.request.use(
         formData.append(i, config.data[i])
       } */
       // config.data = formData
-    } else if (config.isFormData) {
+    } else if (config.data) {
       config.headers['Content-Type'] = 'application/x-www-form-urlencoded;charset=UTF-8'
       config.data = Qs.stringify({ csjson: JSON.stringify(config.data) })
     }
@@ -64,13 +64,13 @@ export default ({ url, method = 'get', params = {}, data = {} } = {}) => {
       data,
       method
     }).then((res) => {
-      resolve(res)
+      return resolve(res)
     }).catch(error => {
       // console.log(error)
       if (axios.isCancel(error)) {
         console.log('Request canceled', error.message)
       }
-      reject(error)
+      return reject(error)
     })
   })
 }

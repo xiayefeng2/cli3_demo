@@ -1,10 +1,12 @@
 import cookies from './cookies'
-import { Store } from './local_store'
+import Store from './local_store'
 import log from './log'
+
+const store = new Store()
 const utils = {
   log,
   cookies,
-  store: new Store()
+  store
 }
 const _toString = Object.prototype.toString
 const _has = Object.prototype.hasOwnProperty
@@ -78,7 +80,7 @@ export function deepCopy (obj, cache = []) {
 }
 
 function checkedType (target) {
-  return Object.prototype.toString.call(target).slice(8, -1)
+  return _toString.call(target).slice(8, -1)
 }
 
 // 实现深度克隆---对象/数组

@@ -5,6 +5,15 @@ import utils from '@/utils'
 
 Vue.use(Router)
 
+const routerList = []
+function importRouter (r) {
+  r.keys().forEach(key => {
+    routerList.push(r(key).default)
+  })
+}
+
+importRouter(require.context('.', true, /.+\.route\.js$/))
+
 const router = new Router({
   mode: 'history',
   routes: [
@@ -38,6 +47,7 @@ const router = new Router({
       name: 'table',
       component: () => import('@/views/Table.vue')
     }
+    // ...routerList
   ]
 })
 router.beforeEach((to, from, next) => {

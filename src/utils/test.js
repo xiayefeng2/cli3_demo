@@ -1,5 +1,6 @@
 /* 本文件用来学习、测试及练习用 */
 import { hasOwn } from './index'
+import _ from 'lodash'
 
 // 构造函数原型模式
 function Person () {}
@@ -121,3 +122,22 @@ var instance2 = new SubType('lxy', 23)
 
 instance1.colors.push('2') // ["red", "blue", "green", "2"]
 instance2.colors.push('3') // ["red", "blue", "green", "3"]
+
+function Shape () {
+  this.x = 0
+  this.y = 0
+}
+
+function Circle () {
+  Shape.call(this)
+}
+
+Circle.prototype = _.create(Shape.prototype, {
+  constructor: Circle
+})
+
+var circle = new Circle()
+console.log(circle instanceof Circle)
+// => true
+console.log(circle instanceof Shape)
+// => true
