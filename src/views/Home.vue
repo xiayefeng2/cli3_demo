@@ -28,7 +28,10 @@ export default {
     HelloWorld
   },
   created () {
-
+    console.log('home created')
+  },
+  mounted () {
+    console.log('home mounted')
   },
   inject: ['reload'],
   methods: {

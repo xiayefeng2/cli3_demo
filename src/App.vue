@@ -26,7 +26,7 @@ export default {
     }
   },
   created () {
-
+    console.log('App created')
   },
   mounted () {
     console.log('App Mounted')

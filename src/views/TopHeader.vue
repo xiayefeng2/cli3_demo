@@ -8,6 +8,12 @@
 
 <script>
 export default {
+  created () {
+    console.log('top header created')
+  },
+  mounted () {
+    console.log('top header mounted')
+  },
   methods: {
     goAbout () {
       this.$router.push('/about')

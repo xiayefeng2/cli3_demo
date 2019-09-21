@@ -140,6 +140,12 @@ export default {
       type: String,
       default: ''
     }
+  },
+  created () {
+    console.log('Hello World created')
+  },
+  mounted () {
+    console.log('Hello World mounted')
   }
 }
 </script>
