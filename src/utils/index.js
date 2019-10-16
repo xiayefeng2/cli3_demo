@@ -287,6 +287,12 @@ export function parseTime (time, cFormat) {
   return timeStr
 }
 
+utils.testFn = function ({ success, time = 500 }) {
+  setTimeout(() => {
+    success('a')
+  }, time)
+}
+
 export function formatTime (time, option) {
   time = +time * 1000
   const d = new Date(time)

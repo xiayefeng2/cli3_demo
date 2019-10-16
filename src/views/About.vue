@@ -41,6 +41,7 @@
 <script>
 import SheetAction from 'components/common/SheetAction'
 import utils from '@/utils'
+import { myFn } from '@/utils/wx'
 
 let delay = Promise.resolve()
 let timer = null
@@ -72,6 +73,21 @@ export default {
     /* this.imageArr.map((item, idx) => {
       utils.getBase64Image(item, this.fn, idx)
     }) */
+    // console.log(1)
+    /* myFn({ id: 'adafd', idx: 0 }).then(res => {
+      console.log(res)
+    }) */
+    this.testAsync([
+      {
+        time: 300, id: '1'
+      },
+      {
+        time: 200, id: '2'
+      },
+      {
+        time: 1000, id: '3'
+      }
+    ])
   },
   methods: {
     showFaAction () {
@@ -102,10 +118,18 @@ export default {
           // this.$emit('search-data', { val: this.inputV })
           setTimeout(() => {
             console.log(this.text)
-          }, (500 * Math.random()))
+          }, 500 * Math.random())
         })
         timer = null
       }, 100)
+    },
+    async testAsync (arr) {
+      let arr2 = []
+      for (let item of arr) {
+        const response = await myFn(item.time)
+        arr2.push(response)
+      }
+      console.log(arr2)
     },
     throttle () {
       console.log('throttle')
@@ -128,24 +152,23 @@ export default {
 }
 </script>
 <style lang="scss" scoped>
-  .about {
-    @extend %abs;
-    font-size: dw(32);
-    min-height: 3000px;
+.about {
+  @extend %abs;
+  font-size: dw(32);
+  min-height: 3000px;
+}
+.ali-icon {
+  font-size: dw(72);
+}
+.list-wrap {
+  font-size: dw(36);
+  max-height: dw(400);
+  overflow-y: scroll;
+  /deep/ .list {
+    height: dw(80);
+    line-height: dw(80);
+    background: #fff;
+    border-bottom: 1px solid #efefef;
   }
-  .ali-icon {
-    font-size: dw(72);
-  }
-  .list-wrap{
-    font-size: dw(36);
-    max-height: dw(400);
-    overflow-y: scroll;
-    /deep/ .list {
-      height: dw(80);
-      line-height: dw(80);
-      background:#fff;
-      border-bottom:1px solid #efefef;
-    }
-  }
-
+}
 </style>
