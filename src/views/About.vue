@@ -7,7 +7,8 @@
     />
     <input
       type="text"
-      v-model.number="age"
+      v-model="text"
+      @keyup="search"
     >
     <button @click="goTable">
       表格
@@ -17,6 +18,7 @@
     <button @click="showFaAction">
       显示Action
     </button>
+
     <SheetAction
       :show-action="showSelect"
       @close-mask="closeMask"
@@ -39,6 +41,10 @@
 <script>
 import SheetAction from 'components/common/SheetAction'
 import utils from '@/utils'
+
+let delay = Promise.resolve()
+let timer = null
+
 export default {
   data () {
     console.log('data---', this.$route.path)
@@ -46,7 +52,13 @@ export default {
       title: '',
       showSelect: false,
       list: [1, 2, 3, 4, 5, 6, 7],
-      age: ''
+      age: '',
+      text: '',
+      imageArr: [
+        'https://user-gold-cdn.xitu.io/2017/6/22/b0cb03de9bfdeac20adc2381f86160e0?imageView2/1/w/800/h/600/q/85/format/webp/interlace/1',
+        'https://user-gold-cdn.xitu.io/2019/10/15/16dcfbdcfd166872?imageView2/1/w/1304/h/734/q/85/format/webp/interlace/1',
+        'https://user-gold-cdn.xitu.io/2019/10/15/16dcd7d7f735f0f3?imageView2/1/w/1304/h/734/q/85/format/webp/interlace/1'
+      ]
     }
   },
   created () {
@@ -57,6 +69,9 @@ export default {
     // let fn = utils.throttle(this.throttle, 400)
     let fn = utils.debounce(this.debounce, 500)
     window.onscroll = fn
+    /* this.imageArr.map((item, idx) => {
+      utils.getBase64Image(item, this.fn, idx)
+    }) */
   },
   methods: {
     showFaAction () {
@@ -65,6 +80,32 @@ export default {
     },
     stopBubble () {
       return false
+    },
+    fn (res, idx) {
+      console.log(idx)
+      console.log(res)
+    },
+    changText (e) {
+      // console.log(e.code)
+    },
+    search (e) {
+      timer && clearTimeout(timer)
+      // console.log(e.which)
+      if (e.which === 13) {
+        setTimeout(() => {
+          console.log(this.text)
+        }, 500)
+        return
+      }
+      timer = setTimeout(() => {
+        delay = delay.then(() => {
+          // this.$emit('search-data', { val: this.inputV })
+          setTimeout(() => {
+            console.log(this.text)
+          }, (500 * Math.random()))
+        })
+        timer = null
+      }, 100)
     },
     throttle () {
       console.log('throttle')

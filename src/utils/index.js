@@ -490,7 +490,7 @@ utils.parseBoolean = function (str) {
   return ret
 }
 
-utils.getBase64Image = function (imgUrl, callback) {
+utils.getBase64Image = function (imgUrl, callback, idx) {
   const image = new Image()
   image.crossOrigin = ''
   image.src = imgUrl
@@ -505,7 +505,7 @@ utils.getBase64Image = function (imgUrl, callback) {
       .substring(image.src.lastIndexOf('.') + 1)
       .toLowerCase()
     const dataURL = canvas.toDataURL('image/' + ext)
-    callback && callback(dataURL)
+    callback && callback(dataURL, idx)
   }
 }
 
