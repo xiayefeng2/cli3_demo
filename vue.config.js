@@ -2,7 +2,7 @@ const UglifyJsPlugin = require('uglifyjs-webpack-plugin')
 const CompressionPlugin = require('compression-webpack-plugin')
 const path = require('path')
 const isProd = process.env.NODE_ENV === 'production'
-let baseUrl = '/test/'
+let baseUrl = '/'
 
 function resolve (dir) {
   return path.join(__dirname, dir)
