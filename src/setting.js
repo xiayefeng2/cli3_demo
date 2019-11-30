@@ -2,7 +2,6 @@ import Vue from 'vue'
 import { openVc } from '@/global_config'
 import { isDev } from '@/utils'
 
-const VConsole = require('vconsole/dist/vconsole.min.js')
 const FastClick = require('fastclick')
 
 if ('addEventListener' in document) {
@@ -21,5 +20,6 @@ Vue.config.errorHandler = function (err, vm, info) {
 }
 Vue.config.productionTip = false
 if (isDev() && openVc) {
-  const vConsole = new VConsole() // eslint-disable-line
+  /*  const VConsole = require('vconsole/dist/vconsole.min.js')
+  const vConsole = new VConsole() // eslint-disable-line */
 }

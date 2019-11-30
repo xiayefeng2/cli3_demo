@@ -70,7 +70,13 @@ module.exports = {
       .when(process.env.NODE_ENV === 'development',
         // sourcemap不包含列信息
         config => config.devtool('cheap-source-map')
-      )
+      ).when(process.env.NODE_ENV === 'production', config => {
+        if (process.env.npm_config_report) {
+          config.plugin('webpack-bundle-analyzer')
+            .use(require('webpack-bundle-analyzer').BundleAnalyzerPlugin)
+            .end()
+        }
+      })
       // 非开发环境
       /* .when(process.env.NODE_ENV !== 'development', config => {
         config.optimization
