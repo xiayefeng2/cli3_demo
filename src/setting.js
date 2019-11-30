@@ -1,8 +1,8 @@
 import Vue from 'vue'
 import { openVc } from '@/global_config'
 import { isDev } from '@/utils'
-
-const FastClick = require('fastclick')
+import FastClick from 'fastclick'
+// const FastClick = require('fastclick')
 
 if ('addEventListener' in document) {
   document.addEventListener('DOMContentLoaded', function () {
