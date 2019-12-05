@@ -12,11 +12,44 @@ const _toString = Object.prototype.toString
 const _has = Object.prototype.hasOwnProperty
 // const encode = encodeURIComponent
 
+export const isEmpty = obj =>
+  [Object, Array].includes((obj || {}).constructor) &&
+  !Object.entries(obj || {}).length
+
 export function isMobile () {
   const agent = navigator.userAgent
   return (
-    agent.match(/Android/i) || agent.includes('iPhone') || agent.includes('iPad')
+    agent.match(/Android/i) ||
+    agent.includes('iPhone') ||
+    agent.includes('iPad')
   )
+}
+
+export function throttle (func, timeFrame) {
+  let lastTime = 0
+  return function () {
+    let now = new Date()
+    if (now - lastTime >= timeFrame) {
+      func()
+      lastTime = now
+    }
+  }
+}
+
+export function debounce (func, wait, immediate) {
+  let timeout
+  return function () {
+    let context = this
+    let args = arguments
+    timeout && clearTimeout(timeout)
+    timeout = setTimeout(function () {
+      timeout = null
+      if (!immediate) func.apply(context, args)
+    }, wait)
+    if (immediate && !timeout) {
+      func.apply(context, args)
+    }
+  }
 }
 
 export function len (str) {
@@ -314,7 +347,15 @@ export function formatTime (time, option) {
     return parseTime(time, option)
   } else {
     return (
-      d.getMonth() + 1 + '月' + d.getDate() + '日' + d.getHours() + '时' + d.getMinutes() + '分'
+      d.getMonth() +
+      1 +
+      '月' +
+      d.getDate() +
+      '日' +
+      d.getHours() +
+      '时' +
+      d.getMinutes() +
+      '分'
     )
   }
 }
@@ -594,7 +635,8 @@ export function MoveZero (arr) {
       }
       arr[idx] = 0
       idx--
-    } else { // 当下一个元素不为 0 时脚标加 1
+    } else {
+      // 当下一个元素不为 0 时脚标加 1
       i++
     }
   }
