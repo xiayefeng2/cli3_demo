@@ -2,7 +2,7 @@ import Icon from './IconFont.vue'
 
 const icon = {
   install (Vue, options = {}) {
-    Vue.component('Icon', Icon)
+    Vue.component('IconFont', Icon)
   }
 }
 

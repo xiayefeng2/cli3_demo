@@ -15,7 +15,7 @@
 
 <script>
 export default {
-  name: 'Icon',
+  name: 'IconFont',
   props: {
     type: {
       type: String,
