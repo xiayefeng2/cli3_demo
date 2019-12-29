@@ -69,7 +69,7 @@ module.exports = {
       // 开发环境
       .when(process.env.NODE_ENV === 'development',
         // sourcemap不包含列信息
-        config => config.devtool('cheap-source-map')
+        config => config.devtool('cheap-module-eval-source-map')
       ).when(process.env.NODE_ENV === 'production', config => {
         if (process.env.npm_config_report) {
           config.plugin('webpack-bundle-analyzer')
@@ -123,7 +123,8 @@ module.exports = {
       .end()
 
     config.externals({
-      'AMap': 'AMap'
+      'AMap': 'AMap',
+      'wx': 'wx'
     })
   },
 

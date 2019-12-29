@@ -1,4 +1,5 @@
 import utils from './index'
+import wx from 'wx'
 export function getLocalImgData (localId) {
   return new Promise((resolve, reject) => {
     wx.getLocalImgData({

@@ -1,15 +1,15 @@
 import Vue from 'vue'
 import { openVc } from '@/global_config'
 import { isDev } from '@/utils'
-import FastClick from 'fastclick'
+// import FastClick from 'fastclick'
 // const FastClick = require('fastclick')
 
-if ('addEventListener' in document) {
+/* if ('addEventListener' in document) {
   document.addEventListener('DOMContentLoaded', function () {
     FastClick.attach(document.body)
   }, false)
   // document.body.addEventListener('touchmove', console.log)
-}
+} */
 
 Vue.config.errorHandler = function (err, vm, info) {
   // handle error
@@ -20,6 +20,11 @@ Vue.config.errorHandler = function (err, vm, info) {
 }
 Vue.config.productionTip = false
 if (isDev() && openVc) {
+  import('vconsole').then(res => {
+    console.log(res)
+    const VConsole = res.default
+    new VConsole() /* eslint-disable-line */
+  })
   /*  const VConsole = require('vconsole/dist/vconsole.min.js')
   const vConsole = new VConsole() // eslint-disable-line */
 }

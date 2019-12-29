@@ -46,6 +46,11 @@ const router = new Router({
       path: '/table',
       name: 'table',
       component: () => import('@/views/Table.vue')
+    },
+    {
+      path: '/event',
+      name: 'event',
+      component: () => import('@/views/MyEvent.vue')
     }
     // ...routerList
   ]

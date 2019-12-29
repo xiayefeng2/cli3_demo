@@ -13,6 +13,12 @@
       >
         刷新
       </button>
+      <button
+        class="event-btn"
+        @click="eventTest"
+      >
+        事件
+      </button>
     </div>
     <HelloWorld msg="Welcome to Your Vue.js App" />
   </div>
@@ -37,6 +43,9 @@ export default {
   methods: {
     login () {
       this.$router.push('/login')
+    },
+    eventTest () {
+      this.$router.push('/event')
     }
   }
 }
@@ -50,6 +59,6 @@ export default {
     line-height: dw(80);
   }
   .refresh-btn{
-    margin-left: dw(30);
+    margin: 0 dw(30);
   }
 </style>
