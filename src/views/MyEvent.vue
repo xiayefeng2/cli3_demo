@@ -1,8 +1,11 @@
 <template>
-  <div
-    class="wrap"
-    @click="clickEvent"
-  />
+  <div class="box">
+    <div
+      class="wrap"
+      @click="clickEvent"
+    />
+    <div class="btn" />
+  </div>
 </template>
 
 <script>
@@ -10,8 +13,7 @@ import MyEvent from '@/utils/my-event.js'
 
 export default {
   data () {
-    return {
-    }
+    return {}
   },
   mounted () {
     var myUtilEvent = new MyEvent({ select: '.wrap' })
@@ -21,6 +23,8 @@ export default {
     myUtilEvent.rightSlip(this.rightSlip)
     myUtilEvent.upSlip(this.upSlip)
     myUtilEvent.downSlip(this.downSlip)
+    var btnEvent = new MyEvent({ select: '.btn' })
+    btnEvent.upSlip(this.upSlip2, true)
   },
   methods: {
     tapWrap () {
@@ -38,6 +42,9 @@ export default {
     upSlip () {
       console.log('upSlip 事件发生了')
     },
+    upSlip2 () {
+      console.log('upSlip2 事件发生了')
+    },
     downSlip () {
       console.log('downSlip 事件发生了')
     },
@@ -49,10 +56,23 @@ export default {
 </script>
 
 <style lang="scss" scoped>
-
-.wrap{
+.wrap {
   width: dw(400);
   height: dw(400);
+  border: 1px solid #ccc;
+  box-sizing: border-box;
+}
+.box{
+  position: relative;
+  height: calc(100% - .8rem);
+}
+.btn{
+  position: fixed;
+  bottom:0;
+  left: 0;
+  width: 100%;
+  height: 1rem;
+  line-height: 1rem;
   border: 1px solid #ccc;
   box-sizing: border-box;
 }

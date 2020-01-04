@@ -3,8 +3,10 @@ export default class MyEvent {
     let select = props.select
     if (typeof select === 'string') {
       this.ele = document.querySelector(select)
+    } else if (select instanceof HTMLElement && select.nodeType === 1) {
+      this.ele = select
     } else {
-      throw new TypeError('props of select must be string')
+      throw new TypeError('props of select must be string or HTMLElement')
     }
     this.tapLastTime = null
   }
@@ -130,7 +132,7 @@ export default class MyEvent {
     this.ele.addEventListener('touchend', touchFn)
   }
 
-  upSlip (handler) {
+  upSlip (handler, sort) {
     let startX, startY, endX, endY
     let touchFn = function (e) {
       console.log(e.type)
@@ -145,7 +147,7 @@ export default class MyEvent {
           endY = e.changedTouches[0].clientY
           console.log('X:' + Math.abs(startX - endX))
           console.log('Y:' + (startY - endY))
-          if (Math.abs(startX - endX) < 30 && startY - endY > 50) {
+          if ((Math.abs(startX - endX) < 40 && startY - endY > 50) || (sort && startY - endY > 60)) {
             handler.call(this, e)
           }
           break

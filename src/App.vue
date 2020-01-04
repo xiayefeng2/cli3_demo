@@ -58,5 +58,9 @@ export default {
   font-size: dw(32);
   overflow: auto;
   height: 100%;
+  #nav{
+    height: .8rem;
+    line-height: .8rem;
+  }
 }
 </style>
