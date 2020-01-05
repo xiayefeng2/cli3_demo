@@ -25,6 +25,7 @@ export default {
     myUtilEvent.downSlip(this.downSlip)
     var btnEvent = new MyEvent({ select: '.btn' })
     btnEvent.upSlip(this.upSlip2, true)
+    btnEvent.longTap(this.longTap2, this.longTapEnd)
   },
   methods: {
     tapWrap () {
@@ -32,6 +33,12 @@ export default {
     },
     longTap () {
       console.log('longTap 事件发生了')
+    },
+    longTap2 () {
+      console.log('longTap2 事件发生了')
+    },
+    longTapEnd () {
+      console.log('longTapEnd 事件发生了')
     },
     leftSlip () {
       console.log('leftSlip 事件发生了')

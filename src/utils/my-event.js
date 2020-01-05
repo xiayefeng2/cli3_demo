@@ -37,7 +37,7 @@ export default class MyEvent {
   }
 
   longTap (startHandle, endHandle) {
-    let startTime, endTime, timerId, startX, startY
+    let startTime, endTime, timerId, startX, startY, endY
     let isLongPress = false
     let touchFn = function (e) {
       e.preventDefault()
@@ -53,7 +53,7 @@ export default class MyEvent {
           }, 500)
           break
         case 'touchmove':
-          let isMove = Math.abs(e.changedTouches[0].clientX - startX) > 10 || Math.abs(e.changedTouches[0].clientY - startY) > 10
+          let isMove = Math.abs(e.changedTouches[0].clientX - startX) > 20 || Math.abs(e.changedTouches[0].clientY - startY) > 20
           startTime = new Date().getTime()
           if (isMove && !isLongPress) {
             timerId && clearTimeout(timerId)
@@ -66,12 +66,16 @@ export default class MyEvent {
           break
         case 'touchend':
           endTime = new Date().getTime()
+          endY = e.changedTouches[0].clientY
+          // console.log(endY, startY)
+          console.log('Y:' + (startY - endY))
+          console.log('time:' + (endTime - startTime))
           if (endTime - startTime < 500) {
             timerId && clearTimeout(timerId)
-          } else if (endHandle) {
+          } else if (endHandle && (startY - endY < 30)) {
             endHandle.call(this, e)
           }
-          clearTimeout(timerId)
+          // clearTimeout(timerId)
           break
         default:
           clearTimeout(timerId)
@@ -145,8 +149,8 @@ export default class MyEvent {
         case 'touchend':
           endX = e.changedTouches[0].clientX
           endY = e.changedTouches[0].clientY
-          console.log('X:' + Math.abs(startX - endX))
-          console.log('Y:' + (startY - endY))
+          /* console.log('X:' + Math.abs(startX - endX))
+          console.log('Y:' + (startY - endY)) */
           if ((Math.abs(startX - endX) < 40 && startY - endY > 50) || (sort && startY - endY > 60)) {
             handler.call(this, e)
           }
