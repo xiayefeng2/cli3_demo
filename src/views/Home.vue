@@ -19,6 +19,12 @@
       >
         事件
       </button>
+      <button
+        class="form"
+        @click="formSubmit"
+      >
+        表单
+      </button>
     </div>
     <HelloWorld msg="Welcome to Your Vue.js App" />
   </div>
@@ -46,6 +52,9 @@ export default {
     },
     eventTest () {
       this.$router.push('/event')
+    },
+    formSubmit () {
+      this.$router.push('/form')
     }
   }
 }
@@ -60,5 +69,8 @@ export default {
   }
   .refresh-btn{
     margin: 0 dw(30);
+  }
+  .event-btn{
+    margin-right: dw(30);
   }
 </style>

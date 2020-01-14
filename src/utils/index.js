@@ -546,12 +546,13 @@ utils.getBase64Image = function (imgUrl, callback, idx) {
     const canvas = document.createElement('canvas')
     canvas.width = image.width
     canvas.height = image.height
+    let quality = 0.8
     const ctx = canvas.getContext('2d')
     ctx.drawImage(image, 0, 0, image.width, image.height)
     const ext = image.src
       .substring(image.src.lastIndexOf('.') + 1)
       .toLowerCase()
-    const dataURL = canvas.toDataURL('image/' + ext)
+    const dataURL = canvas.toDataURL('image/' + ext, quality)
     callback && callback(dataURL, idx)
   }
 }
@@ -615,6 +616,55 @@ utils.debounce = function (func, wait, immediate) {
 
 export function isNative (Ctor) {
   return typeof Ctor === 'function' && /native code/.test(Ctor.toString())
+}
+
+export function once (fn) {
+  var called = false
+  return function () {
+    if (!called) {
+      called = true
+      fn.apply(this, arguments)
+    }
+  }
+}
+
+export function submitNoRepeat (fn) {
+  let isSending = false
+  const cb = function () {
+    isSending = false
+  }
+  return function () {
+    let arr = Array.from(arguments)
+    if (!isSending) {
+      arr.push(cb)
+      fn.apply(this, arr)
+      isSending = true
+    }
+  }
+}
+
+export function submitNoRepeatAndDebounce (fn, wait) {
+  let isSending = false
+  let timer = null
+  const cb = function () {
+    isSending = false
+  }
+  return function () {
+    let arr = Array.from(arguments)
+    if (!isSending) {
+      arr.push(cb)
+      if (wait) {
+        timer && clearTimeout(timer)
+        timer = setTimeout(() => {
+          timer = null
+          fn.apply(this, arr)
+        }, wait)
+      } else {
+        fn.apply(this, arr)
+      }
+      isSending = true
+    }
+  }
 }
 
 export function MoveZero (arr) {

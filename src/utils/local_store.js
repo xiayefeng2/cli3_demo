@@ -1,6 +1,6 @@
 export default class Store {
   constructor () {
-    this.checkBrows()
+    Store.checkBrows()
   }
   getSession (key) {
     if (typeof key !== 'string') {
@@ -124,9 +124,9 @@ export default class Store {
       throw new Error('param error, param must be one of 1,2,3')
     }
   }
-  checkBrows () {
+  static checkBrows () {
     if (!window.sessionStorage || !window.localStorage) {
-      throw new Error('浏览器不支持本地存储')
+      throw new Error('当前环境不支持本地存储')
     }
   }
   checkStr (obj) {
