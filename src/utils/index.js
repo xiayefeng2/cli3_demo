@@ -653,7 +653,7 @@ export function submitNoRepeatAndDebounce (fn, wait) {
     let arr = Array.from(arguments)
     if (!isSending) {
       arr.push(cb)
-      let now = +new Date()
+      let now = utils.now()
       if (wait && lastTime) {
         if (now - lastTime > wait) {
           fn.apply(this, arr)
