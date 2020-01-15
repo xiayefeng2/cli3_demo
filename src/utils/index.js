@@ -636,16 +636,16 @@ export function submitNoRepeat (fn) {
   return function () {
     let arr = Array.from(arguments)
     if (!isSending) {
+      isSending = true
       arr.push(cb)
       fn.apply(this, arr)
-      isSending = true
     }
   }
 }
 
 export function submitNoRepeatAndDebounce (fn, wait) {
   let isSending = false
-  let timer = null
+  let lastTime
   const cb = function () {
     isSending = false
   }
@@ -653,14 +653,15 @@ export function submitNoRepeatAndDebounce (fn, wait) {
     let arr = Array.from(arguments)
     if (!isSending) {
       arr.push(cb)
-      if (wait) {
-        timer && clearTimeout(timer)
-        timer = setTimeout(() => {
-          timer = null
+      let now = +new Date()
+      if (wait && lastTime) {
+        if (now - lastTime > wait) {
           fn.apply(this, arr)
-        }, wait)
+          lastTime = now
+        }
       } else {
         fn.apply(this, arr)
+        lastTime = now
       }
       isSending = true
     }
