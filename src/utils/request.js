@@ -2,12 +2,13 @@
  * Created by wx on 2018-11-06.
  */
 import axios from 'axios'
-import Qs from 'query-string'
+import qs from 'qs'
 
 const instance = axios.create({
-  timeout: 10000 // 请求超时时间
-  // maxRedirects: 5,
+  baseURL: 'https://api.example.com'
 })
+
+instance.defaults.timeout = 10000
 
 instance.interceptors.request.use(
   config => {
@@ -20,7 +21,7 @@ instance.interceptors.request.use(
       // config.data = formData
     } else if (config.data) {
       config.headers['Content-Type'] = 'application/x-www-form-urlencoded;charset=UTF-8'
-      config.data = Qs.stringify({ csjson: JSON.stringify(config.data) })
+      config.data = qs.stringify(config.data)
     }
     return config
   },
@@ -41,6 +42,8 @@ instance.interceptors.response.use(
     console.log(error)
     if (error.message.includes('Network')) {
       error.message = '网络不给力，请稍后再试'
+    } else if (error.message.includes('timeout')) {
+      error.message = '请求超时，请稍后重试'
     } else if (typeof error.code === 'undefined') {
       error.message = '连接出错，请重试'
     }
@@ -48,7 +51,7 @@ instance.interceptors.response.use(
   }
 )
 
-export default ({ url, method = 'get', params = {}, data = {} } = {}) => {
+export default ({ url, method = 'get', params = {}, data = {}, ...rest } = {}) => {
   // console.log(url)
   // console.log(params)
   if (!url) {
@@ -62,7 +65,8 @@ export default ({ url, method = 'get', params = {}, data = {} } = {}) => {
       url,
       params,
       data,
-      method
+      method,
+      ...rest
     }).then((res) => {
       return resolve(res)
     }).catch(error => {

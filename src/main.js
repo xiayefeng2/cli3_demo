@@ -4,8 +4,6 @@ import router from './route'
 import store from './vuex'
 import VueI18n from 'vue-i18n'
 
-import './test/a'
-
 import Title from 'plugin/title'
 import VueIconFont from 'plugin/icon'
 
