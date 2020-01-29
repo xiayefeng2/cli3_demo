@@ -703,4 +703,6 @@ export const compose = function () {
   }
 }
 
+export const compose2 = (...args) => x => args.reduceRight((res, cb) => cb(res), x)
+
 export default utils
