@@ -693,4 +693,14 @@ export function MoveZero (arr) {
   }
   return arr
 }
+
+export const compose = function () {
+  let args = Array.from(arguments)
+  return function (x) {
+    return args.reduceRight(function (res, cb) {
+      return cb(res)
+    }, x)
+  }
+}
+
 export default utils
