@@ -42,13 +42,13 @@ export function debounce (func, wait, immediate) {
     let context = this
     let args = arguments
     timeout && clearTimeout(timeout)
+    if (immediate && !timeout) {
+      func.apply(context, args)
+    }
     timeout = setTimeout(function () {
       timeout = null
       if (!immediate) func.apply(context, args)
     }, wait)
-    if (immediate && !timeout) {
-      func.apply(context, args)
-    }
   }
 }
 
@@ -382,7 +382,7 @@ export function RemoveArrItem () {
     } */
     do {
       let idx = arr.findIndex(item2 => item2 === item)
-      arr.splice(idx, 1)
+      idx > -1 && arr.splice(idx, 1)
     } while (arr.includes(item))
     return Array.from(arr)
   }
@@ -668,32 +668,6 @@ export function submitNoRepeatAndDebounce (fn, wait) {
   }
 }
 
-export function MoveZero (arr) {
-  const len = arr.length
-  if (len <= 1) {
-    return arr
-  }
-  let idx = len
-  // 找到非0的下标
-  do {
-    idx--
-  } while (idx >= 0 && !arr[idx])
-
-  for (let i = 0; i < idx;) {
-    if (arr[i] === 0) {
-      for (let j = i; j < idx; j++) {
-        arr[j] = arr[j + 1]
-      }
-      arr[idx] = 0
-      idx--
-    } else {
-      // 当下一个元素不为 0 时脚标加 1
-      i++
-    }
-  }
-  return arr
-}
-
 export const compose = function () {
   let args = Array.from(arguments)
   return function (x) {
@@ -704,5 +678,22 @@ export const compose = function () {
 }
 
 export const compose2 = (...args) => x => args.reduceRight((res, cb) => cb(res), x)
+
+export function fibonacci (n) {
+  return n < 2 ? n : fibonacci(n - 1) + fibonacci(n - 2)
+}
+
+utils.memoize = function (func, hasher) {
+  let memoize = function (key) {
+    let cache = memoize.cache
+    let address = '' + (hasher ? hasher.apply(this, arguments) : key)
+    if (!hasOwn(cache, address)) {
+      cache[address] = func.apply(this, arguments)
+    }
+    return cache[address]
+  }
+  memoize.cache = {}
+  return memoize
+}
 
 export default utils

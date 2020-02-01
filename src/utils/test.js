@@ -141,3 +141,29 @@ console.log(circle instanceof Circle)
 // => true
 console.log(circle instanceof Shape)
 // => true
+
+export function MoveZero (arr) {
+  const len = arr.length
+  if (len <= 1) {
+    return arr
+  }
+  let idx = len
+  // 找到非0的下标
+  do {
+    idx--
+  } while (idx >= 0 && !arr[idx])
+
+  for (let i = 0; i < idx;) {
+    if (arr[i] === 0) {
+      for (let j = i; j < idx; j++) {
+        arr[j] = arr[j + 1]
+      }
+      arr[idx] = 0
+      idx--
+    } else {
+      // 当下一个元素不为 0 时脚标加 1
+      i++
+    }
+  }
+  return arr
+}
