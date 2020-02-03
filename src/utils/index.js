@@ -27,10 +27,10 @@ export function isMobile () {
 
 export function throttle (func, timeFrame) {
   let lastTime = 0
-  return function () {
-    let now = new Date()
+  return function (...args) {
+    let now = +new Date()
     if (now - lastTime >= timeFrame) {
-      func()
+      func(...args)
       lastTime = now
     }
   }
@@ -41,7 +41,7 @@ export function debounce (func, wait, immediate) {
   return function () {
     let context = this
     let args = arguments
-    timeout && clearTimeout(timeout)
+    timeout != null && clearTimeout(timeout)
     if (immediate && !timeout) {
       func.apply(context, args)
     }
