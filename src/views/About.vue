@@ -18,10 +18,9 @@
     <button @click="showFaAction">
       显示Action
     </button>
-    <button @click="downloadImg">
+    <!-- <button @click="downloadImg">
       下载图片
-    </button>
-
+    </button> -->
     <SheetAction
       :show-action="showSelect"
       @close-mask="closeMask"
