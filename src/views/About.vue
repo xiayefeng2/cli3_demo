@@ -18,6 +18,9 @@
     <button @click="showFaAction">
       显示Action
     </button>
+    <button @click="downloadImg">
+      下载图片
+    </button>
 
     <SheetAction
       :show-action="showSelect"
@@ -144,6 +147,20 @@ export default {
     },
     goTable () {
       this.$router.push('/table')
+    },
+    downloadImg () {
+      let url = 'http://t8.baidu.com/it/u=2247852322,986532796&fm=79&app=86&f=JPEG?w=1280&h=853'
+      // savePicture(url)
+      this.downLoad(url)
+    },
+    downLoad (url) {
+      console.log(url)
+      var oA = document.createElement('a')
+      oA.download = '扫码关注'// 设置下载的文件名，默认是'下载'
+      oA.href = url
+      document.body.appendChild(oA)
+      oA.click()
+      oA.remove() // 下载之后把创建的元素删除
     }
   },
   components: {
