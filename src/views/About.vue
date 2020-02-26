@@ -18,9 +18,9 @@
     <button @click="showFaAction">
       显示Action
     </button>
-    <!-- <button @click="downloadImg">
+    <button @click="downloadImg">
       下载图片
-    </button> -->
+    </button>
     <SheetAction
       :show-action="showSelect"
       @close-mask="closeMask"
@@ -42,6 +42,7 @@
 </template>
 <script>
 import SheetAction from 'components/common/SheetAction'
+import html2canvas from 'html2canvas'
 import utils from '@/utils'
 import { myFn } from '@/utils/wx'
 
@@ -148,14 +149,21 @@ export default {
       this.$router.push('/table')
     },
     downloadImg () {
-      let url = 'http://t8.baidu.com/it/u=2247852322,986532796&fm=79&app=86&f=JPEG?w=1280&h=853'
+      // let url = 'http://aicare.oss-cn-shenzhen.aliyuncs.com/test/platform/poster/293cb0af34054e40aa6031efa62429ce/user/39025002da964ec9b3e997b0bbc781ae.jpg'
       // savePicture(url)
-      this.downLoad(url)
+      html2canvas(document.body).then((canvas) => {
+        console.log(canvas)
+
+        const ctx = canvas.toDataURL()
+        // console.log(ctx)
+        this.downLoad(ctx)
+      })
+      // this.downLoad(url)
     },
     downLoad (url) {
-      console.log(url)
+      // console.log(url)
       var oA = document.createElement('a')
-      oA.download = '扫码关注'// 设置下载的文件名，默认是'下载'
+      oA.download = '扫码关注.jpg'// 设置下载的文件名，默认是'下载'
       oA.href = url
       document.body.appendChild(oA)
       oA.click()
