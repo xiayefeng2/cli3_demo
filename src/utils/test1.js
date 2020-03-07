@@ -75,3 +75,15 @@ function utf16to8 (str) {
 }
 
 console.log(base64encode(utf16to8('啊啊')))
+var str = 'http://aicare.oss-cn-shenzhen.aliyuncs.com/platform/saas/20200307/a8614d40900447e5b7a78d39f4424d77.jpg'
+
+// console.log(str.replace(reg, '$1press_$2'))
+// console.log(RegExp.$2)
+console.log(addPressImg(str))
+function addPressImg (url) {
+  if (!url) return ''
+  let reg = /(.*(?<=\/\d{8})\/)(.+)$/
+  let arr = str.match(reg)
+  if (!arr) return str
+  return arr[1] + 'press_' + arr[2]
+}
