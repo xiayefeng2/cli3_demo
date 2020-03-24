@@ -70,7 +70,7 @@ export default {
     }
   },
   beforeDestroy () {
-    // document.removeEventListener('visibilitychange', this.visibilityChange)
+    document.removeEventListener('visibilitychange', this.visibilityChange)
   }
 }
 </script>

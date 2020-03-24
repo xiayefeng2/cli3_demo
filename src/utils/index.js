@@ -803,7 +803,7 @@ export function base64encode (str) {
   return out
 }
 
-console.log(base64encode('哈哈电话费'))
+console.log(base64encode('adfasf66'))
 
 export function base64decode (str) {
   var c1, c2, c3, c4
