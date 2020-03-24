@@ -82,7 +82,7 @@ var str = 'http://aicare.oss-cn-shenzhen.aliyuncs.com/platform/saas/20200307/a86
 console.log(addPressImg(str))
 function addPressImg (url) {
   if (!url) return ''
-  let reg = /(.*(?<=\/\d{8})\/)(.+)$/
+  let reg = /(.*(?<=\\\/\d{8})\/)(.+)$/
   let arr = str.match(reg)
   if (!arr) return str
   return arr[1] + 'press_' + arr[2]
