@@ -45,6 +45,9 @@ export default {
   mounted () {
     console.log('home mounted')
     document.addEventListener('visibilitychange', this.visibilityChange)
+    window.addEventListener('pageshow', function () {
+      console.log('page show')
+    })
   },
   inject: ['reload'],
   methods: {
