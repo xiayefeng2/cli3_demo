@@ -21,6 +21,12 @@
     <button @click="downloadImg">
       下载图片
     </button>
+    <button @click="getLocation">
+      点击我
+    </button>
+    <div class="show-box">
+      {{ positionText }}
+    </div>
     <SheetAction
       :show-action="showSelect"
       @close-mask="closeMask"
@@ -62,7 +68,8 @@ export default {
         'https://user-gold-cdn.xitu.io/2017/6/22/b0cb03de9bfdeac20adc2381f86160e0?imageView2/1/w/800/h/600/q/85/format/webp/interlace/1',
         'https://user-gold-cdn.xitu.io/2019/10/15/16dcfbdcfd166872?imageView2/1/w/1304/h/734/q/85/format/webp/interlace/1',
         'https://user-gold-cdn.xitu.io/2019/10/15/16dcd7d7f735f0f3?imageView2/1/w/1304/h/734/q/85/format/webp/interlace/1'
-      ]
+      ],
+      positionText: ''
     }
   },
   created () {
@@ -168,6 +175,28 @@ export default {
       document.body.appendChild(oA)
       oA.click()
       oA.remove() // 下载之后把创建的元素删除
+    },
+    getLocation () {
+      if (navigator.geolocation) {
+        navigator.geolocation.getCurrentPosition((position) => {
+          this.positionText += '经度' + position.coords.longitude
+          this.positionText += '维度' + position.coords.latitude
+          this.positionText += '准确度' + position.coords.accuracy
+          this.positionText += '海拔' + position.coords.altitude
+          this.positionText += '海拔准确度' + position.coords.altitudeAccuracy
+          this.positionText += '行进方向' + position.coords.heading
+          this.positionText += '地面速度' + position.coords.speed
+          this.positionText += '请求时间' + new Date(position.timestamp)
+        }, err => {
+          alert(err.code)
+        }, {
+          enableHighAccuracy: false, // 位置是否精确获取
+          timeout: 5000, // 获取位置允许的最长时间
+          maximumAge: 1500 // 多久更新获取一次位置
+        })
+      } else {
+        alert('不支持获取位置信息!')
+      }
     }
   },
   components: {
