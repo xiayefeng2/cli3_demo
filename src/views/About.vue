@@ -24,6 +24,9 @@
     <button @click="getLocation">
       点击我
     </button>
+    <button @click="certPerson">
+      认证
+    </button>
     <div class="show-box">
       {{ positionText }}
     </div>
@@ -154,6 +157,9 @@ export default {
     },
     goTable () {
       this.$router.push('/table')
+    },
+    certPerson () {
+      this.$router.push('/photo')
     },
     downloadImg () {
       // let url = 'http://aicare.oss-cn-shenzhen.aliyuncs.com/test/platform/poster/293cb0af34054e40aa6031efa62429ce/user/39025002da964ec9b3e997b0bbc781ae.jpg'

@@ -56,6 +56,11 @@ const router = new Router({
       path: '/form',
       name: 'form',
       component: () => import('@/views/FormSubmit.vue')
+    },
+    {
+      path: '/photo',
+      name: 'photo',
+      component: () => import('@/views/FacePhoto.vue')
     }
     // ...routerList
   ]
