@@ -1,5 +1,4 @@
-import { a } from './b'
-console.log(a)
+
 class Logger {
   printName (name = 'there') {
     this.print(`Hello ${name}`)
@@ -22,7 +21,7 @@ const { printName } = proxy
 // printName.call(logger)
 printName()
 
-function wait () {
+/* function wait () {
   return new Promise(resolve =>
     setTimeout(resolve, 10 * 1000)
   )
@@ -38,4 +37,4 @@ async function main () {
   await z
   console.timeEnd()
 }
-main()
+main() */

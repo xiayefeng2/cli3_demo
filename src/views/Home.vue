@@ -44,6 +44,10 @@ export default {
   },
   mounted () {
     console.log('home mounted')
+    document.addEventListener('visibilitychange', this.visibilityChange)
+    window.addEventListener('pageshow', function () {
+      console.log('page show')
+    })
   },
   inject: ['reload'],
   methods: {
@@ -55,7 +59,21 @@ export default {
     },
     formSubmit () {
       this.$router.push('/form')
+    },
+    visibilityChange () {
+      // 用户离开了当前页面
+      if (document.visibilityState === 'hidden') {
+        console.log('页面隐藏了')
+      }
+
+      // 用户打开或回到页面
+      if (document.visibilityState === 'visible') {
+        console.log('页面显示了')
+      }
     }
+  },
+  beforeDestroy () {
+    document.removeEventListener('visibilitychange', this.visibilityChange)
   }
 }
 </script>

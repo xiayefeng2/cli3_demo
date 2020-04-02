@@ -142,6 +142,34 @@ console.log(circle instanceof Circle)
 console.log(circle instanceof Shape)
 // => true
 
+
 var reg2 = /(\w*\/+)\w*$/
 var str2 = 'platform/saas/20200305/f812c3e101e442d39691b0842430c8b0.jpg'
 console.log(str2.replace(reg2, '$1' + 'press_'))
+
+export function MoveZero (arr) {
+  const len = arr.length
+  if (len <= 1) {
+    return arr
+  }
+  let idx = len
+  // 找到非0的下标
+  do {
+    idx--
+  } while (idx >= 0 && !arr[idx])
+
+  for (let i = 0; i < idx;) {
+    if (arr[i] === 0) {
+      for (let j = i; j < idx; j++) {
+        arr[j] = arr[j + 1]
+      }
+      arr[idx] = 0
+      idx--
+    } else {
+      // 当下一个元素不为 0 时脚标加 1
+      i++
+    }
+  }
+  return arr
+}
+
