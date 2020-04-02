@@ -1,6 +1,6 @@
 /* 本文件用来学习、测试及练习用 */
-import { hasOwn } from './index'
-import _ from 'lodash'
+// import { hasOwn } from './index'
+// import _ from 'lodash'
 
 // 构造函数原型模式
 function Person () {}
@@ -69,7 +69,7 @@ function margeObj () {
       i++
     }
   } */
-  arr.reduce((prev, curr, idx) => {
+/*   arr.reduce((prev, curr, idx) => {
     if (idx === 1) {
       obj[prev.x] = 0
       arr2.push(prev)
@@ -81,11 +81,11 @@ function margeObj () {
       arr2.push(curr)
     }
     return arr2
-  })
+  }) */
   /* console.log(arr2)
   console.log(arr) */
 }
-margeObj()
+// margeObj()
 
 // 寄生组合式继承
 function inheritPrototype (subType, superType) {
@@ -132,12 +132,16 @@ function Circle () {
   Shape.call(this)
 }
 
-Circle.prototype = _.create(Shape.prototype, {
+/* Circle.prototype = _.create(Shape.prototype, {
   constructor: Circle
-})
+}) */
 
 var circle = new Circle()
 console.log(circle instanceof Circle)
 // => true
 console.log(circle instanceof Shape)
 // => true
+
+var reg2 = /(\w*\/+)\w*$/
+var str2 = 'platform/saas/20200305/f812c3e101e442d39691b0842430c8b0.jpg'
+console.log(str2.replace(reg2, '$1' + 'press_'))
