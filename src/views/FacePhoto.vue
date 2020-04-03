@@ -23,6 +23,11 @@
       :src="faceImg"
       alt="#"
     >
+    <input
+      type="file"
+      accept="audio/*"
+      capture="user"
+    >
   </div>
 </template>
 
@@ -60,7 +65,7 @@ export default {
     // The getUserMedia interface is used for handling camera input.
     // Some browsers need a prefix so here we're covering all the options
     navigator.getMedia = navigator.getUserMedia || navigator.webkitGetUserMedia || navigator.mozGetUserMedia || navigator.msGetUserMedia
-    this.init()
+    // this.init()
   },
   methods: {
     async init () {
