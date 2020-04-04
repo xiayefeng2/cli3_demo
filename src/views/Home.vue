@@ -45,9 +45,7 @@ export default {
   mounted () {
     console.log('home mounted')
     document.addEventListener('visibilitychange', this.visibilityChange)
-    window.addEventListener('pageshow', function () {
-      console.log('page show')
-    })
+    window.addEventListener('pageshow', this.pageShow)
   },
   inject: ['reload'],
   methods: {
@@ -70,10 +68,14 @@ export default {
       if (document.visibilityState === 'visible') {
         console.log('页面显示了')
       }
+    },
+    pageShow () {
+      console.log('page show')
     }
   },
   beforeDestroy () {
     document.removeEventListener('visibilitychange', this.visibilityChange)
+    window.removeEventListener('pageshow', this.pageShow)
   }
 }
 </script>

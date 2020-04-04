@@ -17,7 +17,7 @@
   </div>
 </template>
 <script>
-import { calcBaseRem } from '@/utils'
+import { calcBaseRem, everyYear44 } from '@/utils'
 export default {
   name: 'App',
   data () {
@@ -31,6 +31,7 @@ export default {
   mounted () {
     console.log('App Mounted')
     calcBaseRem()
+    everyYear44()
   },
   methods: {
     reload () {

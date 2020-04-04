@@ -1,5 +1,8 @@
+// import { Subject, Observer } from './observer'
+
 export default class MyEvent {
   constructor (props) {
+    // super(props)
     let select = props.select
     if (typeof select === 'string') {
       this.ele = document.querySelector(select)
@@ -9,6 +12,14 @@ export default class MyEvent {
       throw new TypeError('props of select must be string or HTMLElement')
     }
     this.tapLastTime = null
+    // this.observer = new Subject()
+    /* if (props.destory && typeof props.destory === 'function') {
+      props.destory().then(() => {
+        this.observer.notify()
+      }).catch(err => {
+        console.log(err)
+      })
+    } */
   }
   tap (handler) {
     let startTime, endTime
@@ -34,6 +45,12 @@ export default class MyEvent {
     }
     this.ele.addEventListener('touchstart', touchFn)
     this.ele.addEventListener('touchend', touchFn)
+    /* let observer = () => {
+      this.ele.removeEventListener('touchstart', touchFn)
+      this.ele.removeEventListener('touchend', touchFn)
+      console.log('remove tap event')
+    }
+    this.add(new Observer({ cb: observer })) */
   }
 
   longTap (startHandle, endHandle) {
@@ -85,6 +102,13 @@ export default class MyEvent {
     this.ele.addEventListener('touchstart', touchFn)
     this.ele.addEventListener('touchmove', touchFn)
     this.ele.addEventListener('touchend', touchFn)
+
+    /* let observer = () => {
+      this.ele.removeEventListener('touchstart', touchFn)
+      this.ele.removeEventListener('touchmove', touchFn)
+      this.ele.removeEventListener('touchend', touchFn)
+    }
+    this.add(new Observer({ cb: observer })) */
   }
 
   leftSlip (handler) {
@@ -110,6 +134,12 @@ export default class MyEvent {
     }
     this.ele.addEventListener('touchstart', touchFn)
     this.ele.addEventListener('touchend', touchFn)
+
+    /* let observer = () => {
+      this.ele.removeEventListener('touchstart', touchFn)
+      this.ele.removeEventListener('touchend', touchFn)
+    }
+    this.add(new Observer({ cb: observer })) */
   }
 
   rightSlip (handler) {
@@ -134,6 +164,12 @@ export default class MyEvent {
     }
     this.ele.addEventListener('touchstart', touchFn)
     this.ele.addEventListener('touchend', touchFn)
+
+    /* let observer = () => {
+      this.ele.removeEventListener('touchstart', touchFn)
+      this.ele.removeEventListener('touchend', touchFn)
+    }
+    this.add(new Observer({ cb: observer })) */
   }
 
   upSlip (handler, sort) {
@@ -161,6 +197,12 @@ export default class MyEvent {
     }
     this.ele.addEventListener('touchstart', touchFn)
     this.ele.addEventListener('touchend', touchFn)
+
+    /* let observer = () => {
+      this.ele.removeEventListener('touchstart', touchFn)
+      this.ele.removeEventListener('touchend', touchFn)
+    }
+    this.add(new Observer({ cb: observer })) */
   }
   downSlip (handler) {
     let startX, startY, endX, endY
@@ -187,5 +229,11 @@ export default class MyEvent {
     }
     this.ele.addEventListener('touchstart', touchFn)
     this.ele.addEventListener('touchend', touchFn)
+
+    /* let observer = () => {
+      this.ele.removeEventListener('touchstart', touchFn)
+      this.ele.removeEventListener('touchend', touchFn)
+    }
+    this.add(new Observer({ cb: observer })) */
   }
 }

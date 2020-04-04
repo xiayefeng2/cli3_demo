@@ -527,6 +527,22 @@ export function isProd () {
   return process.env.NODE_ENV === 'production'
 }
 
+export function grayTheme () {
+  let classList = document.body.classList
+  if (!classList.contains('gray-theme')) {
+    classList.add('gray-theme')
+  }
+}
+
+export function everyYear44 () {
+  let date = new Date()
+  let month = date.getMonth() + 1
+  let day = date.getDate()
+  if (month === 4 && [4, 5, 6].includes(day)) {
+    grayTheme()
+  }
+}
+
 /**
  * @description 更新标题
  * @param {String} title 标题

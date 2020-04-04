@@ -13,10 +13,13 @@ import MyEvent from '@/utils/my-event.js'
 
 export default {
   data () {
-    return {}
+    return {
+      utilEvent: null
+    }
   },
   mounted () {
     var myUtilEvent = new MyEvent({ select: '.wrap' })
+    this.utilEvent = myUtilEvent
     myUtilEvent.tap(this.tapWrap)
     myUtilEvent.longTap(this.longTap)
     myUtilEvent.leftSlip(this.leftSlip)
@@ -57,7 +60,17 @@ export default {
     },
     clickEvent () {
       console.log('点击事件发生了' + +new Date())
+    },
+    destory () {
+      return Promise.resolve(1)
+    },
+    pageDestory () {
+      this.destory()
     }
+  },
+  beforeDestroy () {
+    // console.log(this.observer)
+    this.utilEvent && this.utilEvent.notify && this.utilEvent.notify()
   }
 }
 </script>
