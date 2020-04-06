@@ -117,10 +117,10 @@ module.exports = {
       .set('plugin', resolve('src/plugin'))
       .set('components', resolve('src/components'))
 
-    const entry = config.entry('app')
+    /*  const entry = config.entry('app')
     entry
       .add('@babel/polyfill')
-      .end()
+      .end() */
 
     config.externals({
       'AMap': 'AMap',
