@@ -34,7 +34,7 @@
       this.ele.addEventListener('touchend', touchFn)
     },
     longTap: function (handler) {
-      var startTime, endTime, timerId
+      var startTime, timerId
       var touchFn = function (e) {
         e.preventDefault()
         switch (e.type) {
