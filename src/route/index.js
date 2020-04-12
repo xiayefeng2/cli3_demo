@@ -61,6 +61,11 @@ const router = new Router({
       path: '/photo',
       name: 'photo',
       component: () => import('@/views/FacePhoto.vue')
+    },
+    {
+      path: '/imgUpload',
+      name: 'imgUpload',
+      component: () => import('@/views/ImgWater.vue')
     }
     // ...routerList
   ]

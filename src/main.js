@@ -8,14 +8,13 @@ import Title from 'plugin/title'
 import VueIconFont from 'plugin/icon'
 
 import '@/assets/svg-icons'
-import '../public/font/iconfont' // iconfont
 
 import '@/directive/directive' // register global directives
 import '@/directive/reg_component' // register global base component
 import '@/filter' // register global filters
 import '@/setting' // global setting(inclue errorHandle , fastClick, vConsole and so on)
 
-import '@/utils/test' // test file
+import '@/utils/test1' // test file
 
 Vue.use(VueI18n)
 Vue.use(Title)

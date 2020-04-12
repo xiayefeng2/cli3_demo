@@ -17,8 +17,8 @@ Object.defineProperty(Person.prototype, 'constructor', {
   value: Person
 })
 
-function margeObj () {
-  const arr = [
+export function margeObj () {
+  /* const arr = [
     {
       x: 'aa',
       y: 'bb'
@@ -39,9 +39,9 @@ function margeObj () {
       x: 'zz',
       c: 55
     }
-  ]
-  const obj = {}
-  const arr2 = []
+  ] */
+  /*   const obj = {}
+  const arr2 = [] */
   /*
    ** method1
   for (let i = 0; i < arr.length;) {
@@ -142,7 +142,6 @@ console.log(circle instanceof Circle)
 console.log(circle instanceof Shape)
 // => true
 
-
 var reg2 = /(\w*\/+)\w*$/
 var str2 = 'platform/saas/20200305/f812c3e101e442d39691b0842430c8b0.jpg'
 console.log(str2.replace(reg2, '$1' + 'press_'))
@@ -172,4 +171,3 @@ export function MoveZero (arr) {
   }
   return arr
 }
-

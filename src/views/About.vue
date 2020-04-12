@@ -21,6 +21,9 @@
     <button @click="downloadImg">
       下载图片
     </button>
+    <button @click="uploadImg">
+      上传图片
+    </button>
     <button @click="getLocation">
       点击我
     </button>
@@ -160,6 +163,9 @@ export default {
     },
     certPerson () {
       this.$router.push('/photo')
+    },
+    uploadImg () {
+      this.$router.push('/imgUpload')
     },
     downloadImg () {
       // let url = 'http://aicare.oss-cn-shenzhen.aliyuncs.com/test/platform/poster/293cb0af34054e40aa6031efa62429ce/user/39025002da964ec9b3e997b0bbc781ae.jpg'
