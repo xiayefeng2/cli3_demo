@@ -25,6 +25,6 @@ if (isDev() && openVc) {
     const VConsole = res.default
     new VConsole() /* eslint-disable-line */
   })
-  const VConsole = require('vconsole/dist/vconsole.min.js')
-  const vConsole = new VConsole() // eslint-disable-line
+  /* const VConsole = require('vconsole/dist/vconsole.min.js')
+  const vConsole = new VConsole() // eslint-disable-line */
 }

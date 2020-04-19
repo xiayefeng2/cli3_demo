@@ -23,6 +23,11 @@
       accept="image/*"
       capture="user"
     >
+     <input
+      type="file"
+      accept=".png, .jpg, .jpeg"
+      @change="selectImg"
+    >
     <input
       type="file"
       accept="audio/*"
@@ -52,11 +57,14 @@ export default {
       // console.log(e)
       let that = this
       let target = e.target
+      // console.log(target.files)
       if (target.files.length === 0) {
         return
       }
       let file = target.files[0]
       console.log(file.type)
+      console.log(file.size)
+      console.log(file.name)
       let img = this.$refs.img
       img.src = window.URL.createObjectURL(file)
       // let width = getComputedStyle(img).width

@@ -865,6 +865,20 @@ export function base64decode (str) {
   return out
 }
 
+// 判断是否是微信
+export function isWeixin () {
+  var ua = navigator.userAgent.toLowerCase()
+  return ua.match(/MicroMessenger/i) === 'micromessenger'
+};
+
+export function getWxVersion () {
+  if (!isWeixin()) {
+    return 0
+  }
+  let wechatInfo = navigator.userAgent.match(/MicroMessenger\/([\d.]+)/i)
+  return wechatInfo[1]
+}
+
 export function returnFileSize (number) {
   if (number < 1024) {
     return number + 'bytes'
