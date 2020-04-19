@@ -21,10 +21,10 @@ Vue.config.errorHandler = function (err, vm, info) {
 Vue.config.productionTip = false
 if (isDev() && openVc) {
   import('vconsole').then(res => {
-    console.log(res)
+    // console.log(res)
     const VConsole = res.default
     new VConsole() /* eslint-disable-line */
   })
-  /*  const VConsole = require('vconsole/dist/vconsole.min.js')
-  const vConsole = new VConsole() // eslint-disable-line */
+  const VConsole = require('vconsole/dist/vconsole.min.js')
+  const vConsole = new VConsole() // eslint-disable-line
 }
