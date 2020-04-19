@@ -56,6 +56,7 @@ export default {
         return
       }
       let file = target.files[0]
+      console.log(file.type)
       let img = this.$refs.img
       img.src = window.URL.createObjectURL(file)
       // let width = getComputedStyle(img).width
