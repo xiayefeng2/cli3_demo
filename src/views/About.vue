@@ -54,7 +54,7 @@
 </template>
 <script>
 import SheetAction from 'components/common/SheetAction'
-import html2canvas from 'html2canvas'
+// import html2canvas from 'html2canvas'
 import utils from '@/utils'
 import { myFn } from '@/utils/wx'
 
@@ -168,16 +168,16 @@ export default {
       this.$router.push('/imgUpload')
     },
     downloadImg () {
-      // let url = 'http://aicare.oss-cn-shenzhen.aliyuncs.com/test/platform/poster/293cb0af34054e40aa6031efa62429ce/user/39025002da964ec9b3e997b0bbc781ae.jpg'
+      let url = 'http://aicare.oss-cn-shenzhen.aliyuncs.com/test/platform/poster/293cb0af34054e40aa6031efa62429ce/user/39025002da964ec9b3e997b0bbc781ae.jpg'
       // savePicture(url)
-      html2canvas(document.body).then((canvas) => {
+      /*  html2canvas(document.body).then((canvas) => {
         console.log(canvas)
 
         const ctx = canvas.toDataURL()
         // console.log(ctx)
         this.downLoad(ctx)
-      })
-      // this.downLoad(url)
+      }) */
+      this.downLoad(url)
     },
     downLoad (url) {
       // console.log(url)
