@@ -30,7 +30,7 @@ export default {
   },
   mounted () {
     console.log('App Mounted')
-    calcBaseRem()
+    // calcBaseRem()
     everyYear44()
   },
   methods: {

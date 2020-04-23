@@ -15,6 +15,8 @@ export default class Store {
     try {
       parseVal = JSON.parse(val)
       parseVal = this.checkStr(parseVal)
+      parseVal = this.checkNaN(parseVal)
+      parseVal = this.checkBigInt(parseVal)
     } catch (err) {
       if (err.message.includes('JSON')) {
         return val
@@ -36,6 +38,8 @@ export default class Store {
     try {
       parseVal = JSON.parse(val)
       parseVal = this.checkStr(parseVal)
+      parseVal = this.checkNaN(parseVal)
+      parseVal = this.checkBigInt(parseVal)
     } catch (err) {
       if (err.message.includes('JSON')) {
         return val
@@ -89,10 +93,17 @@ export default class Store {
     if (typeof val === 'undefined') {
       throw new Error('set value is not defind')
     }
+    if (typeof val === 'symbol') {
+      throw new Error('value is not support symbol')
+    }
     if (typeof val === 'object') {
       val = JSON.stringify(val)
     } else if (typeof val === 'string') {
       val = JSON.stringify({ str: val, isString2Object: true })
+    } else if (Number.isNaN(val)) {
+      val = JSON.stringify({ num: null, isNaN2Object: true })
+    } else if (typeof val === 'bigint') {
+      val = JSON.stringify({ num: String(val), isBigInt2Object: true })
     }
     if (lx === 1) {
       sessionStorage.setItem(key, val)
@@ -134,6 +145,24 @@ export default class Store {
     if (this.checkedType(target) === 'Object') {
       if (target.hasOwnProperty('isString2Object') && target.isString2Object) {
         target = target.str
+      }
+    }
+    return target
+  }
+  checkNaN (obj) {
+    let target = obj
+    if (this.checkedType(target) === 'Object') {
+      if (Reflect.has(target, 'isNaN2Object')) {
+        target = NaN
+      }
+    }
+    return target
+  }
+  checkBigInt (obj) {
+    let target = obj
+    if (this.checkedType(target) === 'Object') {
+      if (Reflect.has(target, 'isBigInt2Object')) {
+        target = BigInt(target.num)
       }
     }
     return target
