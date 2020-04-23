@@ -1,1 +1,1 @@
-export const openVc = 1
+export const openVc = 0

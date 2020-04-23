@@ -1,5 +1,6 @@
-const UglifyJsPlugin = require('uglifyjs-webpack-plugin')
+// const UglifyJsPlugin = require('uglifyjs-webpack-plugin')
 const CompressionPlugin = require('compression-webpack-plugin')
+const TerserPlugin = require('terser-webpack-plugin')
 const path = require('path')
 const isProd = process.env.NODE_ENV === 'production'
 let baseUrl = '/'
@@ -28,7 +29,7 @@ module.exports = {
         })
       )
 
-      plugins.push(
+      /* plugins.push(
         new UglifyJsPlugin({
           uglifyOptions: {
             compress: {
@@ -40,7 +41,7 @@ module.exports = {
           // 多进程并行运行 提高打包速度
           parallel: true
         })
-      )
+      ) */
     }
     return {
       plugins
@@ -78,23 +79,20 @@ module.exports = {
         }
       })
       // 非开发环境
-      /* .when(process.env.NODE_ENV !== 'development', config => {
+      .when(process.env.NODE_ENV !== 'development', config => {
         config.optimization
           .minimizer([
-            new UglifyJsPlugin({
-              uglifyOptions: {
-                // 移除 console
-                // 其它优化选项 https://segmentfault.com/a/1190000010874406
+            new TerserPlugin({
+              test: /\.js(\?.*)?$/i,
+              terserOptions: {
                 compress: {
-                  warnings: false,
                   drop_console: true,
-                  drop_debugger: true,
                   pure_funcs: ['console.log']
                 }
               }
             })
           ])
-      }) */
+      })
     // image exclude
     const imagesRule = config.module.rule('images')
     imagesRule

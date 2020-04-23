@@ -57,6 +57,7 @@ import SheetAction from 'components/common/SheetAction'
 // import html2canvas from 'html2canvas'
 import utils from '@/utils'
 import { myFn } from '@/utils/wx'
+import bsStore from 'bs-store'
 
 let delay = Promise.resolve()
 let timer = null
@@ -80,6 +81,8 @@ export default {
   },
   created () {
     console.log('created---', this.$route.path)
+    bsStore.setSession('aaa', 1111)
+    console.log(bsStore.getSession('aaa'))
   },
   mounted () {
     this.title = '我的主页'
