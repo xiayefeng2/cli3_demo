@@ -17,7 +17,7 @@
   </div>
 </template>
 <script>
-import { calcBaseRem, everyYear44 } from '@/utils'
+import { everyYear44 } from '@/utils'
 export default {
   name: 'App',
   data () {
