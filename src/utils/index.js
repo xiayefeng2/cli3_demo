@@ -417,6 +417,50 @@ export function getExtension (str) {
     .toLowerCase()
 }
 
+export const getOffset = el => {
+  const {
+    top,
+    left
+  } = el.getBoundingClientRect()
+  const {
+    scrollTop,
+    scrollLeft
+  } = document.body
+  return {
+    top: top + scrollTop,
+    left: left + scrollLeft
+  }
+}
+export const isMobile2 = () => 'ontouchstart' in window
+
+export function notAllowPaste () {
+  const html = document.querySelector('html')
+  html.oncopy = () => false
+  html.onpaste = () => false
+}
+
+export function inputFilter () {
+  const input = document.querySelector('input[type="text"]')
+  const clearText = target => {
+    const {
+      value
+    } = target
+    target.value = value.replace(/[^\u4e00-\u9fa5]/g, '')
+  }
+  input.onfocus = ({ target }) => {
+    clearText(target)
+  }
+  input.onkeyup = ({ target }) => {
+    clearText(target)
+  }
+  input.onblur = ({ target }) => {
+    clearText(target)
+  }
+  input.oninput = ({ target }) => {
+    clearText(target)
+  }
+}
+
 export function getAge (birth) {
   // birth = birth.replace(/-/g, "/");
   if (!birth) {
