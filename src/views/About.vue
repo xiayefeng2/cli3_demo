@@ -30,6 +30,15 @@
     <button @click="certPerson">
       认证
     </button>
+    <button @click="setIndexedDB">
+      indexedDB
+    </button>
+    <button @click="getIndexedDB">
+      getData
+    </button>
+    <button @click="delIndexedDB">
+      delData
+    </button>
     <div class="show-box">
       {{ positionText }}
     </div>
@@ -58,6 +67,7 @@ import SheetAction from 'components/common/SheetAction'
 import utils from '@/utils'
 import { myFn } from '@/utils/wx'
 import bsStore from 'bs-store'
+import { setData, getData, removeData } from '@/utils/indexedDB.js'
 
 let delay = Promise.resolve()
 let timer = null
@@ -112,6 +122,27 @@ export default {
     showFaAction () {
       utils.log.default('哈哈哈')
       this.showSelect = true
+    },
+    setIndexedDB () {
+      setData('mytest', 236333).then(res => {
+        console.log(res)
+      }).catch(err => {
+        console.log(err)
+      })
+    },
+    getIndexedDB () {
+      getData('mytest').then(res => {
+        console.log(res)
+      }).catch(err => {
+        console.log(err)
+      })
+    },
+    delIndexedDB () {
+      removeData('mytest').then(res => {
+        console.log(res)
+      }).catch(err => {
+        console.log(err)
+      })
     },
     stopBubble () {
       return false
