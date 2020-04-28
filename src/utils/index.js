@@ -1,12 +1,16 @@
 import cookies from './cookies'
 import Store from './local_store'
 import log from './log'
+import IndexedDB from './indexDB2'
 
 const store = new Store()
+const db = new IndexedDB()
+
 const utils = {
   log,
   cookies,
-  store
+  store,
+  db
 }
 const _toString = Object.prototype.toString
 const _has = Object.prototype.hasOwnProperty

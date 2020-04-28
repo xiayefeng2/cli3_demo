@@ -92,13 +92,13 @@ export default {
   created () {
     console.log('created---', this.$route.path)
     bsStore.setSession('aaa', 1111)
-    console.log(bsStore.getSession('aaa'))
   },
   mounted () {
     this.title = '我的主页'
     // let fn = utils.throttle(this.throttle, 400)
     let fn = utils.debounce(this.debounce, 500)
     window.onscroll = fn
+
     /* this.imageArr.map((item, idx) => {
       utils.getBase64Image(item, this.fn, idx)
     }) */
@@ -125,7 +125,7 @@ export default {
     },
     setIndexedDB () {
       setData('mytest', 236333).then(res => {
-        console.log(res)
+        // console.log(res)
       }).catch(err => {
         console.log(err)
       })
@@ -143,6 +143,8 @@ export default {
       }).catch(err => {
         console.log(err)
       })
+      removeData(1)
+      removeData(2)
     },
     stopBubble () {
       return false
