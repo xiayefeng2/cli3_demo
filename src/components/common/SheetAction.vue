@@ -21,7 +21,7 @@
             class="close-btn"
             @click="closeMask"
           >
-            <Icon
+            <icon-font
               class="ali-icon"
               name="close"
             />

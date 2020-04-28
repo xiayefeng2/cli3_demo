@@ -22,9 +22,10 @@ requireComponent.keys().forEach(fileName => {
       fileName.replace(/^\.\/(.*)\.\w+$/, '$1')
     )
   )
-
+  // let { name } = componentConfig.default
   // 全局注册组件
   Vue.component(
+    // name,
     componentName,
     // 如果这个组件选项是通过 `export default` 导出的，
     // 那么就会优先使用 `.default`，

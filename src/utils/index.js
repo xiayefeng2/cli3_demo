@@ -867,7 +867,7 @@ export function base64encode (str) {
   return out
 }
 
-console.log(base64encode('adfasf66'))
+console.log(base64encode('adfasf66额按时发顺丰'))
 
 export function base64decode (str) {
   var c1, c2, c3, c4
