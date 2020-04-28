@@ -31,10 +31,10 @@ const log = {
     this.colorful([{ text, type: 'success' }])
   },
   warning (text) {
-    this.colorful({ text, type: 'warning' })
+    this.colorful([{ text, type: 'warning' }])
   },
   danger (text) {
-    this.colorful({ text, type: 'danger' })
+    this.colorful([{ text, type: 'danger' }])
   }
 }
 
