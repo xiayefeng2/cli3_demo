@@ -5,6 +5,13 @@
       @click="clickEvent"
     />
     <div class="btn" />
+    <div
+      class="btn2"
+      v-event:tap="tapEvent"
+      v-event:longTap="longTapEvent"
+    >
+      暗室逢灯单发顺丰
+    </div>
   </div>
 </template>
 
@@ -66,6 +73,12 @@ export default {
     },
     pageDestory () {
       this.destory()
+    },
+    tapEvent () {
+      console.log('2222222222')
+    },
+    longTapEvent () {
+      console.log('3333333')
     }
   },
   beforeDestroy () {
@@ -95,5 +108,9 @@ export default {
   line-height: 1rem;
   border: 1px solid #ccc;
   box-sizing: border-box;
+}
+.btn2{
+  margin-top: .5rem;
+  height: .8rem;
 }
 </style>

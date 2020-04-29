@@ -85,8 +85,8 @@ export default class MyEvent {
           endTime = new Date().getTime()
           endY = e.changedTouches[0].clientY
           // console.log(endY, startY)
-          console.log('Y:' + (startY - endY))
-          console.log('time:' + (endTime - startTime))
+          // console.log('Y:' + (startY - endY))
+          // console.log('time:' + (endTime - startTime))
           if (endTime - startTime < 500) {
             timerId && clearTimeout(timerId)
           } else if (endHandle && (startY - endY < 30)) {
