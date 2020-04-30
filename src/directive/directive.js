@@ -1,5 +1,5 @@
 import Vue from 'vue'
-import MyEvent from '@/utils/my-event'
+// import MyEvent from '@/utils/my-event'
 
 Vue.directive('focus', {
   inserted: function (el) {
@@ -7,7 +7,7 @@ Vue.directive('focus', {
   }
 })
 
-Vue.directive('event', {
+/* Vue.directive('event', {
   inserted: function (el, binding, vNode) {
     let myEvent = new MyEvent({ select: el })
     if (!myEvent[binding.arg]) {
@@ -18,4 +18,4 @@ Vue.directive('event', {
     }
     myEvent[binding.arg](binding.value)
   }
-})
+}) */
