@@ -4,6 +4,20 @@
 import axios from 'axios'
 import qs from 'qs'
 
+export const reqArr = []
+
+const fastClickMsg = '数据请求中，请稍后'
+
+const CancelToken = axios.CancelToken
+
+const removePendingReq = (url, type) => {
+  const index = reqArr.findIndex(i => i.url === url)
+  if (index > -1) {
+    type === 'req' && reqArr[index].c(fastClickMsg)
+    reqArr.splice(index, 1)
+  }
+}
+
 const instance = axios.create({
   baseURL: 'https://api.example.com'
 })
@@ -12,6 +26,14 @@ instance.defaults.timeout = 10000
 
 instance.interceptors.request.use(
   config => {
+    const url = config.url
+    removePendingReq(url, 'req')
+    config.cancelToken = new CancelToken(c => {
+      reqArr.push({
+        url,
+        c
+      })
+    })
     if (config.data instanceof FormData) {
       config.headers['Content-Type'] = 'multipart/form-data'
       /* let formData = new FormData()
@@ -32,6 +54,7 @@ instance.interceptors.response.use(
   resp => {
     // console.log(resp)
     const res = resp.data
+    removePendingReq(resp.config.url, 'resp')
     if (res.code === 0) {
       return Promise.resolve(res)
     } else {
