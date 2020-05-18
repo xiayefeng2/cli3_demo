@@ -79,6 +79,9 @@ export default {
     },
     longTapEvent () {
       console.log('3333333')
+    },
+    endHandle () {
+      console.log('6666666')
     }
   },
   beforeDestroy () {

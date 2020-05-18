@@ -18,13 +18,12 @@ export default class indexedDB {
       console.log('数据库打开成功')
     }
 
-    this.request.onupgradeneeded = function (event) {
+    this.request.onupgradeneeded = (event) => {
       this.db = event.target.result
       if (!this.db.objectStoreNames.contains('storage')) {
         let objectStore = this.db.createObjectStore('storage', { keyPath: 'key' })
         objectStore.createIndex('date', 'date', { unique: false })
       }
-      this.readAll()
     }
   }
   addData (key, value, express = Date.now()) {

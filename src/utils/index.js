@@ -594,7 +594,7 @@ export function everyYear44 () {
   let date = new Date()
   let month = date.getMonth() + 1
   let day = date.getDate()
-  if (month === 4 && [4, 5, 6].includes(day)) {
+  if (month === 4 && [4].includes(day)) {
     grayTheme()
   }
 }
