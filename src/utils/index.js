@@ -414,6 +414,14 @@ export function RemoveArrItem () {
   return arr
 }
 
+export function oneByone (arr, fn) {
+  let promise = Promise.resolve()
+  for (let [idx, item] of arr.entries()) {
+    promise = promise.then(() => fn.call(this, item, idx))
+  }
+  return promise
+}
+
 export function getExtension (str) {
   return str
     .split('.')
