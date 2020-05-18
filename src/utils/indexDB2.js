@@ -88,7 +88,6 @@ export default class indexedDB {
 
   readAll () {
     let objectStore = this.db.transaction('storage').objectStore('storage')
-
     objectStore.openCursor().onsuccess = (event) => {
       let cursor = event.target.result
       if (cursor) {

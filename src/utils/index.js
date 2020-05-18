@@ -1010,4 +1010,12 @@ export function oberverDOM (el) {
   observer.observe(target)
 }
 
+export function addScript (url) {
+  var script = document.createElement('script')
+  script.src = url
+  script.async = false
+  document.body.appendChild(script)
+  return script
+}
+
 export default utils
