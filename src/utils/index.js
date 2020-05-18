@@ -655,7 +655,7 @@ utils.now = Date.now
 utils.throttle = function (func, wait) {
   var lastTime = 0
   var timer = null
-  var args, result
+  var args
   var later = () => {
     lastTime = utils.now()
     timer = null
@@ -665,17 +665,18 @@ utils.throttle = function (func, wait) {
     var now = utils.now()
     args = arguments
     var remaining = wait - (now - lastTime)
+    // console.log(remaining)
     if (remaining <= 0) {
       if (timer) {
         clearTimeout(timer)
         timer = null
       }
       lastTime = now
-      result = func.apply(null, args)
+      func.apply(null, args)
     } else if (!timer) {
       timer = setTimeout(later, remaining)
     }
-    return result
+    // console.log('lastTime:' + lastTime)
   }
 }
 
@@ -927,6 +928,7 @@ export function isWeixin () {
   return ua.match(/MicroMessenger/i) === 'micromessenger'
 };
 
+// 获取微信版本号
 export function getWxVersion () {
   if (!isWeixin()) {
     return 0
@@ -956,6 +958,56 @@ utils.memoize = function (func, hasher) {
   }
   memoize.cache = {}
   return memoize
+}
+
+export function isInViewPort (element) {
+  const viewWidth = window.innerWidth || document.documentElement.clientWidth
+  const viewHeight = window.innerHeight || document.documentElement.clientHeight
+  const {
+    top,
+    right,
+    bottom,
+    left
+  } = element.getBoundingClientRect()
+
+  return (
+    top >= 0 &&
+    left >= 0 &&
+    right <= viewWidth &&
+    bottom <= viewHeight
+  )
+}
+
+export function oberverDOM (el) {
+  const options = {
+    // 表示重叠面积占被观察者的比例，从 0 - 1 取值，
+    // 1 表示完全被包含
+    threshold: 1.0
+  }
+
+  const callback = (entries, observer) => {
+    entries.forEach(entry => {
+      /* console.log(entry.time) // 触发的时间
+      console.log(entry.rootBounds) // 根元素的位置矩形，这种情况下为视窗位置
+      console.log(entry.boundingClientRect) // 被观察者的位置举行
+      console.log(entry.intersectionRect) // 重叠区域的位置矩形
+      console.log(entry.intersectionRatio) // 重叠区域占被观察者面积的比例（被观察者不是矩形时也按照矩形计算）
+      console.log(entry.target) // 被观察者 */
+      console.log(entry.intersectionRatio)
+      if (entry.intersectionRatio >= options.threshold) {
+        console.log('元素可见了')
+      }
+    })
+  }
+
+  const observer = new IntersectionObserver(callback, options)
+  let target
+  if (el instanceof HTMLElement && el.nodeType === 1) {
+    target = el
+  } else {
+    target = document.querySelector('.target')
+  }
+  observer.observe(target)
 }
 
 export default utils

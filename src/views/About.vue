@@ -59,12 +59,15 @@
         </li>
       </ul>
     </SheetAction>
+    <div class="bottom-btn">
+      我是按钮
+    </div>
   </div>
 </template>
 <script>
 import SheetAction from 'components/common/SheetAction'
 // import html2canvas from 'html2canvas'
-import utils from '@/utils'
+import utils, { isInViewPort, oberverDOM } from '@/utils'
 import { myFn } from '@/utils/wx'
 import bsStore from 'bs-store'
 import { setData, getData, removeData } from '@/utils/indexedDB.js'
@@ -86,7 +89,8 @@ export default {
         'https://user-gold-cdn.xitu.io/2019/10/15/16dcfbdcfd166872?imageView2/1/w/1304/h/734/q/85/format/webp/interlace/1',
         'https://user-gold-cdn.xitu.io/2019/10/15/16dcd7d7f735f0f3?imageView2/1/w/1304/h/734/q/85/format/webp/interlace/1'
       ],
-      positionText: ''
+      positionText: '',
+      bottomBtn: null
     }
   },
   created () {
@@ -95,9 +99,12 @@ export default {
   },
   mounted () {
     this.title = '我的主页'
-    // let fn = utils.throttle(this.throttle, 400)
-    let fn = utils.debounce(this.debounce, 500)
-    window.onscroll = fn
+    this.bottomBtn = document.querySelector('.bottom-btn')
+    oberverDOM(this.bottomBtn)
+    let fn = utils.throttle(this.throttle, 200)
+    // let fn = utils.debounce(this.debounce, 500)
+    window.addEventListener('scroll', fn)
+    // window.addEventListener('scroll', this.throttle)
 
     /* this.imageArr.map((item, idx) => {
       utils.getBase64Image(item, this.fn, idx)
@@ -184,8 +191,7 @@ export default {
       console.log(arr2)
     },
     throttle () {
-      console.log('throttle')
-      // console.log('time ---->' + Date.now())
+      console.log(isInViewPort(this.bottomBtn))
     },
     debounce () {
       console.log('debounce')
@@ -271,5 +277,16 @@ export default {
     background: #fff;
     border-bottom: 1px solid #efefef;
   }
+}
+.bottom-btn{
+  width: 100%;
+  height: dw(80);
+  background-color: green;
+  color: #fff;
+  font-size: dw(36);
+  line-height: dw(80);
+  @extend %abs;
+  left: 0;
+  bottom: 0;
 }
 </style>
