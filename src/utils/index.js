@@ -1038,4 +1038,27 @@ export function strHash (input) {
   return retValue
 }
 
+export function addScroll (el, objSub, cb) {
+  var ele = null
+  if (typeof el === 'string') {
+    ele = document.querySelector(el)
+    if (ele === null) {
+      throw new Error('el:' + el + 'is a no valid select')
+    }
+  } else if (el instanceof HTMLElement && el.nodeType === 1) {
+    ele = el
+  }
+
+  ele.addEventListener('scroll', function () {
+    var active = objSub.node || null
+    if (!active) {
+      active = document.querySelector(objSub.select)
+    }
+    if (active) {
+      var page = active.dataset.page
+      cb && cb(page)
+    }
+  }, false)
+}
+
 export default utils
