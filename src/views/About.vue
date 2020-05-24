@@ -191,7 +191,8 @@ export default {
       console.log(arr2)
     },
     throttle () {
-      console.log(isInViewPort(this.bottomBtn))
+      isInViewPort(this.bottomBtn)
+      // console.log(isInViewPort(this.bottomBtn))
     },
     debounce () {
       console.log('debounce')

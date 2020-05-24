@@ -876,8 +876,6 @@ export function base64encode (str) {
   return out
 }
 
-console.log(base64encode('adfasf66额按时发顺丰'))
-
 export function base64decode (str) {
   var c1, c2, c3, c4
   var i, len, out
@@ -993,7 +991,7 @@ export function oberverDOM (el) {
       console.log(entry.intersectionRect) // 重叠区域的位置矩形
       console.log(entry.intersectionRatio) // 重叠区域占被观察者面积的比例（被观察者不是矩形时也按照矩形计算）
       console.log(entry.target) // 被观察者 */
-      console.log(entry.intersectionRatio)
+      // console.log(entry.intersectionRatio)
       if (entry.intersectionRatio >= options.threshold) {
         console.log('元素可见了')
       }
