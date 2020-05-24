@@ -3,7 +3,8 @@
  */
 import axios from 'axios'
 import qs from 'qs'
-import { strHash } from './index'
+// import { strHash } from './index'
+import md5 from 'js-md5'
 
 export const reqArr = []
 
@@ -31,7 +32,7 @@ instance.interceptors.request.use(
     if (config.method === 'get') {
       url += '?' + qs.stringify(config.params)
     } else if (config.method === 'post') {
-      url += '?' + strHash(qs.stringify(config.data))
+      url += '?' + md5(qs.stringify(config.data))
     }
     removePendingReq(url, 'req')
     config.cancelToken = new CancelToken(c => {
@@ -64,7 +65,7 @@ instance.interceptors.response.use(
     if (resp.config.method === 'get') {
       url += '?' + qs.stringify(resp.config.params)
     } else if (resp.config.method === 'post') {
-      url += '?' + strHash(resp.config.data)
+      url += '?' + md5(resp.config.data)
     }
     removePendingReq(url, 'resp')
     if (res.code === 0) {
