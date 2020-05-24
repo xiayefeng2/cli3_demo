@@ -87,3 +87,28 @@ function addPressImg (url) {
   if (!arr) return str
   return arr[1] + 'press_' + arr[2]
 }
+
+function isInViewPort (element, parentEl) {
+  var viewWidth = window.innerWidth || document.documentElement.clientWidth
+  var viewHeight = window.innerHeight || document.documentElement.clientHeight
+  var obj = element.getBoundingClientRect()
+  var top = obj.top
+  var right = obj.right
+  var bottom = obj.bottom
+  var left = obj.left
+
+  var targetBottom = viewHeight
+  if (parentEl) {
+    var obj2 = parentEl.getBoundingClientRect()
+    var top2 = obj2.top
+    var parentHeight = obj2.height
+    targetBottom = top2 + parentHeight
+  }
+
+  return (
+    top >= 0 &&
+    left >= 0 &&
+    right <= viewWidth &&
+    bottom <= targetBottom
+  )
+}
