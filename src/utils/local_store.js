@@ -172,4 +172,20 @@ export default class Store {
   checkedType (target) {
     return Object.prototype.toString.call(target).slice(8, -1)
   }
+  getSessionSize () {
+    const arr = Reflect.ownKeys(sessionStorage)
+    let num = 0
+    for (let item of arr) {
+      num += sessionStorage.getItem(item).length
+    }
+    return `sessionStorage used ${(num / 1024).toFixed(2)}kb`
+  }
+  getLocalSize () {
+    const arr = Reflect.ownKeys(localStorage)
+    let num = 0
+    for (let item of arr) {
+      num += localStorage.getItem(item).length
+    }
+    return `localStorage used ${(num / 1024).toFixed(2)}kb`
+  }
 }

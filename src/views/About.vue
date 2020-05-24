@@ -96,6 +96,8 @@ export default {
   created () {
     console.log('created---', this.$route.path)
     bsStore.setSession('aaa', 1111)
+    let size = utils.store.getLocalSize()
+    console.log(size)
   },
   mounted () {
     this.title = '我的主页'
