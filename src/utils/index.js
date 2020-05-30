@@ -1056,7 +1056,7 @@ export function addScroll (el, objSub, cb) {
     }
     if (active) {
       var page = active.dataset.page
-      cb && cb(page)
+      cb && cb(page, active)
     }
   }, false)
 }
