@@ -1,9 +1,9 @@
 <template>
   <div class="home">
-    <img
+    <!-- <img
       alt="Vue logo"
       src="../assets/logo.png"
-    >
+    > -->
     <div class="btn-wrap">
       <button @click="login">
         登录

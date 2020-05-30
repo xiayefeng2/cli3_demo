@@ -345,9 +345,9 @@ export function parseTime (time, cFormat) {
   return timeStr
 }
 
-utils.testFn = function ({ success, time = 500 }) {
+utils.testFn = function ({ success, fail, time = 500 }) {
   setTimeout(() => {
-    success('a')
+    success.call(this)
   }, time)
 }
 

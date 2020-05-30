@@ -14,11 +14,14 @@ export function getLocalImgData (localId) {
   })
 }
 
-export function myFn (time) {
+export function myFn (item) {
   return new Promise((resolve, reject) => {
-    utils.testFn({ success (res) {
-      resolve(res)
-    }
+    return utils.testFn({
+      success () {
+        resolve(item.id)
+      },
+      time: item.time,
+      fail: reject
     })
   })
 }
