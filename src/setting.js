@@ -1,6 +1,7 @@
 import Vue from 'vue'
 import { openVc } from '@/global_config'
 import { isDev } from '@/utils'
+import { makeServer } from './server'
 // import FastClick from 'fastclick'
 // const FastClick = require('fastclick')
 
@@ -19,12 +20,17 @@ Vue.config.errorHandler = function (err, vm, info) {
   console.log(info)
 }
 Vue.config.productionTip = false
-if (isDev() && openVc) {
-  import('vconsole').then(res => {
-    // console.log(res)
-    const VConsole = res.default
-    new VConsole() /* eslint-disable-line */
-  })
+
+if (isDev()) {
+  makeServer()
+  if (openVc) {
+    import('vconsole').then(res => {
+      // console.log(res)
+      const VConsole = res.default
+      new VConsole() /* eslint-disable-line */
+    })
+  }
+
   /* const VConsole = require('vconsole/dist/vconsole.min.js')
   const vConsole = new VConsole() // eslint-disable-line */
 }
