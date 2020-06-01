@@ -35,7 +35,18 @@ export default {
   created () {
     this.ps = 'wxs2233'
     let ps = md5(this.ps)
+    this.creatInterval('world')
     console.log(ps)
+  },
+  methods: {
+    creatInterval (msg) {
+      let timer = setInterval(() => {
+        console.log(msg)
+      }, 1000)
+      this.$once('hook:beforeDestroy', function () {
+        clearInterval(timer)
+      })
+    }
   }
 }
 </script>

@@ -36,6 +36,7 @@
     "eslint": "^5.16.0",
     "eslint-plugin-vue": "^5.2.3",
     "eslint-utils": "^1.4.3",
+    "miragejs": "^0.1.40",
     "node-sass": "^4.14.1",
     "sass-loader": "^7.3.1",
     "serialize-javascript": "^3.0.0",
@@ -47,7 +48,8 @@
     "vconsole": "^3.3.4",
     "vue-cli-plugin-style-resources-loader": "^0.1.4",
     "vue-template-compiler": "^2.6.11",
-    "webpack-bundle-analyzer": "^3.8.0"
+    "webpack-bundle-analyzer": "^3.8.0",
+    "ws": "^7.3.0"
   },
   "browserslist": [
     "iOS >= 7",

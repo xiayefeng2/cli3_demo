@@ -187,7 +187,8 @@ export default {
     async testAsync (arr) {
       let arr2 = []
       for (let item of arr) {
-        const response = await myFn(item.time)
+        const response = await myFn(item)
+        console.log(Date.now())
         arr2.push(response)
       }
       console.log(arr2)
