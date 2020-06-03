@@ -17,7 +17,7 @@ export let pubSub = {
     if (!fns || fns.length <= 0) return
 
     for (let i = 0, len = fns.length; i < len; i++) {
-      fns[i](args)
+      fns[i](...args)
     }
   },
   unSubscribe (key) {

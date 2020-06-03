@@ -88,7 +88,7 @@ function addPressImg (url) {
   return arr[1] + 'press_' + arr[2]
 }
 
-function isInViewPort (element, parentEl) {
+/* function isInViewPort (element, parentEl) {
   var viewWidth = window.innerWidth || document.documentElement.clientWidth
   var viewHeight = window.innerHeight || document.documentElement.clientHeight
   var obj = element.getBoundingClientRect()
@@ -111,4 +111,4 @@ function isInViewPort (element, parentEl) {
     right <= viewWidth &&
     bottom <= targetBottom
   )
-}
+} */

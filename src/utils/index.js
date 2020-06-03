@@ -2,10 +2,29 @@ import cookies from './cookies'
 import Store from './local_store'
 import log from './log'
 import IndexedDB from './indexDB2'
+// import MyEvent from './myEvent'
 
-const store = new Store()
+let store
+if (Store.instance) {
+  store = Store.instance
+} else {
+  store = Store.instance = new Store()
+}
+// console.log(Store.instance)
 const db = new IndexedDB()
-
+/* const event = new MyEvent()
+event.on('sendMsg', (first, ...args) => {
+  console.log(first)
+  console.log(args)
+})
+event.once('sendVal', (val) => {
+  console.log(val)
+})
+setTimeout(() => {
+  event.emit('sendMsg', 'update')
+  event.emit('sendVal', 25)
+  event.emit('sendVal', 26)
+}, 5000) */
 const utils = {
   log,
   cookies,

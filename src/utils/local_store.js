@@ -141,6 +141,7 @@ export default class Store {
       throw new Error('当前环境不支持本地存储')
     }
   }
+  static instance = null
   checkStr (obj) {
     let target = obj
     if (this.checkedType(target) === 'Object') {
