@@ -27,7 +27,7 @@ const router = new Router({
       }
     },
     {
-      path: '/about',
+      path: '/about/:id?',
       name: 'about',
       // route level code-splitting
       // this generates a separate chunk (about.[hash].js) for this route

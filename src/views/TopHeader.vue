@@ -16,7 +16,7 @@ export default {
   },
   methods: {
     goAbout () {
-      this.$router.push('/about')
+      this.$router.push('/about/3')
     }
   }
 }

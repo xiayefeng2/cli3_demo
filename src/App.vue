@@ -4,7 +4,7 @@
       <RouterLink to="/">
         Home
       </RouterLink> |
-      <RouterLink to="/about">
+      <RouterLink to="/about/1">
         About
       </RouterLink>
     </div>
