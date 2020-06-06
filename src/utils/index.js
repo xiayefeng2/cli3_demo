@@ -995,6 +995,31 @@ export function isInViewPort (element) {
   )
 }
 
+export function isInView (element, parentEl) {
+  var viewWidth = window.innerWidth || document.documentElement.clientWidth
+  var viewHeight = window.innerHeight || document.documentElement.clientHeight
+  var obj = element.getBoundingClientRect()
+  var top = obj.top
+  var right = obj.right
+  var bottom = obj.bottom
+  var left = obj.left
+
+  var targetBottom = viewHeight
+  if (parentEl) {
+    var obj2 = parentEl.getBoundingClientRect()
+    var top2 = obj2.top
+    var parentHeight = obj2.height
+    targetBottom = top2 + parentHeight
+  }
+
+  return (
+    top >= 0 &&
+    left >= 0 &&
+    right <= viewWidth &&
+    bottom <= targetBottom
+  )
+}
+
 export function oberverDOM (el) {
   const options = {
     // 表示重叠面积占被观察者的比例，从 0 - 1 取值，
