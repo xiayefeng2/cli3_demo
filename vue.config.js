@@ -4,6 +4,13 @@ const TerserPlugin = require('terser-webpack-plugin')
 const path = require('path')
 const isProd = process.env.NODE_ENV === 'production'
 let baseUrl = '/'
+let openMock = false
+if (process.env.NODE_ENV === 'development') {
+  openMock = true
+}
+if (isProd) {
+  openMock = false
+}
 
 function resolve (dir) {
   return path.join(__dirname, dir)
@@ -119,7 +126,11 @@ module.exports = {
     entry
       .add('@babel/polyfill')
       .end() */
-
+    if(openMock) {
+      const entry = config.entry('app')
+      entry.add('./mock/index.js')
+        .end()
+    }
     config.externals({
       'AMap': 'AMap',
       'wx': 'wx'

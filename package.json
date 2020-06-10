@@ -37,6 +37,7 @@
     "eslint-plugin-vue": "^5.2.3",
     "eslint-utils": "^1.4.3",
     "miragejs": "^0.1.40",
+    "mockjs": "^1.1.0",
     "node-sass": "^4.14.1",
     "sass-loader": "^7.3.1",
     "serialize-javascript": "^3.0.0",
