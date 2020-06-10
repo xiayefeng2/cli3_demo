@@ -977,6 +977,68 @@ utils.memoize = function (func, hasher) {
   return memoize
 }
 
+// 加入收藏夹
+export function addFavorite (sURL, sTitle) {
+  try {
+    window.external.addFavorite(sURL, sTitle)
+  } catch (e) {
+    try {
+      window.sidebar.addPanel(sTitle, sURL, '')
+    } catch (e) {
+      alert('加入收藏失败，请使用Ctrl+D进行添加')
+    }
+  }
+}
+
+// 为元素添加on方法
+Element.prototype.on = Element.prototype.addEventListener
+
+NodeList.prototype.on = function (event, fn) {
+  []['forEach'].call(this, function (el) {
+    el.on(event, fn)
+  })
+  return this
+}
+
+// 为元素添加trigger方法
+Element.prototype.trigger = function (type, data) {
+  var event = document.createEvent('HTMLEvents')
+  event.initEvent(type, true, true)
+  event.data = data || {}
+  event.eventName = type
+  event.target = this
+  this.dispatchEvent(event)
+  return this
+}
+
+NodeList.prototype.trigger = function (event) {
+  []['forEach'].call(this, function (el) {
+    el['trigger'](event)
+  })
+  return this
+}
+
+export function scrollBottom (select) {
+  const scrollHeight = document.documentElement.scrollTop || document.body.scrollTop || 0
+  if (scrollHeight) {
+    window.scrollTo(0, scrollHeight)
+  } else if (select) {
+    let container = document.querySelector(select)
+    container.scrollTop = container.scrollHeight
+  }
+}
+
+export function isScrollBottom (select, offset = 50) {
+  let element
+  if (typeof select === 'string') {
+    element = document.querySelector(select)
+  } else if (select instanceof HTMLElement && select.nodeType === Node.ELEMENT_NODE) {
+    element = select
+  }
+
+  return element.scrollHeight - element.scrollTop <= element.clientHeight + offset
+}
+
 export function isInViewPort (element) {
   const viewWidth = window.innerWidth || document.documentElement.clientWidth
   const viewHeight = window.innerHeight || document.documentElement.clientHeight
@@ -1080,6 +1142,12 @@ export function addScroll (el, objSub, cb) {
   }, false)
 }
 
+export function customClose () {
+  window.opener = null
+  window.open('', '_self')
+  window.close()
+}
+
 // 利用 CSS3 旋转 对根容器逆时针旋转 90 度
 export function detectOrient () {
   var width = document.documentElement.clientWidth
@@ -1102,6 +1170,25 @@ export function detectOrient () {
     style += 'transform-origin: ' + width / 2 + 'px ' + width / 2 + 'px;'
   }
   $wrapper.style.cssText = style
+}
+
+export function isMobileUserAgent () {
+  return /iphone|ipod|android.*mobile|windows.*phone|blackberry.*mobile/i.test(
+    window.navigator.userAgent.toLowerCase()
+  )
+}
+
+export function loadStyle (url) {
+  try {
+    document.createStyleSheet(url)
+  } catch (e) {
+    var cssLink = document.createElement('link')
+    cssLink.rel = 'stylesheet'
+    cssLink.type = 'text/css'
+    cssLink.href = url
+    var head = document.getElementsByTagName('head')[0]
+    head.appendChild(cssLink)
+  }
 }
 
 export default utils
