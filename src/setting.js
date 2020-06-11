@@ -1,7 +1,7 @@
 import Vue from 'vue'
 import { openVc } from '@/global_config'
 import { isDev } from '@/utils'
-import { makeServer } from './server'
+// import { makeServer } from './server'
 // import FastClick from 'fastclick'
 // const FastClick = require('fastclick')
 
@@ -22,7 +22,7 @@ Vue.config.errorHandler = function (err, vm, info) {
 Vue.config.productionTip = false
 
 if (isDev()) {
-  makeServer()
+  // makeServer()
   if (openVc) {
     import('vconsole').then(res => {
       // console.log(res)

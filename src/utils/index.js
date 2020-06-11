@@ -1082,6 +1082,51 @@ export function isInView (element, parentEl) {
   )
 }
 
+export function addClass (el, className) {
+  let element = getElement(el)
+  if (element) {
+    let classList = el.classList
+    if (classList.contains(className)) {
+      return element
+    } else {
+      classList.add(className)
+      return element
+    }
+  }
+}
+
+export function removeClass (el, className) {
+  let element = getElement(el)
+  if (element) {
+    let classList = el.classList
+    if (classList.contains(className)) {
+      classList.remove(className)
+      return element
+    } else {
+      return element
+    }
+  }
+}
+
+export function toggleClass (el, className) {
+  let element = getElement(el)
+  if (element) {
+    let classList = el.classList
+    classList.toggle(className)
+    return element
+  }
+}
+
+export function getElement (el) {
+  let element
+  if (el instanceof HTMLElement && el.nodeType === 1) {
+    element = el
+  } else if (typeof el === 'string') {
+    element = document.querySelector(el)
+  }
+  return element
+}
+
 export function oberverDOM (el) {
   const options = {
     // 表示重叠面积占被观察者的比例，从 0 - 1 取值，

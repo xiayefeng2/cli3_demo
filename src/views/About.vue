@@ -107,6 +107,7 @@ export default {
     let fn = utils.throttle(this.throttle, 200)
     // let fn = utils.debounce(this.debounce, 500)
     window.addEventListener('scroll', fn)
+    window.postMessage('adsfas', location.protocol + '//' + location.host)
     // window.addEventListener('scroll', this.throttle)
 
     /* this.imageArr.map((item, idx) => {
