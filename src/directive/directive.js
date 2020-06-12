@@ -1,15 +1,37 @@
 import Vue from 'vue'
-// import MyEvent from '@/utils/my-event'
+import MyEvent from '@/utils/my-event'
+import { domToString } from '@/utils'
 
 Vue.directive('focus', {
   inserted: function (el) {
     el.focus()
   }
 })
-
-/* Vue.directive('event', {
+const cache = {}
+Vue.directive('event', {
   inserted: function (el, binding, vNode) {
-    let myEvent = new MyEvent({ select: el })
+    // console.log(vNode.context)
+    let myEvent
+    let elText = domToString(el)
+    if (!cache[elText]) {
+      cache[elText] = new MyEvent({
+        select: el,
+        destory () {
+          return new Promise((resolve, reject) => {
+            vNode.context.$once('hook:beforeDestroy', function () {
+              delete cache[elText]
+              elText = null
+              resolve()
+            })
+            vNode.context.$on('error', function (err) {
+              reject(err)
+            })
+          })
+        }
+      })
+    }
+    myEvent = cache[elText]
+    // console.log(myEvent)
     if (!myEvent[binding.arg]) {
       throw new Error(`no such ${binding.arg} evnet type`)
     }
@@ -18,4 +40,4 @@ Vue.directive('focus', {
     }
     myEvent[binding.arg](binding.value)
   }
-}) */
+})

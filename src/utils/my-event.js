@@ -1,8 +1,8 @@
-// import { Subject, Observer } from './observer'
+import { Subject, Observer } from './observer'
 
-export default class MyEvent {
+export default class MyEvent extends Subject {
   constructor (props) {
-    // super(props)
+    super(props)
     let select = props.select
     if (typeof select === 'string') {
       this.ele = document.querySelector(select)
@@ -12,14 +12,14 @@ export default class MyEvent {
       throw new TypeError('props of select must be string or HTMLElement')
     }
     this.tapLastTime = null
-    // this.observer = new Subject()
-    /* if (props.destory && typeof props.destory === 'function') {
+
+    if (props.destory && typeof props.destory === 'function') {
       props.destory().then(() => {
-        this.observer.notify()
+        this.notify()
       }).catch(err => {
         console.log(err)
       })
-    } */
+    }
   }
   tap (handler) {
     let startTime, endTime
@@ -45,12 +45,11 @@ export default class MyEvent {
     }
     this.ele.addEventListener('touchstart', touchFn)
     this.ele.addEventListener('touchend', touchFn)
-    /* let observer = () => {
+    let observer = () => {
       this.ele.removeEventListener('touchstart', touchFn)
       this.ele.removeEventListener('touchend', touchFn)
-      console.log('remove tap event')
     }
-    this.add(new Observer({ cb: observer })) */
+    this.add(new Observer({ cb: observer.bind(this) }))
   }
 
   longTap (startHandle, endHandle) {
@@ -103,12 +102,12 @@ export default class MyEvent {
     this.ele.addEventListener('touchmove', touchFn)
     this.ele.addEventListener('touchend', touchFn)
 
-    /* let observer = () => {
+    let observer = () => {
       this.ele.removeEventListener('touchstart', touchFn)
       this.ele.removeEventListener('touchmove', touchFn)
       this.ele.removeEventListener('touchend', touchFn)
     }
-    this.add(new Observer({ cb: observer })) */
+    this.add(new Observer({ cb: observer.bind(this) }))
   }
 
   leftSlip (handler) {
@@ -135,11 +134,11 @@ export default class MyEvent {
     this.ele.addEventListener('touchstart', touchFn)
     this.ele.addEventListener('touchend', touchFn)
 
-    /* let observer = () => {
+    let observer = () => {
       this.ele.removeEventListener('touchstart', touchFn)
       this.ele.removeEventListener('touchend', touchFn)
     }
-    this.add(new Observer({ cb: observer })) */
+    this.add(new Observer({ cb: observer.bind(this) }))
   }
 
   rightSlip (handler) {
@@ -165,11 +164,11 @@ export default class MyEvent {
     this.ele.addEventListener('touchstart', touchFn)
     this.ele.addEventListener('touchend', touchFn)
 
-    /* let observer = () => {
+    let observer = () => {
       this.ele.removeEventListener('touchstart', touchFn)
       this.ele.removeEventListener('touchend', touchFn)
     }
-    this.add(new Observer({ cb: observer })) */
+    this.add(new Observer({ cb: observer.bind(this) }))
   }
 
   upSlip (handler, sort) {
@@ -198,11 +197,11 @@ export default class MyEvent {
     this.ele.addEventListener('touchstart', touchFn)
     this.ele.addEventListener('touchend', touchFn)
 
-    /* let observer = () => {
+    let observer = () => {
       this.ele.removeEventListener('touchstart', touchFn)
       this.ele.removeEventListener('touchend', touchFn)
     }
-    this.add(new Observer({ cb: observer })) */
+    this.add(new Observer({ cb: observer.bind(this) }))
   }
   downSlip (handler) {
     let startX, startY, endX, endY
@@ -230,10 +229,10 @@ export default class MyEvent {
     this.ele.addEventListener('touchstart', touchFn)
     this.ele.addEventListener('touchend', touchFn)
 
-    /* let observer = () => {
+    let observer = () => {
       this.ele.removeEventListener('touchstart', touchFn)
       this.ele.removeEventListener('touchend', touchFn)
     }
-    this.add(new Observer({ cb: observer })) */
+    this.add(new Observer({ cb: observer.bind(this) }))
   }
 }

@@ -3,7 +3,7 @@ import App from './App.vue'
 import router from './route'
 import store from './vuex'
 import VueI18n from 'vue-i18n'
-import VueMobileEvent from 'vue-mobile-event'
+// import VueMobileEvent from 'vue-mobile-event'
 
 import Title from 'plugin/title'
 import VueIconFont from 'plugin/icon'
@@ -20,7 +20,7 @@ import '@/utils/test1' // test file
 Vue.use(VueI18n)
 Vue.use(Title)
 Vue.use(VueIconFont)
-Vue.use(VueMobileEvent)
+// Vue.use(VueMobileEvent)
 
 new Vue({
   router,
