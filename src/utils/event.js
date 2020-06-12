@@ -34,26 +34,22 @@
       this.ele.addEventListener('touchend', touchFn)
     },
     longTap: function (handler) {
-      var startTime, timerId
+      var timerId
       var touchFn = function (e) {
         e.preventDefault()
         switch (e.type) {
           case 'touchstart':
-            startTime = new Date().getTime()
+            // startTime = new Date().getTime()
             timerId = setTimeout(function () {
               handler.call(this, e)
               timerId = null
-            }, 500)
+            }, 400)
             break
           case 'touchmove':
             clearTimeout(timerId)
             // startTime = new Date().getTime()
             break
           case 'touchend':
-            /* endTime = new Date().getTime()
-						if (endTime - startTime < 500) {
-							timerId && clearTimeout(timerId)
-            } */
             clearTimeout(timerId)
             break
           default:
