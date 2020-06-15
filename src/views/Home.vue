@@ -27,6 +27,7 @@
       </button>
     </div>
     <HelloWorld msg="Welcome to Your Vue.js App" />
+    <marquee>滚动文字</marquee>
   </div>
 </template>
 

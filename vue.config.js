@@ -126,7 +126,7 @@ module.exports = {
     entry
       .add('@babel/polyfill')
       .end() */
-    if(openMock) {
+    if (openMock) {
       const entry = config.entry('app')
       entry.add('./mock/index.js')
         .end()
