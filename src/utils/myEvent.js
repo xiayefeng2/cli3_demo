@@ -47,5 +47,6 @@ export default class myEvent {
   }
   clear () {
     this.eventList.clear()
+    this.onceList.clear()
   }
 }

@@ -86,7 +86,7 @@ export default {
   },
   beforeDestroy () {
     // console.log(this.observer)
-    this.utilEvent && this.utilEvent.notify && this.utilEvent.notify()
+    // this.utilEvent && this.utilEvent.notify && this.utilEvent.notify()
   }
 }
 </script>
