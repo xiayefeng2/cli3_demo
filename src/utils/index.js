@@ -1265,4 +1265,21 @@ export function loadStyle (url) {
   }
 }
 
+export function fixNum (num, fixed = 2) {
+  if (!num) return num
+  const str = num.toString()
+  if (str.includes('.')) {
+    let len = str.split('.')[0].length
+    if (len > 1) {
+      len = len + fixed
+    } else if (str.split('.')[0] === '0') {
+      len = fixed
+    } else {
+      len = len + fixed
+    }
+    return +num.toPrecision(len)
+  }
+  return num
+}
+
 export default utils
