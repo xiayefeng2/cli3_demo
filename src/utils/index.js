@@ -10,6 +10,8 @@ if (Store.instance) {
 } else {
   store = Store.instance = new Store()
 }
+
+store.pressState = true
 // console.log(Store.instance)
 const db = new IndexedDB()
 /* const event = new MyEvent()

@@ -1,6 +1,19 @@
+import LZString from 'lz-string'
 export default class Store {
   constructor () {
     Store.checkBrows()
+  }
+  compress = false
+
+  get pressState () {
+    return this.compress
+  }
+  set pressState (state) {
+    if (this.compress) {
+      console.warn('pressState on set once')
+      return
+    }
+    this.compress = state
   }
   getSession (key) {
     if (typeof key !== 'string') {
@@ -24,7 +37,6 @@ export default class Store {
     }
     return parseVal
   }
-
   getLocal (key) {
     if (typeof key !== 'string') {
       throw new Error('params must be string')
@@ -83,6 +95,9 @@ export default class Store {
     } else if (lx === 2) {
       val = localStorage.getItem(key)
     }
+    if (this.compress) {
+      val = LZString.decompress(val)
+    }
     return val
   }
 
@@ -105,6 +120,9 @@ export default class Store {
       // eslint-disable-next-line
     } else if (typeof val === 'bigint') {
       val = JSON.stringify({ num: String(val), isBigInt2Object: true })
+    }
+    if (this.compress) {
+      val = LZString.compress(String(val))
     }
     if (lx === 1) {
       sessionStorage.setItem(key, val)

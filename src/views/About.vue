@@ -69,8 +69,9 @@ import SheetAction from 'components/common/SheetAction'
 // import html2canvas from 'html2canvas'
 import utils, { isInViewPort, oberverDOM } from '@/utils'
 import { myFn } from '@/utils/wx'
-import bsStore from 'bs-store'
+// import bsStore, { getSessionSize, getLocalSize } from 'bs-store'
 import { setData, getData, removeData } from '@/utils/indexedDB.js'
+// import LZString from 'lz-string'
 
 let delay = Promise.resolve()
 let timer = null
@@ -95,10 +96,16 @@ export default {
   },
   created () {
     console.log('created---', this.$route.path)
-    bsStore.setSession('aaa', 1111)
-    let size = utils.store.getLocalSize()
+    utils.store.pressState = true
+    utils.store.setSession('aaa', true)
+    console.log(utils.store.getSession('aaa'))
+    /* let size = getSessionSize()
     console.log(size)
+    console.log(getLocalSize()) */
     console.log(this.$route.params)
+    var string = JSON.stringify({ a: 'sdfsadfsadf', b: 153666, c: [1, 2, 3] })
+    utils.store.setSession('ccc', string)
+    console.log(utils.store.getSession('ccc'))
   },
   mounted () {
     this.title = '我的主页'
