@@ -276,6 +276,21 @@ export function isPromise (val) {
   return val && typeof val.then === 'function'
 }
 
+export function catchError () {
+  window.onerror = function (msg, source, lineNo, colNo, error) {
+    console.log(error)
+    return true
+  }
+  window.addEventListener('error', function (error) {
+    console.log(error)
+  }, true)
+  window.addEventListener('unhandledrejection', function (e) {
+    // e.preventDefault()
+    console.log(e)
+    return true
+  })
+}
+
 export function isNum (val) {
   // return typeof val === 'number' && !isNaN(val)
   if (typeof val !== 'number') {
