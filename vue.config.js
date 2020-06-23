@@ -1,4 +1,3 @@
-// const UglifyJsPlugin = require('uglifyjs-webpack-plugin')
 const CompressionPlugin = require('compression-webpack-plugin')
 const TerserPlugin = require('terser-webpack-plugin')
 const path = require('path')

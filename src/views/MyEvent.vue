@@ -16,7 +16,7 @@
 </template>
 
 <script>
-// import MyEvent from '@/utils/my-event.js'
+import MyEvent from '@/utils/my-event.js'
 
 export default {
   data () {
@@ -25,7 +25,7 @@ export default {
     }
   },
   mounted () {
-    /* var myUtilEvent = new MyEvent({ select: '.wrap' })
+    var myUtilEvent = new MyEvent({ select: '.wrap' })
     this.utilEvent = myUtilEvent
     myUtilEvent.tap(this.tapWrap)
     myUtilEvent.longTap(this.longTap)
@@ -35,7 +35,7 @@ export default {
     myUtilEvent.downSlip(this.downSlip)
     var btnEvent = new MyEvent({ select: '.btn' })
     btnEvent.upSlip(this.upSlip2, true)
-    btnEvent.longTap(this.longTap2, this.longTapEnd) */
+    btnEvent.longTap(this.longTap2, this.longTapEnd)
   },
   methods: {
     tapWrap () {
@@ -115,5 +115,6 @@ export default {
 .btn2{
   margin-top: .5rem;
   height: .8rem;
+  @extend %unselected;
 }
 </style>
