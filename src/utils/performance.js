@@ -19,6 +19,7 @@ export default class Performance {
     this.timeObj = Object.assign(obj)
     return obj
   }
+
   getMemory () {
     const obj = window.performance.memory
     this.memory = Object.assign(obj)
