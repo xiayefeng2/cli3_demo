@@ -1299,4 +1299,8 @@ export function fixNum (num, fixed = 2) {
   return num
 }
 
+export function getPerformance () {
+  return window.performance.getEntriesByType('paint')
+}
+
 export default utils
