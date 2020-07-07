@@ -16,7 +16,7 @@ export default {
   },
   methods: {
     goAbout () {
-      this.$router.push('/about/3')
+      this.$router.push('/about/3?add=2f')
     }
   }
 }

@@ -35,7 +35,8 @@ const router = new Router({
       components: {
         default: () =>
           import(/* webpackChunkName: "about" */ '@/views/About.vue')
-      }
+      },
+      meta: { keepAlive: true }
     },
     {
       path: '/login',
@@ -73,7 +74,7 @@ const router = new Router({
 router.beforeEach((to, from, next) => {
   if (to.matched.some(r => r.meta.requiresAuth)) {
     const token = utils.cookies.get('token')
-    if (token && token !== 'undefined') {
+    if (token) {
       next()
     } else {
       next({
