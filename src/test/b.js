@@ -10,7 +10,6 @@ class Scheduler {
       this.changeList(promise)
       return promise
     } else {
-      // this.waitList.push(promiseCreator)
       return new Promise((resolve, reject) => {
         try {
           this.waitList.push({
@@ -42,7 +41,6 @@ class Scheduler {
 }
 
 const timeout = time => new Promise(resolve => {
-  // console.log('time: ' + time)
   setTimeout(resolve, time)
 })
 

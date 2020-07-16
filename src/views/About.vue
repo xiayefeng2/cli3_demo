@@ -30,6 +30,9 @@
     <button @click="certPerson">
       认证
     </button>
+    <button @click="mediaFile">
+      多媒体
+    </button>
     <button @click="setIndexedDB">
       indexedDB
     </button>
@@ -221,6 +224,9 @@ export default {
     },
     uploadImg () {
       this.$router.push('/imgUpload')
+    },
+    mediaFile () {
+      this.$router.push('/mediaFile')
     },
     downloadImg () {
       let url = 'http://aicare.oss-cn-shenzhen.aliyuncs.com/test/platform/poster/293cb0af34054e40aa6031efa62429ce/user/39025002da964ec9b3e997b0bbc781ae.jpg'

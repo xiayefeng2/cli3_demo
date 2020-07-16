@@ -45,6 +45,7 @@ const base64DecodeChars = [-1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -
   -1, 26, 27, 28, 29, 30, 31, 32, 33, 34, 35, 36, 37, 38, 39, 40,
   41, 42, 43, 44, 45, 46, 47, 48, 49, 50, 51, -1, -1, -1, -1, -1]
 // const encode = encodeURIComponent
+const CHARS = '0123456789ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz'
 
 export const isEmpty = obj =>
   [Object, Array].includes((obj || {}).constructor) &&
@@ -1563,6 +1564,21 @@ export const changeToChinese = (Num) => {
 
 export function getPerformance () {
   return window.performance.getEntriesByType('paint')
+}
+
+export const generateUUID = () => {
+  const start = Date.now().toString(36)
+  const uuid = []
+
+  for (let i = 0; i < 32 - start.length; i++) {
+    if (i % 5 === 0 && i < 16) {
+      uuid[i] = '-'
+      continue
+    }
+    uuid[i] = CHARS[Math.random() * CHARS.length | 0]
+  }
+
+  return start + uuid.join('')
 }
 
 export default utils

@@ -67,6 +67,11 @@ const router = new Router({
       path: '/imgUpload',
       name: 'imgUpload',
       component: () => import('@/views/ImgWater.vue')
+    },
+    {
+      path: '/mediaFile',
+      name: 'mediaFile',
+      component: () => import('@/views/MediaFile.vue')
     }
     // ...routerList
   ]
