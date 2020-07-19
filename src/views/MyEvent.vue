@@ -17,6 +17,7 @@
 
 <script>
 import MyEvent from '@/utils/my-event.js'
+import utils from '@/utils'
 
 export default {
   data () {
@@ -39,34 +40,34 @@ export default {
   },
   methods: {
     tapWrap () {
-      console.log('tap 事件发生了' + +new Date())
+      utils.log.default('tap 事件发生了' + +new Date())
     },
     longTap () {
-      console.log('longTap 事件发生了')
+      utils.log.default('longTap 事件发生了')
     },
     longTap2 () {
-      console.log('longTap2 事件发生了')
+      utils.log.default('longTap2 事件发生了')
     },
     longTapEnd () {
-      console.log('longTapEnd 事件发生了')
+      utils.log.default('longTapEnd 事件发生了')
     },
     leftSlip () {
-      console.log('leftSlip 事件发生了')
+      utils.log.default('leftSlip 事件发生了')
     },
     rightSlip () {
-      console.log('rightSlip 事件发生了')
+      utils.log.default('rightSlip 事件发生了')
     },
     upSlip () {
-      console.log('upSlip 事件发生了')
+      utils.log.default('upSlip 事件发生了')
     },
     upSlip2 () {
-      console.log('upSlip2 事件发生了')
+      utils.log.default('upSlip2 事件发生了')
     },
     downSlip () {
-      console.log('downSlip 事件发生了')
+      utils.log.default('downSlip 事件发生了')
     },
     clickEvent () {
-      console.log('点击事件发生了' + +new Date())
+      utils.log.default('点击事件发生了' + +new Date())
     },
     destory () {
       return Promise.resolve(1)
@@ -75,13 +76,13 @@ export default {
       this.destory()
     },
     tapEvent () {
-      console.log('2222222222')
+      utils.log.default('2222222222')
     },
     longTapEvent () {
-      console.log('3333333')
+      utils.log.default('3333333')
     },
     endHandle () {
-      console.log('6666666')
+      utils.log.default('6666666')
     }
   },
   beforeDestroy () {

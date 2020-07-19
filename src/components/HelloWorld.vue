@@ -133,6 +133,7 @@
 </template>
 
 <script>
+import utils from '@/utils'
 export default {
   name: 'HelloWorld',
   props: {
@@ -142,10 +143,10 @@ export default {
     }
   },
   created () {
-    console.log('Hello World created')
+    utils.log.default('Hello World created')
   },
   mounted () {
-    console.log('Hello World mounted')
+    utils.log.default('Hello World mounted')
   }
 }
 </script>
