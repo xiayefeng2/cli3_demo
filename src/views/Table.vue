@@ -72,9 +72,9 @@ export default {
 
   },
   mounted () {
-    setTimeout(() => {
+    /* setTimeout(() => {
       this.$router.push('/about')
-    }, 3000)
+    }, 3000) */
   },
   watch: {
 
