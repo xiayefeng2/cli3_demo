@@ -222,6 +222,10 @@ export function calcBaseRem () {
   document.addEventListener('DOMContentLoaded', recalc, false)
 }
 
+export function isDef (v) {
+  return v !== undefined && v !== null
+}
+
 export function isFunction (val) {
   return typeof val === 'function'
 }
@@ -232,6 +236,15 @@ export function isObject (obj) {
 
 export function isSimpleData (val) {
   return !(val instanceof Object)
+}
+
+export function isPrimitive (value) {
+  return (
+    typeof value === 'string' ||
+    typeof value === 'number' ||
+    typeof value === 'symbol' ||
+    typeof value === 'boolean'
+  )
 }
 
 // 扁平化数组
@@ -274,7 +287,7 @@ export function isRegExp (v) {
 }
 
 export function isPromise (val) {
-  return val && typeof val.then === 'function'
+  return val && typeof val.then === 'function' && typeof val.catch === 'function'
 }
 
 export function catchError () {
