@@ -509,3 +509,18 @@ export function detectOrient () {
   }
   $wrapper.style.cssText = style
 }
+
+export function errorMsg (error) {
+  if (error.message && error.message.includes('Network')) {
+    error.message = '网络故障或服务链接中断，请稍后再试！'
+  } else if (error.message && error.message.includes('timeout')) {
+    error.message = '请求超时，请稍后重试！'
+  } else if (error.message && error.message.includes('status code 404')) {
+    error.message = '请求地址404！'
+  } else if (error.message && error.message.includes('status code 500')) {
+    error.message = '服务器错误，请稍后重试！'
+  } else if (!error.message && error.code === void 0) {
+    error.message = '连接出错，请重试！'
+  }
+  return error
+}
