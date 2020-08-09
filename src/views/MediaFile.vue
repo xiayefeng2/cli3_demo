@@ -36,8 +36,8 @@ export default {
     }, 500)
   },
   beforeDestroy () {
-    console.log('aaa')
-    console.log(this.audio)
+    // console.log('aaa')
+    // console.log(this.audio)
     if (!this.audio.paused) {
       this.audio.pause()
     }
