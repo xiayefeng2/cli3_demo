@@ -45,7 +45,7 @@ export function throttle (func, timeFrame) {
   return function (...args) {
     let now = +new Date()
     if (now - lastTime >= timeFrame) {
-      func(...args)
+      func.apply(this, args)
       lastTime = now
     }
   }
