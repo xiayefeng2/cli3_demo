@@ -78,7 +78,7 @@ export default class MyEvent extends Subject {
       this.ele.removeEventListener('touchstart', touchFn)
       this.ele.removeEventListener('touchend', touchFn)
     }
-    this.add(new Observer({ cb: observer.bind(this) }))
+    this.add(new Observer({ cb: observer }))
   }
 
   longTap (startHandle, endHandle) {
@@ -138,7 +138,7 @@ export default class MyEvent extends Subject {
       this.ele.removeEventListener('touchmove', touchFn)
       this.ele.removeEventListener('touchend', touchFn)
     }
-    this.add(new Observer({ cb: observer.bind(this) }))
+    this.add(new Observer({ cb: observer }))
   }
 
   leftSlip (handler) {
@@ -170,7 +170,7 @@ export default class MyEvent extends Subject {
       this.ele.removeEventListener('touchstart', touchFn)
       this.ele.removeEventListener('touchend', touchFn)
     }
-    this.add(new Observer({ cb: observer.bind(this) }))
+    this.add(new Observer({ cb: observer }))
   }
 
   rightSlip (handler) {
@@ -201,7 +201,7 @@ export default class MyEvent extends Subject {
       this.ele.removeEventListener('touchstart', touchFn)
       this.ele.removeEventListener('touchend', touchFn)
     }
-    this.add(new Observer({ cb: observer.bind(this) }))
+    this.add(new Observer({ cb: observer }))
   }
 
   upSlip (handler) {
@@ -235,7 +235,7 @@ export default class MyEvent extends Subject {
       this.ele.removeEventListener('touchstart', touchFn)
       this.ele.removeEventListener('touchend', touchFn)
     }
-    this.add(new Observer({ cb: observer.bind(this) }))
+    this.add(new Observer({ cb: observer }))
   }
   downSlip (handler) {
     let startX, startY, endX, endY
@@ -268,6 +268,6 @@ export default class MyEvent extends Subject {
       this.ele.removeEventListener('touchstart', touchFn)
       this.ele.removeEventListener('touchend', touchFn)
     }
-    this.add(new Observer({ cb: observer.bind(this) }))
+    this.add(new Observer({ cb: observer }))
   }
 }

@@ -324,7 +324,11 @@ export function dateFormat ({ date = new Date(), format = 'yyyy-MM-dd' } = {}) {
 
 utils.testFn = function ({ success, fail, time = 500 }) {
   setTimeout(() => {
-    success.call(this)
+    try {
+      success.call(this)
+    } catch (err) {
+      fail(err)
+    }
   }, time)
 }
 
