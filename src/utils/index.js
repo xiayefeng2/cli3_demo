@@ -45,7 +45,7 @@ export function throttle (func, timeFrame) {
   return function (...args) {
     let now = +new Date()
     if (now - lastTime >= timeFrame) {
-      func(...args)
+      func.apply(this, args)
       lastTime = now
     }
   }
@@ -324,7 +324,11 @@ export function dateFormat ({ date = new Date(), format = 'yyyy-MM-dd' } = {}) {
 
 utils.testFn = function ({ success, fail, time = 500 }) {
   setTimeout(() => {
-    success.call(this)
+    try {
+      success.call(this)
+    } catch (err) {
+      fail(err)
+    }
   }, time)
 }
 
