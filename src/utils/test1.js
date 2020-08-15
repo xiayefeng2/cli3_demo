@@ -13,13 +13,13 @@ var obj = new SuperType('xiao ming')
 // console.log(obj.hasOwnProperty('sayName'))
 // obj.sayHello()
 // obj.sayName()
-for (let key in obj) {
+/* for (let key in obj) {
   if (obj.hasOwnProperty(key)) {
     console.log(key)
   } else {
     console.log(`key: ${key}`)
   }
-}
+} */
 const base64EncodeChars = 'ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz0123456789+/'
 function base64encode (str) {
   var out, i, len
@@ -74,12 +74,12 @@ function utf16to8 (str) {
   return out
 }
 
-console.log(base64encode(utf16to8('啊啊')))
+// console.log(base64encode(utf16to8('啊啊')))
 var str = 'http://aicare.oss-cn-shenzhen.aliyuncs.com/platform/saas/20200307/a8614d40900447e5b7a78d39f4424d77.jpg'
 
 // console.log(str.replace(reg, '$1press_$2'))
 // console.log(RegExp.$2)
-console.log(addPressImg(str))
+// console.log(addPressImg(str))
 function addPressImg (url) {
   if (!url) return ''
   let reg = /(.*(?<=\\\/\d{8})\/)(.+)$/
@@ -112,3 +112,68 @@ function addPressImg (url) {
     bottom <= targetBottom
   )
 } */
+
+console.log('script start')
+async function async1 () {
+  await async2()
+  console.log('async1 end')
+}
+async function async2 () { console.log('async2 end') }
+async1()
+setTimeout(function () { console.log('setTimeout') }, 0)
+new Promise(resolve => {
+  console.log('Promise')
+  resolve()
+}).then(function () {
+  console.log('promise1')
+}).then(function () {
+  console.log('promise2')
+})
+console.log('script end')
+
+function lazyMan (name) {
+  this.task = []
+  this.task.push(() => {
+    return new Promise(res => {
+      console.log('name:' + name); res()
+    })
+  })
+  let run = () => {
+    let sequence = Promise.resolve()
+    for (const func of this.task) {
+      sequence = sequence.then(() => func())
+    }
+  }
+  setTimeout(() => { run() }, 0)
+  this.eat = (str) => {
+    this.task.push(() => {
+      return new Promise(res => {
+        console.log('eat:' + str); res()
+      })
+    })
+    return this
+  }
+  this.sleep = (time) => {
+    this.task.push(() => {
+      return new Promise(res => {
+        setTimeout(() => {
+          console.log(`Wake up after ` + time); res()
+        }, time)
+      })
+    })
+    return this
+  }
+  this.sleepFirst = (time) => {
+    this.task.unshift(() => {
+      return new Promise(res => {
+        setTimeout(() => {
+          console.log(`sleepFirst up after ` + time); res()
+        }, time)
+      })
+    })
+    return this
+  }
+  return this
+}
+
+lazyMan('xxx').sleep(1000).eat('333').sleepFirst(2000)
