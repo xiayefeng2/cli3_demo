@@ -42,6 +42,9 @@
     <button @click="delIndexedDB">
       delData
     </button>
+    <button @click="goExcel">
+      Excel
+    </button>
     <div class="show-box">
       {{ positionText }}
     </div>
@@ -227,6 +230,9 @@ export default {
     },
     mediaFile () {
       this.$router.push('/mediaFile')
+    },
+    goExcel () {
+      this.$router.push('/excel')
     },
     downloadImg () {
       let url = 'http://aicare.oss-cn-shenzhen.aliyuncs.com/test/platform/poster/293cb0af34054e40aa6031efa62429ce/user/39025002da964ec9b3e997b0bbc781ae.jpg'

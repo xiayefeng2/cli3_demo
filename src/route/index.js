@@ -72,6 +72,11 @@ const router = new Router({
       path: '/mediaFile',
       name: 'mediaFile',
       component: () => import('@/views/MediaFile.vue')
+    },
+    {
+      path: '/excel',
+      name: 'excel',
+      component: () => import('@/views/XlsxFileReader.vue')
     }
     // ...routerList
   ]
