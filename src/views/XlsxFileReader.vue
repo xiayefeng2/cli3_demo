@@ -3,7 +3,7 @@
     <input
       type="file"
       accept=".xls,.xlsx"
-      @change="handle_fr"
+      @change="fileChange"
     >
   </div>
 </template>
