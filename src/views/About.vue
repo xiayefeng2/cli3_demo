@@ -45,6 +45,9 @@
     <button @click="goExcel">
       Excel
     </button>
+    <button @click="inputValOberve">
+      InputEvent
+    </button>
     <div class="show-box">
       {{ positionText }}
     </div>
@@ -233,6 +236,9 @@ export default {
     },
     goExcel () {
       this.$router.push('/excel')
+    },
+    inputValOberve () {
+      this.$router.push('/inputOberve')
     },
     downloadImg () {
       let url = 'http://aicare.oss-cn-shenzhen.aliyuncs.com/test/platform/poster/293cb0af34054e40aa6031efa62429ce/user/39025002da964ec9b3e997b0bbc781ae.jpg'

@@ -77,6 +77,11 @@ const router = new Router({
       path: '/excel',
       name: 'excel',
       component: () => import('@/views/XlsxFileReader.vue')
+    },
+    {
+      path: '/inputOberve',
+      name: 'inputOberve',
+      component: () => import('@/views/InputValueOberve.vue')
     }
     // ...routerList
   ]

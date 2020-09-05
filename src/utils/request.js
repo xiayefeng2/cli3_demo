@@ -21,7 +21,7 @@ const removePendingReq = (url, type) => {
 }
 
 const instance = axios.create({
-  baseURL: 'https://api.example.com'
+  // baseURL: 'https://api.example.com'
 })
 
 instance.defaults.timeout = 10000
