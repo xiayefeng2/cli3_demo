@@ -79,9 +79,10 @@ import SheetAction from 'components/common/SheetAction'
 import utils, { isInViewPort, oberverDOM } from '@/utils'
 import { myFn } from '@/utils/wx'
 import bsStore, { getSessionSize, getLocalSize } from 'bs-store'
+import lzString from 'bs-store/lz-string'
 import { setData, getData, removeData } from '@/utils/indexedDB.js'
 // import LZString from 'lz-string'
-
+bsStore.use(lzString)
 let delay = Promise.resolve()
 let timer = null
 
@@ -105,7 +106,6 @@ export default {
   },
   created () {
     console.log('created---', this.$route.path)
-    bsStore.pressState = true
     bsStore.setSession('aaa', 111133)
     console.log(bsStore.getSession('aaa'))
     let size = getSessionSize()

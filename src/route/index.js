@@ -35,8 +35,8 @@ const router = new Router({
       components: {
         default: () =>
           import(/* webpackChunkName: "about" */ '@/views/About.vue')
-      },
-      meta: { keepAlive: true }
+      }
+      // meta: { keepAlive: true }
     },
     {
       path: '/login',

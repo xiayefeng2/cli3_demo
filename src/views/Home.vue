@@ -34,7 +34,7 @@
 <script>
 // @ is an alias to /src
 import HelloWorld from '@/components/HelloWorld.vue'
-import { reqGet } from '@/api/common'
+// import { reqGet } from '@/api/common'
 // import util from 'utils'
 export default {
   name: 'Home',
@@ -43,11 +43,11 @@ export default {
   },
   created () {
     console.log('home created')
-    reqGet('/api', { a: 1, b: 2 }).then(res => {
+    /* reqGet('/api', { a: 1, b: 2 }).then(res => {
       console.log(res)
     }).catch(err => {
       console.log(err)
-    })
+    }) */
   },
   mounted () {
     console.log('home mounted')
