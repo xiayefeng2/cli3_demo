@@ -82,6 +82,7 @@ import bsStore, { getSessionSize, getLocalSize } from 'bs-store'
 import lzString from 'bs-store/lz-string'
 import { setData, getData, removeData } from '@/utils/indexedDB.js'
 // import LZString from 'lz-string'
+// console.log(lzString)
 bsStore.use(lzString)
 let delay = Promise.resolve()
 let timer = null
@@ -111,7 +112,6 @@ export default {
     let size = getSessionSize()
     console.log(size)
     console.log(getLocalSize())
-    console.log(this.$route.params)
     var string = { a: 'sdfsadfsadf', b: 153666, c: [1, 2, 3] }
     bsStore.setSession('ccc', string)
     console.log(bsStore.getSession('ccc'))
@@ -135,15 +135,20 @@ export default {
     }) */
     this.testAsync([
       {
-        time: 300, id: '1'
+        time: 300,
+        id: '1'
       },
       {
-        time: 200, id: '2'
+        time: 200,
+        id: '2'
       },
       {
-        time: 1000, id: '3'
+        time: 1000,
+        id: '3'
       }
     ])
+    const timer = setInterval(() => {}, 1000)
+    this.$once('hook:beforeDestroy', () => clearInterval(timer))
   },
   methods: {
     showFaAction () {
@@ -151,25 +156,31 @@ export default {
       this.showSelect = true
     },
     setIndexedDB () {
-      setData('mytest', 236333).then(res => {
-        // console.log(res)
-      }).catch(err => {
-        console.log(err)
-      })
+      setData('mytest', 236333)
+        .then((res) => {
+          // console.log(res)
+        })
+        .catch((err) => {
+          console.log(err)
+        })
     },
     getIndexedDB () {
-      getData('mytest').then(res => {
-        console.log(res)
-      }).catch(err => {
-        console.log(err)
-      })
+      getData('mytest')
+        .then((res) => {
+          console.log(res)
+        })
+        .catch((err) => {
+          console.log(err)
+        })
     },
     delIndexedDB () {
-      removeData('mytest').then(res => {
-        console.log(res)
-      }).catch(err => {
-        console.log(err)
-      })
+      removeData('mytest')
+        .then((res) => {
+          console.log(res)
+        })
+        .catch((err) => {
+          console.log(err)
+        })
       removeData(1)
       removeData(2)
     },
@@ -241,7 +252,8 @@ export default {
       this.$router.push('/inputOberve')
     },
     downloadImg () {
-      let url = 'http://aicare.oss-cn-shenzhen.aliyuncs.com/test/platform/poster/293cb0af34054e40aa6031efa62429ce/user/39025002da964ec9b3e997b0bbc781ae.jpg'
+      let url =
+        'http://aicare.oss-cn-shenzhen.aliyuncs.com/test/platform/poster/293cb0af34054e40aa6031efa62429ce/user/39025002da964ec9b3e997b0bbc781ae.jpg'
       // savePicture(url)
       /*  html2canvas(document.body).then((canvas) => {
         console.log(canvas)
@@ -255,7 +267,7 @@ export default {
     downLoad (url) {
       // console.log(url)
       var oA = document.createElement('a')
-      oA.download = '扫码关注.jpg'// 设置下载的文件名，默认是'下载'
+      oA.download = '扫码关注.jpg' // 设置下载的文件名，默认是'下载'
       oA.href = url
       document.body.appendChild(oA)
       oA.click()
@@ -263,22 +275,27 @@ export default {
     },
     getLocation () {
       if (navigator.geolocation) {
-        navigator.geolocation.getCurrentPosition((position) => {
-          this.positionText += '经度' + position.coords.longitude
-          this.positionText += '维度' + position.coords.latitude
-          this.positionText += '准确度' + position.coords.accuracy
-          this.positionText += '海拔' + position.coords.altitude
-          this.positionText += '海拔准确度' + position.coords.altitudeAccuracy
-          this.positionText += '行进方向' + position.coords.heading
-          this.positionText += '地面速度' + position.coords.speed
-          this.positionText += '请求时间' + new Date(position.timestamp)
-        }, err => {
-          alert(err.code)
-        }, {
-          enableHighAccuracy: false, // 位置是否精确获取
-          timeout: 5000, // 获取位置允许的最长时间
-          maximumAge: 1500 // 多久更新获取一次位置
-        })
+        navigator.geolocation.getCurrentPosition(
+          (position) => {
+            this.positionText += '经度' + position.coords.longitude
+            this.positionText += '维度' + position.coords.latitude
+            this.positionText += '准确度' + position.coords.accuracy
+            this.positionText += '海拔' + position.coords.altitude
+            this.positionText +=
+              '海拔准确度' + position.coords.altitudeAccuracy
+            this.positionText += '行进方向' + position.coords.heading
+            this.positionText += '地面速度' + position.coords.speed
+            this.positionText += '请求时间' + new Date(position.timestamp)
+          },
+          (err) => {
+            alert(err.code)
+          },
+          {
+            enableHighAccuracy: false, // 位置是否精确获取
+            timeout: 5000, // 获取位置允许的最长时间
+            maximumAge: 1500 // 多久更新获取一次位置
+          }
+        )
       } else {
         alert('不支持获取位置信息!')
       }
@@ -309,7 +326,7 @@ export default {
     border-bottom: 1px solid #efefef;
   }
 }
-.bottom-btn{
+.bottom-btn {
   width: 100%;
   height: dw(80);
   background-color: green;
