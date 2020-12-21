@@ -105,7 +105,13 @@ export default {
       bottomBtn: null
     }
   },
+  computed: {
+    storeVal () {
+      return this.$store.state.val
+    }
+  },
   created () {
+    console.log(this.$store.state.val)
     console.log('created---', this.$route.path)
     bsStore.setSession('aaa', 111133)
     console.log(bsStore.getSession('aaa'))
@@ -152,6 +158,7 @@ export default {
   },
   methods: {
     showFaAction () {
+      this.$store.commit('changeVal', 5)
       utils.log.default('哈哈哈')
       this.showSelect = true
     },
