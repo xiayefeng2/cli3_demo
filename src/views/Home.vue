@@ -28,6 +28,20 @@
     </div>
     <HelloWorld msg="Welcome to Your Vue.js App" />
     <marquee>滚动文字</marquee>
+    <div class="svg-wrap">
+      <svg
+        class="svg-icon"
+        viewBox="0 0 80 80"
+        xmlns="http://www.w3.org/2000/svg"
+      >
+        <path d="M 0 0 H 80 V 80 L 40 50 L 0 80 Z" />
+        <text
+          x="30"
+          y="35"
+          class="small"
+        >热</text>
+      </svg>
+    </div>
   </div>
 </template>
 
@@ -88,17 +102,30 @@ export default {
 }
 </script>
 <style lang="scss" scoped>
-  .home{
-    margin-bottom: 50px;
+.home {
+  margin-bottom: 50px;
+}
+.btn-wrap {
+  height: dw(80);
+  line-height: dw(80);
+}
+.refresh-btn {
+  margin: 0 dw(30);
+}
+.event-btn {
+  margin-right: dw(30);
+}
+.svg-wrap{
+  width: 80px;
+  height: 80px;
+  margin-left: 20px;
+  .svg-icon{
+    fill: #ccc;
   }
-  .btn-wrap{
-    height: dw(80);
-    line-height: dw(80);
+  ::v-deep .small{
+    fill: #fff;
+    font-size: 20px;
+    color: #fff;
   }
-  .refresh-btn{
-    margin: 0 dw(30);
-  }
-  .event-btn{
-    margin-right: dw(30);
-  }
+}
 </style>
