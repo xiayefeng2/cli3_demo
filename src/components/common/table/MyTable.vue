@@ -1,12 +1,17 @@
 <template>
   <div class="table-wrap">
-    <table class="table" :id="tableId">
+    <table
+      class="table"
+      :id="tableId"
+    >
       <thead class="thead">
         <tr>
           <th
             v-for="(item, name) in headObj"
             :key="name"
-          >{{(headObj[name] &&typeof headObj[name] === 'object') ? headObj[name].key : headObj[name]}}</th>
+          >
+            {{ (headObj[name] &&typeof headObj[name] === 'object') ? headObj[name].key : headObj[name] }}
+          </th>
         </tr>
       </thead>
       <table-body
@@ -36,22 +41,30 @@ export default {
       default: () => []
     },
     rowClassName: {
-      type: [Function, String]
+      type: [Function, String],
+      default: ''
     },
     rowKey: {
-      type: String
+      type: String,
+      default: Math.random()
     },
     columnKey: {
-      type: String
+      type: String,
+      default: Math.random()
     },
     tableId: {
       type: String,
       default: ''
     },
     colType: { // {key: val | val:{ s: Text, d: Date, n: Number, b: Boolean, e: Error, z: stub } }
-      type: Object
+      type: Object,
+      default: () => ({})
     },
-    userDefined: Object
+    userDefined: {
+      type: Object,
+      default: () => ({})
+    }
+
   },
   components: {
     TableBody

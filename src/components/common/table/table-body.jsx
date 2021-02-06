@@ -95,7 +95,7 @@ export default {
       if (typeof rowClassName === 'string') {
         arr.push(rowClassName)
       } else if (typeof rowClassName === 'function') {
-        arr.push(rowClassName({row, rowIndex}))
+        arr.push(rowClassName({ row, rowIndex }))
       }
       return arr
     },
