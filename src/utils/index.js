@@ -1049,4 +1049,26 @@ export const generateUUID = () => {
   return start + uuid.join('')
 }
 
+function getData () {
+  return Promise.resolve()
+}
+
+getData({
+  method: 'post',
+  url: '/export',
+  responseType: 'arraybuffer'
+})
+  .then(res => {
+  // 假设 data 是返回来的二进制数据
+    const data = res.data
+    const url = window.URL.createObjectURL(new Blob([data], { type: 'application/vnd.openxmlformats-officedocument.spreadsheetml.sheet' }))
+    const link = document.createElement('a')
+    link.style.display = 'none'
+    link.href = url
+    link.setAttribute('download', 'excel.xlsx')
+    document.body.appendChild(link)
+    link.click()
+    document.body.removeChild(link)
+  })
+
 export default utils
