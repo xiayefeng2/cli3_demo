@@ -26,6 +26,15 @@
         表单
       </button>
     </div>
+    <ul class="list-wrap">
+      <li
+        class="list-item"
+        v-for="item of 20000"
+        :key="item"
+      >
+        {{ item }}
+      </li>
+    </ul>
     <HelloWorld msg="Welcome to Your Vue.js App" />
     <marquee>滚动文字</marquee>
     <div class="svg-wrap">

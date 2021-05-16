@@ -1060,7 +1060,8 @@ getData({
 })
   .then(res => {
   // 假设 data 是返回来的二进制数据
-    const data = res.data
+    const data = res && res.data
+    if (!data) return
     const url = window.URL.createObjectURL(new Blob([data], { type: 'application/vnd.openxmlformats-officedocument.spreadsheetml.sheet' }))
     const link = document.createElement('a')
     link.style.display = 'none'
