@@ -51,6 +51,7 @@
         >热</text>
       </svg>
     </div>
+    <div class="sector" />
   </div>
 </template>
 
@@ -124,17 +125,23 @@ export default {
 .event-btn {
   margin-right: dw(30);
 }
-.svg-wrap{
+.svg-wrap {
   width: 80px;
   height: 80px;
   margin-left: 20px;
-  .svg-icon{
+  .svg-icon {
     fill: #ccc;
   }
-  ::v-deep .small{
+  ::v-deep .small {
     fill: #fff;
     font-size: 20px;
     color: #fff;
   }
+}
+.sector {
+  border-radius: 80px 0 0;
+  width: 80px;
+  height: 80px;
+  background: #0000ff;
 }
 </style>
