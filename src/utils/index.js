@@ -1113,6 +1113,14 @@ function getData () {
   return Promise.resolve()
 }
 
+window.addEventListener('rejectionhandled', event => {
+  console.log('Promise rejected; reason: ' + event.reason)
+}, false)
+
+window.addEventListener('unhandledrejection', event => {
+  console.warn(`UNHANDLED PROMISE REJECTION: ${event.reason}`)
+})
+
 getData({
   method: 'post',
   url: '/export',
