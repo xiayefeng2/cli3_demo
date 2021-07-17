@@ -326,7 +326,7 @@ export default {
   font-size: dw(36);
   max-height: dw(400);
   overflow-y: scroll;
-  /deep/ .list {
+  ::v-deep .list {
     height: dw(80);
     line-height: dw(80);
     background: #fff;

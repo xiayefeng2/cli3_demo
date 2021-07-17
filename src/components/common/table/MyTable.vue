@@ -97,7 +97,7 @@ export default {
     .line {
       line-height: 2.4rem;
     }
-    /deep/ .heigh-line {
+    ::v-deep .heigh-line {
       background: rgba(26, 42, 98, 0.35);
     }
   }

@@ -189,9 +189,9 @@
 	//   $val: if($dev == 'browse', $value / $d-w * 1rem, $value * 1rpx);
 	//   @return $val
 	@if $dev == 'phone' {
-		@return $value / $d-w * 1rem;
+		@return math.div($value, $d-w) * 1rem;
 	} @else if $dev == 'desktop' {
-		@return $value / 32 * 1rem;
+		@return math.div($value, 32) * 1rem;
 	} @else {
 		@return $value * 1rpx;
 	}
