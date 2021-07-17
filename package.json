@@ -13,7 +13,7 @@
   },
   "dependencies": {
     "@babel/polyfill": "^7.12.1",
-    "axios": "^0.19.2",
+    "axios": "^0.21.1",
     "bs-store": "^2.0.7",
     "emoji-regex": "^9.2.2",
     "html2canvas": "^1.0.0-rc.7",
@@ -65,7 +65,7 @@
     "vue-template-compiler": "^2.6.12",
     "watch": "^1.0.2",
     "webpack-bundle-analyzer": "^3.9.0",
-    "ws": "^7.4.5"
+    "ws": "^7.4.6"
   },
   "browserslist": [
     "iOS >= 7",
