@@ -1094,6 +1094,27 @@ export function readFileInputEventAsArrayBuffer (event, callback) {
   reader.readAsArrayBuffer(file)
 }
 
+export function memoizeAsync (func, resolver) {
+  if (typeof func !== 'function' || (resolver != null && typeof resolver !== 'function')) {
+    throw new TypeError('Expected a function')
+  }
+  const memoized = function (...args) {
+    const key = resolver ? resolver.apply(this, args) : args[0]
+    const cache = memoized.cache
+
+    if (cache.has(key)) {
+      return cache.get(key)
+    }
+    const result = func.apply(this, args)
+    if (!isPromise(result)) {
+      memoized.cache = cache.set(key, result) || cache
+    }
+    return result
+  }
+  memoized.cache = new Map()
+  return memoized
+}
+
 export function dataURLtoFile (dataurl, filename) {
   // 获取到base64编码
   const arr = dataurl.split(',')
