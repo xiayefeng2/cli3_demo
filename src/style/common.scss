@@ -59,6 +59,25 @@ li {
   }
 }
 
+@keyframes rotate {
+  from {
+    transform: rotate(0deg);
+  }
+  to {
+    transform: rotate(360deg);
+  }
+}
+
+.loading{
+	position: fixed;
+	left: 50%;
+	top: 50px;
+	transform: translateX(-50%);
+	width: 200px;
+	height: 30px;
+	background-color: #ccc;
+}
+
 .gray-theme{
 	filter: grayscale(100%);
 }
