@@ -9,7 +9,7 @@ export default {
   show (...args) {
     el = this.vm.$mount().$el
     document.body.appendChild(el)
-    this.vm.show.apply(this, args)
+    this.vm.show(...args)
   },
   hide () {
     this.vm.hide()
