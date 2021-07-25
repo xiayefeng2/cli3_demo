@@ -3,7 +3,7 @@
     v-if="showLoading"
     class="loading-wrap"
   >
-    <span class="loading-text">加载中</span>
+    <span class="loading-text">{{ text }}</span>
     <icon-font
       class="icon-font"
       name="loading3"
@@ -17,14 +17,16 @@ export default {
   name: 'MyLoading',
   data () {
     return {
-      showLoading: false
+      showLoading: false,
+      text: ''
     }
   },
   components: {
     IconFont
   },
   methods: {
-    show () {
+    show ({ msg = '加载中' } = {}) {
+      this.text = msg
       this.showLoading = true
     },
     hide () {
@@ -39,6 +41,7 @@ export default {
   @extend %fix;
   width: 240px;
   height: 36px;
+  border-radius: 4px;
   left: 50%;
   top: 50px;
   transform: translateX(-50%);

@@ -51,7 +51,7 @@
 import HelloWorld from '@/components/HelloWorld.vue'
 // import { reqGet } from '@/api/common'
 // import util from 'utils'
-// import showLoading from '@/components/common/showLoading'
+import showLoading from '@/components/common/showLoading'
 export default {
   name: 'Home',
   components: {
@@ -74,12 +74,12 @@ export default {
   inject: ['reload'],
   methods: {
     login () {
-      // showLoading.show()
-      this.$router.push('/login')
+      showLoading.show({ msg: '数据请求中' })
+      // this.$router.push('/login')
     },
     eventTest () {
-      // showLoading.hide()
-      this.$router.push('/event')
+      showLoading.hide()
+      // this.$router.push('/event')
     },
     formSubmit () {
       this.$router.push('/form')

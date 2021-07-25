@@ -6,10 +6,10 @@ const Loading = Vue.extend(MyLoading)
 // const instance = new Loading()
 export default {
   vm: new Loading(),
-  show () {
+  show (...args) {
     el = this.vm.$mount().$el
     document.body.appendChild(el)
-    this.vm.show()
+    this.vm.show.apply(this, args)
   },
   hide () {
     this.vm.hide()
