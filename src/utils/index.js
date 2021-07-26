@@ -904,7 +904,7 @@ export function toggleClass (el, className) {
 }
 
 export function getElement (el) {
-  let element
+  let element = null
   if (el instanceof HTMLElement && el.nodeType === 1) {
     element = el
   } else if (typeof el === 'string') {
