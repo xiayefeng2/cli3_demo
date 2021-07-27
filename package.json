@@ -66,8 +66,8 @@
     "ws": "^7.4.6"
   },
   "browserslist": [
-    "iOS >= 7",
-    "Android >= 4.4",
+    "iOS >= 8",
+    "Android >= 6.0",
     "not dead"
   ]
 }
