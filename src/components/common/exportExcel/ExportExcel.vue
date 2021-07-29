@@ -54,6 +54,17 @@
         XLSX.writeFile(wb, this.bookName + '.xlsx')
         this.$emit('change-state')
       }
+      const sheet = XLSX.utils.json_to_sheet(this.tableData, {
+        skipHeader: true,
+        origin: 'A2'
+      })
+      XLSX.utils.sheet_add_json(sheet, [{ id: 'ID', name: '姓名', boole: '是否', city: '城市', employees: '员工数', created_date: '创建日期' }],
+        { skipHeader: true, header: ['id', 'name', 'city', 'employees', 'created_date', 'boole'] }
+      )
+      const wb = XLSX.utils.book_new()
+
+      XLSX.utils.book_append_sheet(wb, sheet, 'SheetJS')
+      XLSX.writeFile(wb, 'sheetjs1.xlsx')
     }
   }
 </script>
