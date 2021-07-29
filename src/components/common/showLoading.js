@@ -7,18 +7,18 @@ const instances = []
 let idx = 0
 // const instance = new Loading()
 
-const Message = function (options) {
+const MuiLoading = function (options) {
   options = options || {}
   if (typeof options === 'string') {
     options = {
-      message: options
+      text: options
     }
   }
   let userOnClose = options.onClose
-  let id = 'message_' + ++idx
+  let id = 'text' + ++idx
 
   options.onClose = function () {
-    Message.close(id, userOnClose)
+    MuiLoading.close(id, userOnClose)
   }
   instance = new Loading({
     data: options
@@ -37,7 +37,7 @@ const Message = function (options) {
   return instance
 }
 
-Message.close = function (id, userOnClose) {
+MuiLoading.close = function (id, userOnClose) {
   let len = instances.length
   let index = -1
   let removedHeight
@@ -60,4 +60,4 @@ Message.close = function (id, userOnClose) {
   }
 }
 
-export default Message
+export default MuiLoading

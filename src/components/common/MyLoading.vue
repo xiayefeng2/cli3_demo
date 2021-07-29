@@ -4,7 +4,7 @@
     class="loading-wrap"
     :style="{top: top + 'px'}"
   >
-    <span class="loading-text">{{ message }}</span>
+    <span class="loading-text">{{ text }}</span>
     <icon-font
       class="icon-font"
       name="loading3"
@@ -19,7 +19,7 @@ export default {
   data () {
     return {
       showLoading: false,
-      message: '',
+      text: '',
       top: '50'
     }
   },
