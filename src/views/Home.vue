@@ -57,6 +57,11 @@ export default {
   components: {
     HelloWorld
   },
+  data () {
+    return {
+      instance: null
+    }
+  },
   created () {
     console.log('home created')
     /* reqGet('/api', { a: 1, b: 2 }).then(res => {
@@ -74,10 +79,12 @@ export default {
   inject: ['reload'],
   methods: {
     login () {
+      // this.instance = showLoading({ message: '数据请求中' })
       // showLoading.show({ msg: '数据请求中' })
       this.$router.push('/login')
     },
     eventTest () {
+      // this.instance.close()
       // showLoading.hide()
       this.$router.push('/event')
     },
