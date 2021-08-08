@@ -10,6 +10,7 @@
 
 <script>
 import xlsx from 'xlsx'
+import { dateFormat } from '@/utils'
 export default {
   data () {
     return {}
@@ -35,11 +36,14 @@ export default {
         var ws = wb.Sheets[wsname]
         var json = xlsx.utils.sheet_to_json(ws)
         console.log(json) */
-        var wb = xlsx.read(bytes, { type: 'array' })
+        var wb = xlsx.read(bytes, { type: 'array', cellDates: true })
         var wsname = wb.SheetNames[0]
         var ws = wb.Sheets[wsname]
         var json = xlsx.utils.sheet_to_json(ws)
         console.log(json)
+        const date = json[0].日期
+        // console.log(dateFormat({ date: addDays(date) }))
+        console.log(dateFormat({ date: new Date(date.getTime() + 43 * 1000) }))
       }
       reader.readAsArrayBuffer(file)
     },

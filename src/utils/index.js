@@ -321,6 +321,16 @@ export function dateFormat ({ date = new Date(), format = 'yyyy-MM-dd' } = {}) {
   }
 }
 
+export function addDays (date, num = 1) {
+  if (date instanceof Date) {
+    const days = date.getDate()
+    date.setDate(days + 1)
+    return date
+  } else {
+    return date
+  }
+}
+
 utils.testFn = function ({ success, fail, time = 500 }) {
   setTimeout(() => {
     try {

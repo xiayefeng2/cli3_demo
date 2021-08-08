@@ -43,6 +43,15 @@
       </svg>
     </div>
     <div class="sector" />
+    <video
+      height="198"
+      controls
+    >
+      <source
+        src="https://dh5.cntv.myhwcdn.cn/asp/h5e/hls/main/0303000a/3/default/c9d0ed8e2e994d56a9b2ca3ef4d35822/main.m3u8?maxbr=2048&contentid=15120519184043"
+        type="application/x-mpegURL"
+      >
+    </video>
   </div>
 </template>
 
