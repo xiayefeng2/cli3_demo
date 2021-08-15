@@ -2,6 +2,7 @@
 import Store from './local_store'
 import log from './log'
 import IndexedDB from './indexDB2'
+import CryptoJS from 'crypto-js'
 // import MyEvent from './myEvent'
 
 let store
@@ -48,6 +49,13 @@ export function throttle (func, timeFrame) {
       lastTime = now
     }
   }
+}
+const key = CryptoJS.enc.Utf8.parse('sptaicaresnetspt')
+
+export function Encrypt (word) {
+  let srcs = CryptoJS.enc.Utf8.parse(word)
+  let encrypted = CryptoJS.AES.encrypt(srcs, key, { mode: CryptoJS.mode.ECB, padding: CryptoJS.pad.Pkcs7 })
+  return encrypted.ciphertext.toString().toUpperCase()
 }
 
 export function debounce (func, wait, immediate) {
