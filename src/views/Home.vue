@@ -43,15 +43,11 @@
       </svg>
     </div>
     <div class="sector" />
-    <video
-      height="198"
-      controls
-    >
-      <source
-        src="https://dh5.cntv.myhwcdn.cn/asp/h5e/hls/main/0303000a/3/default/c9d0ed8e2e994d56a9b2ca3ef4d35822/main.m3u8?maxbr=2048&contentid=15120519184043"
-        type="application/x-mpegURL"
-      >
-    </video>
+    <a
+      class="bottom-link"
+      href="https://beian.miit.gov.cn/"
+      target="_blank"
+    >粤ICP备19150227号-1</a>
   </div>
 </template>
 
@@ -128,6 +124,9 @@ export default {
 .btn-wrap {
   height: dw(80);
   line-height: dw(80);
+}
+.bottom-link{
+  font-size: dw(30);
 }
 .refresh-btn {
   margin: 0 dw(30);
