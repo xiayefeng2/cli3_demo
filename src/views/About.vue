@@ -89,7 +89,7 @@ let timer = null
 
 export default {
   data () {
-    console.log('data---', this.$route.path)
+    // console.log('data---', this.$route.path)
     return {
       title: '',
       showSelect: false,
