@@ -135,6 +135,7 @@ module.exports = {
       'wx': 'wx'
     })
   },
+  transpileDependencies: ['tiny-async-pool']
 
   devServer: {
     port: 8081,
