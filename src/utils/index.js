@@ -1132,6 +1132,16 @@ export function memoizeAsync (func, resolver) {
   return memoized
 }
 
+export function isReload() {
+  const reload = sessionStorage.getItem('checkReload')
+  if(reload){
+    return true
+  }else {
+    sessionStorage.setItem('checkReload', 1)
+    return false
+  }
+}
+
 export function dataURLtoFile (dataurl, filename) {
   // 获取到base64编码
   const arr = dataurl.split(',')
