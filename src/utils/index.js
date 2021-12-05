@@ -58,6 +58,17 @@ export function Encrypt (word) {
   return encrypted.ciphertext.toString().toUpperCase()
 }
 
+export function parseStr (str) {
+  return new Promise((resolve, reject) => {
+    try {
+      const result = JSON.parse(str)
+      resolve(result)
+    } catch (error) {
+      reject(error)
+    }
+  })
+}
+
 export function debounce (func, wait, immediate) {
   let timeout
   return function () {
@@ -1132,11 +1143,11 @@ export function memoizeAsync (func, resolver) {
   return memoized
 }
 
-export function isReload() {
+export function isReload () {
   const reload = sessionStorage.getItem('checkReload')
-  if(reload){
+  if (reload) {
     return true
-  }else {
+  } else {
     sessionStorage.setItem('checkReload', 1)
     return false
   }
