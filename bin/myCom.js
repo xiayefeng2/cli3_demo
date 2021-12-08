@@ -14,6 +14,6 @@ program
 program
   .command('refresh')
   .description('refresh routers and menu')
-  .action(require('../lib/refersh'))
+  .action(require('../lib/refresh'))
 
 program.parse(process.argv)
