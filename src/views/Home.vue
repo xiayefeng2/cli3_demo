@@ -7,39 +7,60 @@
     <div class="btn-wrap">
       <button @click="login">
         登录
-      </button><button
-        class="refresh-btn"
-        @click="reload"
-      >
+      </button><button class="refresh-btn" @click="reload">
         刷新
       </button>
-      <button
-        class="event-btn"
-        @click="eventTest"
-      >
+      <button class="event-btn" @click="eventTest">
         事件
       </button>
-      <button
-        class="form"
-        @click="formSubmit"
-      >
+      <button class="form" @click="formSubmit">
         表单
       </button>
     </div>
     <HelloWorld msg="Welcome to Your Vue.js App" />
     <marquee>滚动文字</marquee>
     <div class="svg-wrap">
-      <svg
-        class="svg-icon"
-        viewBox="0 0 80 80"
-        xmlns="http://www.w3.org/2000/svg"
-      >
+      <svg class="svg-icon" viewBox="0 0 80 80" xmlns="http://www.w3.org/2000/svg">
         <path d="M 0 0 H 80 V 80 L 40 50 L 0 80 Z" />
-        <text
-          x="30"
-          y="35"
-          class="small"
-        >热</text>
+        <text x="30" y="35" class="small">热</text>
+      </svg>
+    </div>
+    <div class="svg-box">
+      <svg viewBox="0 0 200 100" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink">
+        <!-- Quadratic Bézier curve with implicit repetition -->
+        <path
+          fill="none"
+          stroke="red"
+          d="M 10,50
+           Q 25,25 40,50
+           t 30,0 30,0 30,0 30,0 30,0"
+        />
+
+        <!-- Highlight the curve vertex and control points -->
+        <g>
+          <polyline points="10,50 25,25 40,50" stroke="rgba(0,0,0,.2)" fill="none" />
+          <circle cx="25" cy="25" r="1.5" />
+
+          <!-- Curve vertex points -->
+          <circle cx="10" cy="50" r="1.5" />
+          <circle cx="40" cy="50" r="1.5" />
+
+          <g id="SmoothQuadraticDown">
+            <polyline points="40,50 55,75 70,50" stroke="rgba(0,0,0,.2)" stroke-dasharray="2" fill="none" />
+            <circle cx="55" cy="75" r="1.5" fill="lightgrey" />
+            <circle cx="70" cy="50" r="1.5" />
+          </g>
+
+          <g id="SmoothQuadraticUp">
+            <polyline points="70,50 85,25 100,50" stroke="rgba(0,0,0,.2)" stroke-dasharray="2" fill="none" />
+            <circle cx="85" cy="25" r="1.5" fill="lightgrey" />
+            <circle cx="100" cy="50" r="1.5" />
+          </g>
+
+          <use xlink:href="#SmoothQuadraticDown" x="60" />
+          <use xlink:href="#SmoothQuadraticUp" x="60" />
+          <use xlink:href="#SmoothQuadraticDown" x="120" />
+        </g>
       </svg>
     </div>
     <div class="sector" />
