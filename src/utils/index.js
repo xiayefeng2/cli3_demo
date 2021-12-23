@@ -247,6 +247,11 @@ export function randomColor () {
   }
 }
 
+export function isLeapYear(year) {
+  if (!year) return false
+  return year % 4 === 0 && (year % 400 === 0 || year % 100 !== 0)
+}
+
 /**
  * 获取指定范围的随机数
  * @param {最小值} lowerValue
